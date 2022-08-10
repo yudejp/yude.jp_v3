@@ -18,7 +18,7 @@ Among Us の自動ミュート Discord ボット
 ## Minecraft サーバー
 * サーバーアドレス: `yude.jp`
 
-詳細は [こちら](/minecraft)
+詳細は [こちら](/services/minecraft)
 
 ## Gitea インスタンス
 * [git.yude.jp](https://git.yude.jp)

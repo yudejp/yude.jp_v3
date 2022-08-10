@@ -10,3 +10,10 @@ github_username: yude
 theme: minima
 plugins:
   - jekyll-feed
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      permalink: /blog/:year-:month-:title

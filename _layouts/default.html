@@ -61,6 +61,12 @@
                     <li><a class="dropdown-item"
                             href="{% if page.url == '/mutual-links/' %}#{% else %}/mutual-links{% endif %}"><i
                                 class="fa-solid fa-heart"></i> 相互リンク</a></li>
+                    <li><a class="dropdown-item"
+                            href="{% if page.url == '/tos/' %}#{% else %}/tos{% endif %}"><i
+                                class="fa-solid fa-wand-sparkles"></i> yude.jp サービス利用規約</a></li>
+                    <li><a class="dropdown-item"
+                            href="{% if page.url == '/hcunews/' %}#{% else %}/hcunews{% endif %}"><i
+                                class="fa-solid fa-newspaper"></i> @hcunews について</a></li>
                 </ul>
         </ul>
 
@@ -75,7 +81,7 @@
                 {% else %}
                 <li class="breadcrumb-item"><a
                         href="{% assign crumb_limit = forloop.index | plus: 1 %}{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' | replace:'without-plugin/','without-plugins/' }}{% endfor %}">{{
-                        crumb | replace:'-',' ' | remove:'.html' | capitalize }}</a></li>
+                        crumb | replace:'-',' ' | remove:'.html' | capitalize | replace:'Blog', '📕 ブログ' }}</a></li>
                 {% endif %}
                 {% endfor %}
             </ol>
