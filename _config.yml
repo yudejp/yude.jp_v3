@@ -10,6 +10,7 @@ github_username: yude
 theme: minima
 plugins:
   - jekyll-feed
+  - "jekyll-github-metadata"
 
 defaults:
   - scope:
