@@ -86,12 +86,24 @@
                 {% endfor %}
             </ol>
         </nav>
+        <div style="min-height: 30rem">
+            {{ content }}
+        </div>
+        <hr>
+        <div>
+            <a href="https://sites.google.com/site/happybusy/"><img style="margin-left: auto; margin-right:auto"
+                    src="/assets/images/busy_banner.png"></a>
+        </div>
+        <div>
+            <p>
+                リビジョン: {{ site.github.build_revision }} (<a href="{{ site.github.repository_url }}">リポジトリ</a>)<br>
+                <a href="https://jekyllrb-ja.github.io/">Jekyll</a>
+                によってビルドされ、GitHub
+                Pages 上でホストされています。<br>
+                &copy; 2022 yude &lt;i[at]yude.jp&gt;.<br>
+            </p>
+        </div>
 
-        {{ content }}
-
-
-        <a href="https://sites.google.com/site/happybusy/"><img style="margin-left: auto; margin-right:auto"
-                src="/assets/images/busy_banner.png"></a>
     </div>
 
 
