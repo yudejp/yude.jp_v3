@@ -1,0 +1,12 @@
+title: yude.jp
+email: admin@yude.jp
+description: >-
+  yude.jp のトップページです。
+baseurl: "/"
+url: "https://www.yude.jp"
+twitter_username: yude_jp
+github_username: yude
+
+theme: minima
+plugins:
+  - jekyll-feed
