@@ -4,7 +4,7 @@ title: 🎮 minecraft
 permalink: /services/minecraft
 ---
 
-![ヘッダー](/images/minecraft_header.png)
+![ヘッダー](/assets/images/minecraft_header.png)
 
 yude.jp では、Minecraft マルチプレイサーバーを公開しています。
 * バージョン: 1.19
