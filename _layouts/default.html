@@ -18,6 +18,24 @@
     <link rel="shortcut icon"
         type="image/png"
         href="/assets/images/yudejp.png">
+    <style>
+        .title {
+            animation: title 2.5s linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes title {
+
+            0%,
+            100% {
+                color: rgb(0, 0, 255);
+            }
+
+            50% {
+                color: rgb(255, 0, 255);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -30,7 +48,7 @@
                     class="d-inline">
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled"
+                <a class="nav-link title"
                     href="/"
                     tabindex="-1"
                     aria-disabled="true">yude.jp</a>
