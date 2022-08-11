@@ -47,35 +47,9 @@ permalink: /profile/
 
 ## リンク
 * Scrapbox: [油田](https://scrapbox.io/yude)
+    * [制作物](https://scrapbox.io/yude/%E5%88%B6%E4%BD%9C%E7%89%A9)
+    * [デバイス](https://scrapbox.io/yude/%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9)
 
 ## 公開鍵
 * [PGP](https://github.com/yude.gpg)
 * [SSH](https://github.com/yude.keys)
-
-## 制作物
-* OSS へのコントリビューション
-    * [tsukumijima/KonomiTV](https://github.com/tsukumijima/KonomiTV): Docker 対応。 [Docker, Docker Compose]
-    * [shaarli/Shaarli](https://github.com/shaarli/Shaarli): 国際化。 [gettext]
-* [yude/pldb](https://github.com/yude/pldb): Minecraft マルチプレイサーバー上にログイン中のプレイヤーのデータを収集。 [Java, MariaDB (MySQL)]
-* [ノベルゲーム「夏色リフレイン」](https://hcunovelgame.itch.io/natsuiro): コーディングとパッケージングを担当。 (広島市立大学 ノベルゲーム研究会) [Ren'Py]
-* [HunetMC/HunetAPI](https://github.com/HunetMC/HunetAPI): pldb で収集したデータを RESTful API として公開する実装。 [Go, Docker]
-* [yude/attendance-alarm](https://github.com/yude/attendance-alarm): WebClass 用 出席クリッカー押し忘れアラーム。 [Python, Docker]
-* [yude/switchbot-discord](https://github.com/yude/switchbot-discord): SwitchBot の API から定期的にデータを収集し、Discord のテキストチャンネルに投稿。 [Python]
-* [yude/chisel-gui](https://github.com/yude/chisel-gui): TCP to WebSocket プロキシの chisel のフロントエンド。 [Go]
-* [ichidaisai/kanri-chan](https://github.com/ichidaisai/kanri-chan): Discord サーバーのチャンネルを管理したり、参加者の提出物を管理したりできる Discord ボット。広島市立大学 大学祭 「市大祭」 (第 29 回) のために作成。 [Python, Docker]
-* [yuderobot/markov-tweet](https://github.com/yuderobot/markov-tweet): 自分の過去のツイートを形態素解析 + ベクトル化し、マルコフ連鎖を用いて文章を生成・ツイート。 [Python, Docker]
-* [yude/stomach-breaker](https://github.com/yude/stomach-breaker): 腹破壊人間のための IGN を生成。 [TypeScript, Next.js]
-* [yude/ahnmika-white](https://github.com/yude/ahnmika-white): 白って200色あんねん [C, Docker]
-* [マスコミ研究会「Dispatch Place」vol. 40, 41, 42, 43](https://masukendp.github.io/): フリーペーパーに記事を寄稿。(広島市立大学 マスコミ研究会)
-* [yude/EPGS-to-Discord-v2](https://github.com/yude/EPGS-to-Discord-v2): 録画管理ソフトウェア「EPGStation」の動作状況を Discord 上のテキストチャンネルに通知。 [Shell]
-* [yude/trpg-discord-rpc](https://github.com/yude/trpg-discord-rpc): TRPG 用 Discord Rich Presence。 [Go]
-* [yude/vercel-spotify-api](https://github.com/yude/vercel-spotify-api): Spotify の再生状況を JSON で返す Web アプリケーションをサーバーレスで作成。 [Vercel (Serverless Functions), JavaScript]
-* [yude/PlayersBio](https://github.com/yude/PlayersBio): Minecraft マルチプレイサーバー内に居るプレイヤーが、Web ページ等で公開する「ひとこと」を設定できるようにする。データの保管と、API の提供。 [Java, MariaDB (MySQL)]
-* [yude/firmament](https://github.com/yude/firmament): 「ゼロからのOS自作入門」を元に自作オペレーティング システムを作成するチャレンジ。 (作業中)
-* [yude/wideputin](https://github.com/yude/wideputin): Siv3D フレームワークを用いたおふざけ。 [C++, Siv3D]
-* [yude/sato5128F](https://github.com/yude/sato5128F): さとちゃん ([@sato5128F](https://twitter.com/sato5128F)) のような文章を生成。 [Python]
-* yude.jp
-    * 第 1 世代: [yudejp/yude.jp_v1](https://github.com/yudejp/yude.jp_v1) [Next.js, Tailwind CSS]
-    * 第 2 世代: [yudejp/yude.jp_v2](https://github.com/yudejp/yude.jp_v2) [Zola]
-    * 第 3 世代: [yudejp/yude.jp](https://github.com/yudejp/yude.jp_v2) [Jekyll]
-* [自宅サーバー](https://hiroshima.yude.jp)
