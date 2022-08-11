@@ -8,6 +8,23 @@ permalink: /profile/
 
 * アイコン: [Minkasy](https://twitter.com/xmnts) さんより
 
+<div class="card" style="max-width: 30rem;">
+  <div class="card-body">
+    <small>再生中</small>
+    <h5 class="card-title" id="spotify_title">何も再生していません。</h5>
+    <h6 class="card-subtitle mb-2 text-muted" id="spotify_artist"></h6>
+    <small class="text-muted"><a href="https://spotify.com">Spotify</a> による情報, <a href="https://vercel-spotify-api.vercel.app/api/Spotify">API</a></small>
+  </div>
+</div>
+
+<div class="card mt-1" style="max-width: 30rem;">
+  <div class="card-body">
+    <small>プレイ中</small>
+    <h5 class="card-title" id="game_title">何もプレイしていません。</h5>
+    <small class="text-muted"><a href="https://discord.com">Discord</a> による情報</small>
+  </div>
+</div>
+
 <hr>
 
 * 生年月日: 2001 年 11 月 19 日 (20 歳)
@@ -53,3 +70,34 @@ permalink: /profile/
 ## 公開鍵
 * [PGP](https://github.com/yude.gpg)
 * [SSH](https://github.com/yude.keys)
+
+<script async>
+    let spotify_req = new XMLHttpRequest();
+    spotify_req.open('GET', 'https://vercel-spotify-api.vercel.app/api/Spotify')
+    spotify_req.responseType = 'json';
+    spotify_req.send();
+    
+    spotify_req.onload = function() {
+        const spotify_res = spotify_req.response;
+        if (spotify_res['isPlaying']) {
+            spotify_title.innerHTML = spotify_res['title'];
+            spotify_artist.innerHTML = spotify_res['artist'];
+        }
+    }
+</script>
+
+<script async>
+    let discord_req = new XMLHttpRequest();
+    discord_req.open('GET', 'https://discord.com/api/guilds/723409709306216498/widget.json')
+    discord_req.responseType = 'json';
+    discord_req.send();
+    
+    discord_req.onload = function() {
+        const discord_res = discord_req.response;
+        if (discord_res.members) {
+            if (discord_res.members[0].game) {
+                game_title.innerHTML = discord_res.members[0].game.name;
+            }
+        }
+    }
+</script>
