@@ -6,6 +6,7 @@ baseurl: "/"
 url: "https://www.yude.jp"
 twitter_username: yude_jp
 github_username: yude
+include: [_pages]
 
 theme: minima
 plugins:

@@ -4,5 +4,6 @@
 
 layout: default
 title: 🏠 ホーム
+permalink: /
 ---
 うおお よく来たね
