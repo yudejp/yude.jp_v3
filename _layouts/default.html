@@ -19,6 +19,10 @@
         type="image/png"
         href="/assets/images/yudejp.png">
     <style>
+        body {
+            background-color: #f7fafc;
+        }
+
         .title {
             animation: title 2.5s linear;
             animation-iteration-count: infinite;
@@ -40,20 +44,22 @@
 
 <body>
     <div class="container mt-5">
-        <ul class="nav d-block d-md-flex">
-            <li class="nav-item d-none d-md-flex">
-                <img src="/assets/images/yudejp.png"
-                    width="40"
-                    height="40"
-                    class="d-inline">
-            </li>
-            <li class="nav-item">
-                <a class="nav-link title"
-                    href="/"
-                    tabindex="-1"
-                    aria-disabled="true">yude.jp</a>
-            </li>
-            <hr class="d-md-none">
+        <ul class="nav flex-column flex-md-row">
+            <div class="container-fluid">
+                <a class="navbar-brand"
+                    href="#">
+                    <img src="/assets/images/yudejp.png"
+                        alt="yude.jp logo"
+                        width="40"
+                        height="40"
+                        class="d-inline-block align-text-top">
+                    <a class="text-decoration-none title fs-3 font-monospace"
+                        href="/"
+                        style="position: relative; top: 6px"
+                        tabindex="-1"
+                        aria-disabled="true">yude.jp</a>
+                </a>
+            </div>
             <li class="nav-item">
                 <a class="nav-link{% if page.url == '/profile/' %} active{% endif %}"
                     href="{% if page.url == '/profile/' %}#{% else %}/profile{% endif %}"><i
