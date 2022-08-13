@@ -6,4 +6,17 @@ layout: default
 title: 🏠 ホーム
 permalink: /
 ---
-うおお よく来たね
+
+<div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      うおお
+    </div>
+    <div class="col-1" style="writing-mode: vertical-rl">
+      よく来たね
+    </div>
+    <div class="col-10"></div>
+  </div>
+</div>
