@@ -43,8 +43,20 @@ permalink: /links/
 * つくみ島だより (tsukumi さん)\
 [つくみ島だより](https://blog.tsukumijima.net/)
 
+* 僕は一寸 (Misoni さん)\
+[僕は一寸](https://misoni.me/)
+
 * sno2wman.net (SnO<sub>2</sub>WMaN さん)\
 [sno2wman.net](https://sno2wman.net/)
+
+* Aumy (Aumy / おーみー さん)\
+[Aumy](https://fuku.day/)
+
+* KRIS.FAIL (Kris さん)\
+[KRIS.FAIL](https://kris.fail/)
+
+* towa0131のあばうとみー (towa0131 さん)\
+[towa0131のあばうとみー](https://www.towa0131.jp/)
 
 * Sasakulab (佐桜彩斗 さん)\
 [Sasakulab](https://sasakulab.github.io/)
