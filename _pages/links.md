@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 💓 リンク集
+title: 📎 リンク集
 permalink: /links/
 ---
 
