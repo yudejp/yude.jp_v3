@@ -22,3 +22,7 @@ permalink: /
     <div class="col-10"></div>
   </div>
 </div>
+
+#### 見ましょう
+* [オリジナルTVアニメーション「リコリス・リコイル」公式サイト](https://lycoris-recoil.com/)
+* [TVアニメ「継母の連れ子が元カノだった」公式サイト](https://tsurekano-anime.com/)
