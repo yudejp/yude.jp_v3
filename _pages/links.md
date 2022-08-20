@@ -28,6 +28,9 @@ permalink: /links/
 * Zopfcode (puhitaku さん)\
 [Zopfcode](https://www.zopfco.de/)
 
+* Sasakulab (佐桜彩斗 さん)\
+[Sasakulab](https://sasakulab.github.io/)
+
 ###### yude.jp をリンクしてくださる方へ
 ありがとうございます! 以下のバナーを利用することができます (任意)。\
 [![yude.jp](/assets/images/banner_new.png)](https://yude.jp/images/banner_new.png)
@@ -63,9 +66,6 @@ permalink: /links/
 
 * towa0131のあばうとみー (towa0131 さん)\
 [towa0131のあばうとみー](https://www.towa0131.jp/)
-
-* Sasakulab (佐桜彩斗 さん)\
-[Sasakulab](https://sasakulab.github.io/)
 
 * primeのページ (そすうぽよ さん)\
 [primeのページ](https://poyo.me/)
