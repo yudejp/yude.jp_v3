@@ -35,7 +35,7 @@ permalink: /links/
 ---
 
 #### 勝手リンク 
-削除希望は [Issues](https://github.com/yudejp/yude.jp/issues), [電子メール](mailto:i@yude.jp), ... まで、お願いします。
+削除依頼は [Issues](https://github.com/yudejp/yude.jp/issues), [電子メール](mailto:i@yude.jp), ... まで、お願いします。
 
 * iamtakagi.net (takagi さん)\
 [iamtakagi.net](https://iamtakagi.net/)
@@ -45,6 +45,12 @@ permalink: /links/
 
 * 僕は一寸 (Misoni さん)\
 [僕は一寸](https://misoni.me/)
+
+* Minkasy (Minkasy さん)\
+[Minkasy](https://www.minkasy.work/)
+
+* qqey.net (hihumikan さん)\
+[qqey.net](https://www.qqey.net/)
 
 * sno2wman.net (SnO<sub>2</sub>WMaN さん)\
 [sno2wman.net](https://sno2wman.net/)
@@ -66,6 +72,9 @@ permalink: /links/
 
 * donabe8898.dev (donabe さん)\
 [donabe8898.dev](https://donabe8898.dev/)
+
+* PC-JP.NET (PJ さん)\
+[PC-JP.NET](https://pc-jp.net/)
 
 * aoirint (aoirint さん)\
 [aoirint](https://aoirint.com/)
