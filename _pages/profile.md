@@ -51,7 +51,9 @@ permalink: /profile/
 ## 連絡先 / SNS
 <ul>
     <li><i class="fa-solid fa-phone"></i> 電話: <a href="tel:07089091949">+81 70-8909-1949</a></li>
-    <li><i class="fa-solid fa-envelope"></i> 電子メール: <a href="mailto:i@yude.jp" rel="me">i@yude.jp</a></li>
+    <li>
+        <i class="fa-solid fa-envelope"></i>
+        電子メール: <a href="mailto:{{ 'i@yude.jp' | encode_email }}" rel="me">i&#064;yude.jp</a></li>
     <li><i class="fa-brands fa-twitter"></i> Twitter: <a href="https://twitter.com/yude_jp" rel="me">@yude_jp</a></li>
     <li><i class="fa-brands fa-discord"></i> Discord: <a href="https://discord.com/users/116124230243975173" rel="me">yude#3205</a></li>
     <li><i class="fa-brands fa-telegram"></i> Telegram: <a href="https://t.me/yudejp" rel="me">t.me/yudejp</a></li>

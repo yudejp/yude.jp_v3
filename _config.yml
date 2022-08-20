@@ -11,7 +11,8 @@ include: [_pages]
 theme: minima
 plugins:
   - jekyll-feed
-  - "jekyll-github-metadata"
+  - jekyll-github-metadata
+  - jekyll-email-protect
 
 defaults:
   - scope:
