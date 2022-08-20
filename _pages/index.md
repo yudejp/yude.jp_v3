@@ -8,6 +8,10 @@ permalink: /
 ---
 
 <div class="container">
+  <div class="rainbow">
+  Welcome
+  </div>
+
   <div class="row">
     <div class="col-3">
       うおお
