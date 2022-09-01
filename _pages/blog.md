@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 📕 ブログ
-permalink: /blog
+permalink: /blog/
 ---
 
 <ul>
