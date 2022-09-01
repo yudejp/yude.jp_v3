@@ -13,6 +13,7 @@ plugins:
   - jekyll-feed
   - jekyll-github-metadata
   - jekyll-email-protect
+  - jekyll-redirect-from
 
 defaults:
   - scope:

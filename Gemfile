@@ -36,3 +36,4 @@ gem "webrick", "~> 1.7"
 gem "jekyll-github-metadata"
 gem "netrc"
 gem 'jekyll-email-protect'
+gem 'jekyll-redirect-from'
