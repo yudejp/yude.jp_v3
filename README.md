@@ -7,4 +7,4 @@ Front page of yude.jp
 
 ## License
 * Code: MIT license. &copy; 2022 yude.
-* Contents / Assets: Unauthorized reproduction prohibited. &copy; 2022 yude.
+* Contents / Assets: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) &copy; 2022 yude.
