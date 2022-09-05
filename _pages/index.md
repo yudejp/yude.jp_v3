@@ -7,11 +7,11 @@ title: 🏠 ホーム
 permalink: /
 ---
 
-<div class="container" id="particles-js" style="position: relative; height: 10rem; z-index: 100">
+<div class="container" id="particles-js" style="position: relative; height: 4rem; z-index: 100">
   <div style="position: absolute; width: 100%; z-index: 200">
     <figure class="text-center">
     <blockquote class="blockquote">
-      <p id="text"></p>
+      <p id="text" class="blockquote-text"></p>
     </blockquote>
     <figcaption class="blockquote-footer">
       <span id="artist"></span> / <cite id="title"></cite> <a href="javascript:void(0)" id="refreshButton" class="fs-4 text-decoration-none">🔄</a>

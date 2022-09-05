@@ -8,7 +8,7 @@ permalink: /profile/
 
 * アイコン: [Minkasy](https://twitter.com/xmnts) さんより
 
-<div class="card" style="max-width: 30rem;">
+<div class="card" style="max-width: 30rem">
   <div class="card-body">
     <small>再生中</small>
     <h5 class="card-title" id="spotify_title">何も再生していません。</h5>

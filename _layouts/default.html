@@ -6,9 +6,8 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1">
     <title>yude.jp | {{ page.title }}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
         rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
@@ -44,6 +43,46 @@
                 color: rgb(255, 0, 255);
             }
         }
+
+        html,
+        html[data-theme="light"] {
+            --light-text-color: hsl(0, 0%, 35%);
+            --main-background-color: hsl(0, 5%, 95%);
+            --main-text-color: hsl(0, 0%, 0%);
+        }
+
+        html[data-theme="dark"] {
+            --light-text-color: hsl(0, 0%, 60%);
+            --main-background-color: hsl(0, 0%, 10%);
+            --main-text-color: hsl(0, 10%, 80%);
+            --card-background-color: #0C0C0C;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            html {
+                content: "dark";
+            }
+        }
+
+        body {
+            color: var(--main-text-color);
+            background-color: var(--main-background-color);
+        }
+
+        .card,
+        .dropdown-menu {
+            background-color: var(--card-background-color) !important;
+        }
+
+        .blockquote {
+            text-shadow: 1px 1px 2px var(--light-text-color);
+        }
+
+        a,
+        .dropdown-item,
+        .dropdown-item-text {
+            color: var(--main-text-color);
+        }
     </style>
 
     {% if page.url == '/' %}
@@ -70,7 +109,7 @@
                         class="d-inline-block align-text-top">
                     <a class="text-decoration-none title fs-3 font-monospace"
                         href="/"
-                        style="position: relative; top: 6px"
+                        style="position: relative; top: 11px; left: 5px"
                         tabindex="-1"
                         aria-disabled="true">yude.jp</a>
                 </a>
@@ -116,10 +155,17 @@
                             href="{% if page.url == '/hcunews/' %}#{% else %}/hcunews{% endif %}"><i
                                 class="fa-solid fa-newspaper"></i> @hcunews について</a></li>
                 </ul>
+            </li>
+            <button type="button"
+                class="btn btn-dark"
+                onClick="modeSwitcher()"
+                id="theme-toggle">Dark</button>
+
         </ul>
 
         <nav aria-label="breadcrumb"
-            style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);">
+            class="breadcrumb-parent"
+            style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);">
             <ol class="breadcrumb">
                 {% assign crumbs = page.url | remove:'/index.html' | split: '/' %}
                 <li class="breadcrumb-item"><a href="/">🏠 ホーム</a></li>
@@ -130,7 +176,8 @@
                 {% else %}
                 <li class="breadcrumb-item"><a
                         href="{% assign crumb_limit = forloop.index | plus: 1 %}{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' | replace:'without-plugin/','without-plugins/' }}{% endfor %}">{{
-                        crumb | replace:'-',' ' | remove:'.html' | capitalize | replace:'Blog', '📕 ブログ' }}</a></li>
+                        crumb | replace:'-',' ' | remove:'.html' | capitalize | replace:'Blog', '📕 ブログ' }}</a>
+                </li>
                 {% endif %}
                 {% endfor %}
             </ol>
@@ -162,8 +209,7 @@
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
         integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
@@ -288,6 +334,53 @@
         requestAnimationFrame(update);
     </script>
     {% endif %}
+    <script async>
+        const theme = localStorage.getItem('theme');
+        if (theme === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+
+        const userPrefers = getComputedStyle(document.documentElement).getPropertyValue('content');
+
+        if (theme === "dark") {
+            document.getElementById("theme-toggle").innerHTML = "🌅";
+            pJSDom[0].pJS.particles.color.value = "#f0f8ff";
+            pJSDom[0].pJS.fn.particlesRefresh();
+        } else if (theme === "light") {
+            document.getElementById("theme-toggle").innerHTML = "🌙";
+            pJSDom[0].pJS.particles.color.value = "#2f4f4f";
+            pJSDom[0].pJS.fn.particlesRefresh();
+        } else if (userPrefers === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            window.localStorage.setItem('theme', 'dark');
+            document.getElementById("theme-toggle").innerHTML = "🌙";
+            pJSDom[0].pJS.particles.color.value = "gray";
+            pJSDom[0].pJS.fn.particlesRefresh();
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            window.localStorage.setItem('theme', 'light');
+            document.getElementById("theme-toggle").innerHTML = "🌅";
+            pJSDom[0].pJS.particles.color.value = "##2f4f4f";
+            pJSDom[0].pJS.fn.particlesRefresh();
+        }
+
+        function modeSwitcher() {
+            let currentMode = document.documentElement.getAttribute('data-theme');
+            if (currentMode === "dark") {
+                document.documentElement.setAttribute('data-theme', 'light');
+                window.localStorage.setItem('theme', 'light');
+                document.getElementById("theme-toggle").innerHTML = "🌙";
+                pJSDom[0].pJS.particles.color.value = "#2f4f4f";
+                pJSDom[0].pJS.fn.particlesRefresh();
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                window.localStorage.setItem('theme', 'dark');
+                document.getElementById("theme-toggle").innerHTML = "🌅";
+                pJSDom[0].pJS.particles.color.value = "#f0f8ff";
+                pJSDom[0].pJS.fn.particlesRefresh();
+            }
+        }
+    </script>
 </body>
 
 </html>
