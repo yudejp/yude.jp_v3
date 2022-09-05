@@ -7,19 +7,19 @@ title: 🏠 ホーム
 permalink: /
 ---
 
-<div class="container" id="particles-js" style="position: relative; height: 10rem">
-  <div style="position: absolute; width: 100%">
+<div class="container" id="particles-js" style="position: relative; height: 10rem; z-index: 100">
+  <div style="position: absolute; width: 100%; z-index: 200">
     <figure class="text-center">
     <blockquote class="blockquote">
       <p id="text"></p>
     </blockquote>
     <figcaption class="blockquote-footer">
-      <span id="artist"></span> / <cite id="title"></cite>
+      <span id="artist"></span> / <cite id="title"></cite> <a href="javascript:void(0)" id="refreshButton" class="fs-4 text-decoration-none">🔄</a>
     </figcaption>
+    
   </figure>
   </div>  
 </div>
-
 
 ---
 
@@ -91,9 +91,14 @@ permalink: /
   words.push(new Word("目先のマニーより 気持ち良いのが大事!", "23.exe", "CHO-DARI-"));
   words.push(new Word("虹の根元を探しにいこう あなたと迎えたい明日のために", "米津玄師", "かいじゅうのマーチ"));
   
-  let selected_word = words[Math.floor(Math.random() * words.length)];
-  document.getElementById("text").innerHTML = selected_word.text;
-  document.getElementById("artist").innerHTML = selected_word.artist;
-  document.getElementById("title").innerHTML = selected_word.title;
-
+  function updateText() {
+    let selected_word = words[Math.floor(Math.random() * words.length)];
+    document.getElementById("text").innerHTML = selected_word.text;
+    document.getElementById("artist").innerHTML = selected_word.artist;
+    document.getElementById("title").innerHTML = selected_word.title;
+  }
+  
+  updateText();
+  
+  document.getElementById("refreshButton").addEventListener("click", updateText);
 </script>
