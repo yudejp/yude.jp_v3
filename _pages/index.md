@@ -9,30 +9,17 @@ permalink: /
 
 <div class="container" id="particles-js" style="position: relative; height: 10rem">
   <div style="position: absolute; width: 100%">
-    <div class="rainbow" id="title">
-    Welcome
-    </div>
-  
-    <div class="row">
-      <div class="col-3">
-        うおお
-      </div>
-      <div class="col-1" style="writing-mode: vertical-rl">
-        よく来たね
-      </div>
-      <div class="col-10"></div>
-    </div>
+    <figure class="text-center">
+    <blockquote class="blockquote">
+      <p id="text"></p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      <span id="artist"></span> / <cite id="title"></cite>
+    </figcaption>
+  </figure>
   </div>  
 </div>
 
-<select id="your_will" onchange="updateTitle();">
-  <option value="ウオオオオオオオオオ">ウオオオオオオオオオ</option>
-  <option value="狂う">狂う</option>
-  <option value="狂井 益男">狂井 益男</option>
-  <option value="ギャオオオオオオオオ">ギャオオオオオオオオ</option>
-  <option value="DAKARA NANY">DAKARA NANY</option>
-  <option value="オオアオ動物園">オオアオ動物園</option>
-</select>
 
 ---
 
@@ -53,9 +40,31 @@ permalink: /
 * [War in Ukraine: official website, MFA of Ukraine](https://war.ukraine.ua/)
 
 <script>
-  function updateTitle() {
-    let titleSelect = document.getElementById("your_will");
-    let title = document.getElementById("title");
-    title.innerHTML = titleSelect.value;
-  }
+  function Word(_text, _artist, _title) {
+    this.text = _text;
+    this.artist = _artist;
+    this.title = _title;
+  } 
+  
+  let words = [];
+  words.push(new Word("本当の夢はとまらないんだね いま心が駆け出すんだ", "Liella!", "START!! True dreams"));
+  words.push(new Word("昨日の夜を大人になるまで 心に仕舞っておくよ", "はるまきごはん", "蛍はいなかった"));
+  words.push(new Word("僕らは宇宙もまだ知らない ゼロのゲート開くよ", "いとうかなこ", "アマデウス"));
+  words.push(new Word("また昔みたいに 眠れるような気がして", "iroha(sasaki)", "炉心融解"));
+  words.push(new Word("君が手を差し伸べた 光で影が生まれる", "さユり", "花の塔"));
+  words.push(new Word("きっと、目と目が合うと 吹き出しちゃったりするんだ", "いよわ", "オーバー!"));
+  words.push(new Word("めんどくさい☆諦め悪いみたい まだ重々謙遜したい yey", "ずっと真夜中でいいのに。", "ミラーチューン"));
+  words.push(new Word("僕と君はふたりだけで 楽しく壊れたいから", "きくお", "天国へ行こう"));
+  words.push(new Word("偽りのない自由をこの手にダンス 故に踊る", "UPLIFT SPICE", "オメガリズム"));
+  words.push(new Word("はなればなれ見上げた空は 青く青く澄み切っていく", "TrySail", "azure"));
+  words.push(new Word("だんだん 君と同じ言葉が使えるね", "みきとP", "いーあるふぁんくらぶ"));
+  words.push(new Word("明日が晴れるなら それでいいや", "Mrs. GREEN APPLE", "春愁"));
+  words.push(new Word("全身全霊で向かうわ 再生 再生 再生成", "Perfume", "再生"));
+  
+  
+  let selected_word = words[Math.floor(Math.random() * words.length)];
+  document.getElementById("text").innerHTML = selected_word.text;
+  document.getElementById("artist").innerHTML = selected_word.artist;
+  document.getElementById("title").innerHTML = selected_word.title;
+
 </script>
