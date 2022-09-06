@@ -514,5 +514,155 @@ let quotes = [
         "artist": "佐咲紗花",
         "title": "夢と色でできている"
     },
+    {
+        "text": "鏡よ鏡、わたし世界を変えたいの",
+        "artist": "ORESAMA",
+        "title": "ワンダードライブ"
+    },
+    {
+        "text": "メラメラとたぎれ 眠っているだけの正義",
+        "artist": "緑黄色社会",
+        "title": "Mela!"
+    },
+    {
+        "text": "「まるで バーチャルシンガーみたい！！！」",
+        "artist": "cosMo@暴走P",
+        "title": "マシンガンポエムドール"
+    },
+    {
+        "text": "やがて巡り巡る季節に 僕らは息をする",
+        "artist": "Tia",
+        "title": "ニルバナ"
+    },
+    {
+        "text": "エゴになりたいお年頃ですか",
+        "artist": "DECO*27",
+        "title": "勘違い性反希望症"
+    },
+    {
+        "text": "幼少期の面影は 誰も知らないんだ",
+        "artist": "yama",
+        "title": "春を告げる"
+    },
+    {
+        "text": "Jump up Cheers! Go fight win!",
+        "artist": "神ノ木高校チアリーディング部",
+        "title": "ジャンプアップ↑エール!!"
+    },
+    {
+        "text": "難儀な言葉は捨て ただ書くんだ",
+        "artist": "DUSTCELL",
+        "title": "STIGMA"
+    },
+    {
+        "text": "見ないフリしていても 確かにそこにある",
+        "artist": "YOASOBI",
+        "title": "群青"
+    },
+    {
+        "text": "少女は言う 言葉に意味を奏でながら!",
+        "artist": "wowaka",
+        "title": "ローリンガール"
+    },
+    {
+        "text": "今宵 共に あゝ狂い咲き",
+        "artist": "GARNiDELiA",
+        "title": "極楽浄土"
+    },
+    {
+        "text": "しずか しずかな ほしになる",
+        "artist": "sasakure.UK",
+        "title": "*ハロー、プラネット。"
+    },
+    {
+        "text": "ああ魔法をかけてよ 声が枯れてゆく",
+        "artist": "ポルカドットスティングレイ",
+        "title": "ヒミツ"
+    },
+    {
+        "text": "俺たちだって動物 こーゆーのって好物",
+        "artist": "SEKAI NO OWARI",
+        "title": "Habit"
+    },
+    {
+        "text": "「今ならまだやり直せるよ」が 風に舞う",
+        "artist": "クリープハイプ",
+        "title": "栞"
+    },
+    {
+        "text": "そしたらベンジー、あたしをグレッチで殴って",
+        "artist": "椎名林檎",
+        "title": "丸ノ内サディスティック"
+    },
+    {
+        "text": "らんらららりるれらーらーらー",
+        "artist": "IOSYS",
+        "title": "進捗どうですか?"
+    },
+    {
+        "text": "空に憧れて 空をかけてゆく",
+        "artist": "荒井由実",
+        "title": "ひこうき雲"
+    },
+    {
+        "text": "君の胸の奥まで 届くようなメロディ奏でるよ",
+        "artist": "EasyPop",
+        "title": "ハッピーシンセサイザ"
+    },
+    {
+        "text": "苦しい苦しい呪縛を 解いて解いて",
+        "artist": "きくお",
+        "title": "愛して 愛して 愛して"
+    },
+    {
+        "text": "覚えていてね わたしの声を",
+        "artist": "Reol",
+        "title": "ヒビカセ"
+    },
+    {
+        "text": "今こそ叶えようよ あの日のやくそく",
+        "artist": "三森すずこ",
+        "title": "エガオノキミヘ"
+    },
+    {
+        "text": "サイダーみたいな恋だね",
+        "artist": "ツユ",
+        "title": "風薫る空の下"
+    },
+    {
+        "text": "焦らせたこの季節に 連れて行かれたら",
+        "artist": "サカナクション",
+        "title": "多分、風。"
+    },
+    {
+        "text": "明日の君に歌うよ さあ、時は来た",
+        "artist": "BABYMETAL",
+        "title": "Road of Resistance"
+    },
+    {
+        "text": "心と体はひとつ 思い知らされる",
+        "artist": "ワルキューレ",
+        "title": "一度だけの恋なら"
+    },
+    {
+        "text": "マジでアタシは なんで泣いてんの",
+        "artist": "PSYQUI feat. Such",
+        "title": "ヒステリックナイトガール"
+    },
+    {
+        "text": "君の方が 僕より夏が好きだったね",
+        "artist": "indigo la End",
+        "title": "夏夜のマジック"
+    },
+    {
+        "text": "ロマンスの不祥事逃さない 消してあげる",
+        "artist": "P丸様。",
+        "title": "シル・ヴ・プレジデント"
+    },
+    {
+        "text": "ふざけんな！... 誰より分かってるし",
+        "artist": "HoneyWorks",
+        "title": "ファンサ"
+    },
     
 ]
