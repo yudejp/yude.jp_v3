@@ -102,16 +102,6 @@
         if (theme === "dark") {
             document.documentElement.setAttribute('data-theme', 'dark');
         }
-
-        const userPrefers = getComputedStyle(document.documentElement).getPropertyValue('content');
-
-        if (userPrefers === "dark") {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            window.localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            window.localStorage.setItem('theme', 'light');
-        }
     </script>
 
     <div class="container mt-5">
@@ -366,33 +356,29 @@
     </script>
     {% endif %}
 
-    <!-- Update dark mode switcher innerHTML -->
-    <script>
-        if (theme === "dark") {
-            document.getElementById("theme-toggle").innerHTML = "🌅";
-        } else if (theme === "light") {
-            document.getElementById("theme-toggle").innerHTML = "🌙";
-        } else if (userPrefers === "dark") {
-            document.getElementById("theme-toggle").innerHTML = "🌅";
-        } else {
-            document.getElementById("theme-toggle").innerHTML = "🌙";
-        }
-    </script>
-
-    <!-- Dark mode switcher -->
     {% if page.url == '/' %}
     <script>
+        const userPrefers = getComputedStyle(document.documentElement).getPropertyValue('content');
+
         if (theme === "dark") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
             pJSDom[0].pJS.particles.color.value = "#f0f8ff";
             pJSDom[0].pJS.fn.particlesRefresh();
         } else if (theme === "light") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
             pJSDom[0].pJS.particles.color.value = "#2f4f4f";
             pJSDom[0].pJS.fn.particlesRefresh();
         } else if (userPrefers === "dark") {
-            pJSDom[0].pJS.particles.color.value = "gray";
+            document.documentElement.setAttribute('data-theme', 'dark');
+            window.localStorage.setItem('theme', 'dark');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+            pJSDom[0].pJS.particles.color.value = "#f0f8ff";
             pJSDom[0].pJS.fn.particlesRefresh();
         } else {
-            pJSDom[0].pJS.particles.color.value = "##2f4f4f";
+            document.documentElement.setAttribute('data-theme', 'light');
+            window.localStorage.setItem('theme', 'light');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+            pJSDom[0].pJS.particles.color.value = "#2f4f4f";
             pJSDom[0].pJS.fn.particlesRefresh();
         }
 
@@ -401,13 +387,14 @@
             if (currentMode === "dark") {
                 document.documentElement.setAttribute('data-theme', 'light');
                 window.localStorage.setItem('theme', 'light');
-                document.getElementById("theme-toggle").innerHTML = "🌙";
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
                 pJSDom[0].pJS.particles.color.value = "#2f4f4f";
                 pJSDom[0].pJS.fn.particlesRefresh();
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 window.localStorage.setItem('theme', 'dark');
-                document.getElementById("theme-toggle").innerHTML = "🌅";
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+
                 pJSDom[0].pJS.particles.color.value = "#f0f8ff";
                 pJSDom[0].pJS.fn.particlesRefresh();
             }
@@ -415,20 +402,38 @@
     </script>
     {% else %}
     <script>
+        const userPrefers = getComputedStyle(document.documentElement).getPropertyValue('content');
+
+        if (theme === "dark") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else if (theme === "light") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+        } else if (userPrefers === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            window.localStorage.setItem('theme', 'dark');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            window.localStorage.setItem('theme', 'light');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+        }
+
         function modeSwitcher() {
             let currentMode = document.documentElement.getAttribute('data-theme');
             if (currentMode === "dark") {
                 document.documentElement.setAttribute('data-theme', 'light');
                 window.localStorage.setItem('theme', 'light');
-                document.getElementById("theme-toggle").innerHTML = "🌙";
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 window.localStorage.setItem('theme', 'dark');
-                document.getElementById("theme-toggle").innerHTML = "🌅";
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
             }
         }
     </script>
     {% endif %}
+
+
 
 
 </body>
