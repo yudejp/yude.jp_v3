@@ -132,11 +132,6 @@
                     href="{% if page.url == '/blog/' %}#{% else %}/blog{% endif %}"><i class="fa-solid fa-blog"></i>
                     ブログ</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link{% if page.url == '/services/' %} active{% endif %}"
-                    href="{% if page.url == '/services/' %}#{% else %}/services{% endif %}"><i
-                        class="fa-solid fa-star"></i> サービス</a>
-            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"
                     data-bs-toggle="dropdown"
@@ -152,6 +147,12 @@
                     </li>
                     <hr class="dropdown-divider">
                     <li><span class="dropdown-item-text">他のページ</span></li>
+                    <li><a class="dropdown-item"
+                            href="{% if page.url == '/services/' %}#{% else %}/services{% endif %}"><i
+                                class="fa-solid fa-star"></i> サービス</a></li>
+                    <li><a class="dropdown-item"
+                            href="{% if page.url == '/apps/' %}#{% else %}/apps{% endif %}"><i
+                                class="fa-solid fa-bomb"></i> アプリ</a></li>
                     <li><a class="dropdown-item"
                             href="{% if page.url == '/links/' %}#{% else %}/links{% endif %}"><i
                                 class="fa-solid fa-link"></i> リンク集</a></li>
