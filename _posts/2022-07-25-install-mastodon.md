@@ -54,8 +54,8 @@ title: "Mastodon インスタンスを高速に作成する"
 
 2. `.env.production` を開き、必要な項目を設定していきます。
 * まずは、設定に使用するコマンドを2つ示します。これらは、両方とも `docker-compose.yaml` が存在するディレクトリで実行してください。
-    * コマンド1: `docker compose run --rm bundle exec web rake secret`
-    * コマンド2: `docker compose run --rm bundle exec web rake mastodon:webpush:generate_vapid_key`
+    * コマンド1: `docker compose run --rm web bundle exec rake secret`
+    * コマンド2: `docker compose run --rm web bundle exec rake mastodon:webpush:generate_vapid_key`
 
 * 以下が `.env.production` 中の設定項目です。
     * `LOCAL_DOMAIN`: Mastodon を稼働させる予定のドメイン (例: `mstdn.yude.jp`)
