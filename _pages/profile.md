@@ -32,11 +32,15 @@ permalink: /profile/
 * 所在地: 日本, 広島県 広島市
 
 ## 所属
-* 広島市立大学 情報科学部 情報工学科 3年 (2020/4 -)
-    * [マスコミ研究会](https://twitter.com/masukenDP) (2020/5 -)
-    * [プログラミング同好会](https://twitter.com/HCU_ProgramClub) (2020/4 -)
-    * [ノベルゲーム研究会](https://twitter.com/hcunovelgame) (2020/4 -)
-    * [大学祭実行委員会](https://ichidaisai.com) システム局 (2022/4 -)
+* 広島市立大学 情報科学部 3年 (2020/4 -)
+    * 学科 / 研究室
+        * [情報工学科](https://www.hiroshima-cu.ac.jp/department/sciences/info/) (2021/4 -)
+        * [情報ネットワーク研究室](http://www.net.info.hiroshima-cu.ac.jp/) (2022/10 -)
+    * サークル / クラブ
+        * [マスコミ研究会](https://twitter.com/masukenDP) (2020/5 -)
+        * [プログラミング同好会](https://twitter.com/HCU_ProgramClub) (2020/4 -)
+        * [ノベルゲーム研究会](https://twitter.com/hcunovelgame) (2020/4 -)
+        * [大学祭実行委員会](https://ichidaisai.com) システム局 (2022/4 -)
 * 鳥取県立鳥取東高等学校 理数科 (2017/4 - 2020/3)
     * 弓道部 (2017/4 - 2019/3)
 
