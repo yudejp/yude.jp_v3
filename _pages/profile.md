@@ -32,7 +32,7 @@ permalink: /profile/
 * 所在地: 日本, 広島県 広島市
 
 ## 所属
-* 広島市立大学 情報科学部 3年 (2020/4 -)
+* [広島市立大学](https://www.hiroshima-cu.ac.jp/) [情報科学部](https://www2.info.hiroshima-cu.ac.jp/) (2020/4 -) 学部3年 
     * 学科 / 研究室
         * [情報工学科](https://www.hiroshima-cu.ac.jp/department/sciences/info/) (2021/4 -)
         * [情報ネットワーク研究室](http://www.net.info.hiroshima-cu.ac.jp/) (2022/10 -)
