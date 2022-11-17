@@ -22,8 +22,11 @@ permalink: /links/
 * pepepperの雑記帳 (pepepper さん)\
 [![pepepperの雑記帳](/assets/images/mutual-links/pepepper.png)](https://www.pepepper.net/)
 
+* Arakawa Laboratory (Sora Arakawa さん)\
+[![Arakawa Laboratory](/assets/images/mutual-links/arkwnet.png)](https://arkw.net/)
+
 * nullc.at (NullCat / Hinano さん)\
-[![kirby3ds](/assets/images/mutual-links/nullcat.png)](https://nullc.at)
+[![nullc.at](/assets/images/mutual-links/nullcat.png)](https://nullc.at)
 
 * Zopfcode (puhitaku さん)\
 [Zopfcode](https://www.zopfco.de/)
