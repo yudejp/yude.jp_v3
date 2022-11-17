@@ -8,4 +8,4 @@ permalink: /1ch
 
 <script defer
     src="https://chirpy.dev/bootstrap/comment.js"
-    data-chirpy-domain="yude.jp"></script>
+    data-chirpy-domain="www.yude.jp"></script>
