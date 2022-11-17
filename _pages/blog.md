@@ -9,7 +9,10 @@ permalink: /blog/
 {% endfor %}
 {%- assign date_format = site.minima.date_format | default: "%Y/%-m/%-d" -%}
 
-<p><span style="font-size: 2rem">{{counter}}</span> 件の記事があります。</p>
+<p>
+  <span><span style="font-size: 2rem">{{counter}}</span> 件の記事があります。</span>
+  <span><a href="{{site.url}}/feed.xml"><i class="fa-solid fa-rss"></i> RSS フィード</a></span>
+</p>
 <ul>
   {% for post in site.posts %}
     <li>
