@@ -9,7 +9,14 @@ layout: default
         <h1 class="post-title p-name"
             itemprop="name headline">{{ page.title | escape }}</h1>
         <p class="post-meta">
+            <i class="fa-solid fa-tags"></i>
+            {% for tag in page.tags %}
+            <span class="badge rounded-pill bg-success">{{ tag }}</span>
+            {% endfor %}
+
             {%- assign date_format = site.minima.date_format | default: "%Y/%-m/%-d" -%}
+            <i style="margin-left: 3px"
+                class="fa-solid fa-calendar-days"></i>
             <time class="dt-published"
                 datetime="{{ page.date | date_to_xmlschema }}"
                 itemprop="datePublished">
