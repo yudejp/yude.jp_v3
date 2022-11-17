@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Windows 11 と Arch Linux のデュアルブートを設定しました"
+tags: [Windows, Arch Linux, デュアルブート, rEFInd]
 ---
 
 # はじめに

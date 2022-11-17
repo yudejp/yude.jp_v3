@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Mastodon インスタンスを高速に作成する"
+tags: Mastodon セルフホスト ActivityPub
 ---
 
 # 免責 / 注意 事項
