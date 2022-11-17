@@ -4,6 +4,9 @@ title: 💬 1ch
 permalink: /1ch
 ---
 
+* **匿名でコメントできます。**
+    * 「または Disqus に登録」の下にある「名前」をクリックしてから、「ゲストとして投稿する」にチェックを入れてください。
+
 <div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
