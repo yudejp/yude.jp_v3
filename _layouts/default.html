@@ -133,6 +133,11 @@
                     href="{% if page.url == '/blog/' %}#{% else %}/blog{% endif %}"><i class="fa-solid fa-blog"></i>
                     ブログ</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link{% if page.url == '/1ch/' %} active{% endif %}"
+                    href="{% if page.url == '/1ch/' %}#{% else %}/1ch{% endif %}"><i class="fa-solid fa-comment"></i>
+                    1ch</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"
                     data-bs-toggle="dropdown"
