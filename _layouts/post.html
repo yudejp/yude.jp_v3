@@ -46,7 +46,13 @@ layout: default
     {%- include disqus_comments.html -%}
     {%- endif -%}
 
+    <div data-chirpy-comment="true"></div>
+
     <a class="u-url"
         href="{{ page.url | relative_url }}"
         hidden></a>
 </article>
+
+<script defer
+    src="https://chirpy.dev/bootstrap/comment.js"
+    data-chirpy-domain="yude.jp"></script>
