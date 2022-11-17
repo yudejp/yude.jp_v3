@@ -31,6 +31,9 @@ layout: default
                 {{ mdate | date: date_format }}
             </time>
             {%- endif -%}
+            <i style="margin-left: 3px"
+                class="fa-solid fa-clock"></i>
+            {% include reading-time.html %}
             {%- if page.author -%}
             • {% for author in page.author %}
             <span itemprop="author"
