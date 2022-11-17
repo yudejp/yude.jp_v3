@@ -10,15 +10,11 @@ title: "Mastodon インスタンスを高速に作成する"
 * Cloudflare で管理されている独自ドメイン
 * Docker, Docker Compose, cloudflared がインストールされているマシン
     * cloudflared のインストール方法については、この記事の最後の方を参照してください。
-    * Docker Compose について:
-        * `docker compose` を実行して、`'compose' is not a docker command.` と表示されないことを確認してください。
-        * もしそのように表示されてしまった場合、`docker-compose` というコマンドが存在するか確認してください。
-            * 存在した場合
-                * 記事中の `docker compose` の部分を `docker-compose` に読み替えてください。
-            * 存在しない場合
-                * Docker の公式リポジトリを使用して、最新の Docker Engine と Docker Compose Plugin をインストールしてください。
 
 # 手順
+
+* インストール中に問題が発生した場合、記事の下の方にある「トラブルシューティング」を参照してください。
+
 ## 1. テンプレートの Git リポジトリをクローンします。
 * yude が作成した人のぬくもりのあるテンプレート Git リポジトリをクローンします。
     ```bash
@@ -121,3 +117,17 @@ $ docker compose up -d
         $ sudo apt update; sudo apt -y install cloudflared
         ```
 * その他のディストリビューションについては、[こちら](https://pkg.cloudflare.com/) を参照してください。
+
+# トラブルシューティング
+
+* Docker Compose について:
+    * `docker compose` を実行して、`'compose' is not a docker command.` と表示されないことを確認してください。
+    * もしそのように表示されてしまった場合、`docker-compose` というコマンドが存在するか確認してください。
+        * 存在した場合
+            * 記事中の `docker compose` の部分を `docker-compose` に読み替えてください。
+        * 存在しない場合
+            * Docker の公式リポジトリを使用して、最新の Docker Engine と Docker Compose Plugin をインストールしてください。
+
+* `Error 1033: Argo Tunnel error` が発生する場合
+    * `cloudflared` の動作に異常があります。以下のコマンドを実行してログを表示することで、問題解決の助けとなるでしょう。
+        * `docker compose logs cloudflared`
