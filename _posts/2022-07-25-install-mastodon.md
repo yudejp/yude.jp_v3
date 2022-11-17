@@ -11,7 +11,7 @@ title: "Mastodon インスタンスを高速に作成する"
 * Docker, Docker Compose, cloudflared がインストールされているマシン
     * cloudflared のインストール方法については、この記事の最後の方を参照してください。
     * Docker Compose について:
-        * `docker compose` を実行して、`'compose' is not a docker command.' と表示されないことを確認してください。
+        * `docker compose` を実行して、`'compose' is not a docker command.` と表示されないことを確認してください。
         * もしそのように表示されてしまった場合、`docker-compose` というコマンドが存在するか確認してください。
             * 存在した場合
                 * 記事中の `docker compose` の部分を `docker-compose` に読み替えてください。
