@@ -30,12 +30,12 @@ title: "Mastodon インスタンスを高速に作成する"
 ## 3. Cloudflare の設定を行います。
 1. トンネルを定義します。
     ```bash
-    $ cloudflare tunnel create mastodon
+    $ cloudflared tunnel create mastodon
     ```
     * `mastodon` の部分は英数字で任意に設定できます。
 2. ドメインとトンネルを紐付けます。
     ```bash
-    $ cloudflare tunnel route dns mastodon mstdn.yude.jp
+    $ cloudflared tunnel route dns mastodon mstdn.yude.jp
     ```
     * `mastodon` の部分はステップ 1 で定義したトンネル名を指定してください。
     * `mstdn.yude.jp` の部分は Mastodon を稼働させる予定のドメインを指定してください。 
