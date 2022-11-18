@@ -19,16 +19,6 @@ permalink: /
     
   </figure>
   </div>
-  <div style="visibility: hidden">
-    <a href="https://mstdn.yude.jp/@yude"></a>
-    <a href="https://mstdn.maud.io/@yude"></a>
-    <a href="https://mstdn.jp/@yude"></a>
-    <a href="https://mast.moe/@yude"></a>
-    <a href="https://mstdn.blue/@yude"></a>
-    <a href="https://mstdn.club/@yude"></a>
-    <a href="https://pawoo.net/@yude"></a>
-    <a href="https://sanin.club/@yude"></a>
-  </div>
 </div>
 
 ---
