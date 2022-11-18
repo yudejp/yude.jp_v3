@@ -62,6 +62,7 @@ tags: Mastodon セルフホスト ActivityPub
     * コマンド2: `docker compose run --rm web bundle exec rake mastodon:webpush:generate_vapid_key`
 
 * 以下が `.env.production` 中の設定項目です。
+    * `S3_ENABLED`: `false` に設定します。
     * `LOCAL_DOMAIN`: Mastodon を稼働させる予定のドメイン (例: `mstdn.yude.jp`)
     * `REDIS_HOST`: `redis` に変更してください。
     * `DB_HOST`: `db` に変更してください。
@@ -132,3 +133,7 @@ $ docker compose up -d
 * `Error 1033: Argo Tunnel error` が発生する場合
     * `cloudflared` の動作に異常があります。以下のコマンドを実行してログを表示することで、問題解決の助けとなるでしょう。
         * `docker compose logs cloudflared`
+
+* `Internal Server Error` が発生する。
+    * 多くはファイルの権限が間違っていることが原因です。以下のコマンドで権限を修正できます。
+        `docker compose exec -u root web chown -R mastodon:mastodon ./`
