@@ -99,7 +99,7 @@ $ docker compose up -d
 * 起動後、あなたのアカウントをできるだけ早く作成してください。
 * 起動したら、以下のコマンドであなたのアカウントを管理者に設定してください。
     ```bash
-    $ docker exec -it $(docker compose ps -q web) bin/tootctl accounts modify your_name --role admin
+    $ docker exec -it $(docker compose ps -q web) bin/tootctl accounts modify your_name --role Admin
     ```
     * `your_name` にはあなたのスクリーンネームを指定します。(例: `@your_name` と表示されているものを、`your_name` として指定します。)
 
