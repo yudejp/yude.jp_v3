@@ -27,9 +27,5 @@ Among Us の自動ミュート Discord ボット
 Discord ミュージックボット
 * 招待 URL: [こちら](https://discord.com/oauth2/authorize?client_id=429638220456656896&scope=bot&permissions=338963472)
 
-## Tor ノード
+## Tor リレー
 * リレー: [CF762EF3C86B104C301511894547C72371F952A4](https://metrics.torproject.org/rs.html#details/CF762EF3C86B104C301511894547C72371F952A4)
-* Hidden Service: [yude3mzscyufx5u3zup72ium7tgecy3bd67p7t6vqhaywvr7e2gqpcqd.onion](http://yude3mzscyufx5u3zup72ium7tgecy3bd67p7t6vqhaywvr7e2gqpcqd.onion)
-
-## I2P ノード
-* Hidden Service: [idabfrazqbh7upvo2f5hx3ajpqglrwny66qbvcoatfqoq64ifiaq.b32.i2p](http://yude.i2p/?i2paddresshelper=idabfrazqbh7upvo2f5hx3ajpqglrwny66qbvcoatfqoq64ifiaq.b32.i2p)
