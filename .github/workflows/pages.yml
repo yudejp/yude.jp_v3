@@ -42,7 +42,7 @@ jobs:
         env:
           REPO: self
           BRANCH: html
-          FOLDER: /_site
+          FOLDER: ./_site
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1 # This will automatically upload an artifact from the '/_site' directory
