@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+    <title>yude.jp | Windows 11 と Arch Linux のデュアルブートを設定しました</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+    <link rel="alternate"
+        type="application/rss+xml"
+        title="yude.jp RSS"
+        href="/feed.xml" />
+    <link rel="shortcut icon"
+        type="image/png"
+        href="/assets/images/yudejp.png">
+    <link rel="alternate"
+        type="application/rss+xml"
+        href="https://www.yude.jp/feed.xml">
+    <link rel="me"
+        href="https://mstdn.yude.jp/@yude" />
+    <link rel="me"
+        href="https://mstdn.maud.io/@yude" />
+    <link rel="me"
+        href="https://mstdn.jp/@yude" />
+    <link rel="me"
+        href="https://mast.moe/@yude" />
+    <link rel="me"
+        href="https://mstdn.blue/@yude" />
+    <link rel="me"
+        href="https://mstdn.club/@yude" />
+    <link rel="me"
+        href="https://pawoo.net/@yude" />
+    <link rel="me"
+        href="https://sanin.club/@yude" />
+    <link rel="me"
+        href="https://social.vivaldi.net/@yude" />
+
+    <style>
+        body {
+            background-color: #f7fafc;
+        }
+
+        .title {
+            animation: title 2.5s linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes title {
+
+            0%,
+            100% {
+                color: rgb(0, 0, 255);
+            }
+
+            50% {
+                color: rgb(255, 0, 255);
+            }
+        }
+
+        html,
+        html[data-theme="light"] {
+            --light-text-color: hsl(0, 0%, 35%);
+            --main-background-color: hsl(0, 5%, 95%);
+            --main-text-color: hsl(0, 0%, 0%);
+            --card-background-color: hsl(0, 5%, 95%);
+        }
+
+        html[data-theme="dark"] {
+            --light-text-color: hsl(0, 0%, 60%);
+            --main-background-color: hsl(0, 0%, 10%);
+            --main-text-color: hsl(0, 10%, 80%);
+            --card-background-color: #0C0C0C;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            html {
+                content: "dark";
+            }
+        }
+
+        body {
+            color: var(--main-text-color);
+            background-color: var(--main-background-color);
+        }
+
+        .card,
+        .dropdown-menu {
+            background-color: var(--card-background-color) !important;
+        }
+
+        .blockquote {
+            text-shadow: 1px 1px 2px var(--light-text-color);
+        }
+
+        a,
+        .dropdown-item,
+        .dropdown-item-text {
+            color: var(--main-text-color);
+        }
+    </style>
+
+    
+</head>
+
+<body>
+    <script>
+        const theme = localStorage.getItem('theme');
+        if (theme === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
+    <div class="container mt-5">
+        <ul class="nav flex-column flex-md-row">
+            <div class="container-fluid">
+                <a class="navbar-brand"
+                    href="#">
+                    <img src="/assets/images/yudejp.png"
+                        alt="yude.jp logo"
+                        width="40"
+                        height="40"
+                        class="d-inline-block align-text-top">
+                    <a class="text-decoration-none title fs-3 font-monospace"
+                        href="/"
+                        style="position: relative; top: 11px; left: 5px"
+                        tabindex="-1"
+                        aria-disabled="true">yude.jp</a>
+                </a>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/profile"><i
+                        class="fa-solid fa-user"></i>
+                    プロフィール</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/blog"><i class="fa-solid fa-blog"></i>
+                    ブログ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/1ch"><i class="fa-solid fa-comment"></i>
+                    1ch</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"><i class="fa-solid fa-egg"></i> その他</a>
+                <ul class="dropdown-menu">
+                    <li><span class="dropdown-item-text">外部リンク</span></li>
+                    <li><a class="dropdown-item"
+                            href="https://discord.gg/X6srY7X"><i class="fa-brands fa-discord"></i> Discord サーバー</a></li>
+                    <li><a class="dropdown-item"
+                            href="https://github.com/yudejp"><i class="fa-brands fa-github"></i> GitHub Organization</a>
+                    </li>
+                    <li><a class="dropdown-item"
+                            href="https://status.yude.jp"><i class="fa-solid fa-check"></i> サービスの稼働状況</a>
+                    </li>
+                    <hr class="dropdown-divider">
+                    <li><span class="dropdown-item-text">他のページ</span></li>
+                    <li><a class="dropdown-item"
+                            href="/services"><i
+                                class="fa-solid fa-star"></i> サービス</a></li>
+                    <li><a class="dropdown-item"
+                            href="/apps"><i
+                                class="fa-solid fa-bomb"></i> アプリ</a></li>
+                    <li><a class="dropdown-item"
+                            href="/links"><i
+                                class="fa-solid fa-link"></i> リンク集</a></li>
+                    <li><a class="dropdown-item"
+                            href="/tos"><i
+                                class="fa-solid fa-wand-sparkles"></i> yude.jp サービス利用規約</a></li>
+                    <li><a class="dropdown-item"
+                            href="/hcunews"><i
+                                class="fa-solid fa-newspaper"></i> @hcunews について</a></li>
+                </ul>
+            </li>
+            <button type="button"
+                class="btn btn-dark"
+                onClick="modeSwitcher()"
+                id="theme-toggle"></button>
+
+        </ul>
+
+        <nav aria-label="breadcrumb"
+            class="breadcrumb-parent"
+            style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);">
+            <ol class="breadcrumb">
+                
+                <li class="breadcrumb-item"><a href="/">🏠 ホーム</a></li>
+                
+                
+                <li class="breadcrumb-item"><a
+                        href="/blog/">📕 ブログ</a>
+                </li>
+                
+                
+                
+                <li class="breadcrumb-item active"
+                    aria-current="page">Windows 11 と Arch Linux のデュアルブートを設定しました</li>
+                
+                
+            </ol>
+        </nav>
+        <div style="min-height: 30rem">
+            <article class="post h-entry"
+    itemscope
+    itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header"
+        style="text-align: center">
+        <h1 class="post-title p-name"
+            itemprop="name headline">Windows 11 と Arch Linux のデュアルブートを設定しました</h1>
+        <p class="post-meta">
+            <i class="fa-solid fa-tags"></i>
+            
+            <span class="badge rounded-pill bg-success">Windows</span>
+            
+            <span class="badge rounded-pill bg-success">Arch Linux</span>
+            
+            <span class="badge rounded-pill bg-success">デュアルブート</span>
+            
+            <span class="badge rounded-pill bg-success">rEFInd</span>
+            <i style="margin-left: 3px"
+                class="fa-solid fa-calendar-days"></i>
+            <time class="dt-published"
+                datetime="2022-07-05T00:00:00+00:00"
+                itemprop="datePublished">
+                2022/7/5
+            </time><i style="margin-left: 3px"
+                class="fa-solid fa-clock"></i>
+            
+
+7 分で読めます
+</p>
+    </header>
+
+    <div class="post-content e-content"
+        itemprop="articleBody">
+        <h1 id="はじめに">はじめに</h1>
+<p>2022年7月に <a href="https://www.lenovo.com/jp/ja/notebooks/thinkpad/e-series/ThinkPad-E14-Gen-3-14%E2%80%9D-AMD/p/22TPE14E4A3">Lenovo ThinkPad E14 Gen 3 (AMD)</a> を導入し、Windows 11 と Arch Linux のデュアルブートを設定しました。<br />
+この記事では、その方法を備忘録として公開します。<br />
+また、Windows 11 としていますが、UEFI でブートするように設定されている Windows 7 以上の Windows であれば問題なく実行できるはずです。</p>
+
+<h1 id="免責--注意-事項">免責 / 注意 事項</h1>
+<ul>
+  <li>yude はこの記事の内容をあなたが実行した結果の責任を一切負うことができません。自己責任で行ってください。
+    <ul>
+      <li>Arch Linux, Gentoo Linux, Linux From Scratch などのソースベースの Linux ディストリビューションをインストールしたことがないレベルの初学者の方は、本番環境のコンピュータで行うことを全く推奨しません。パーティションテーブルを破壊しても問題のないコンピュータで実行してください。</li>
+    </ul>
+  </li>
+  <li>操作を行う前に、必要なデータをバックアップしてください。また、インストール前に、できるだけ関係のないストレージをコンピュータから取り外しておくことを推奨します。</li>
+</ul>
+
+<h1 id="用意">用意</h1>
+<p>インストールする前に、コンピュータが条件を満たしていることを確認します。</p>
+<ul>
+  <li>UEFI に対応していること。2012 年以降に製造されたコンピュータであれば、大抵問題ありません。</li>
+  <li>デスクトップ環境を導入する場合は 2 GB 以上のメモリ。そうでない場合は 512 MB。</li>
+  <li>アーキテクチャが x86_64 であること。</li>
+  <li>Apple の T2 チップ搭載 Mac 等、特殊なハードウェアでないこと。元々 Windows が稼働しているコンピュータであれば、大抵問題ありません。</li>
+</ul>
+
+<p>その他、<a href="https://wiki.archlinux.jp/index.php/%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%82%AC%E3%82%A4%E3%83%89">インストールガイド</a>に記載されている条件を満たしていることを確認してください。</p>
+
+<h1 id="手順">手順</h1>
+<h2 id="ブート-usb-の準備">ブート USB の準備</h2>
+<ul>
+  <li>まず、Arch Linux の最新の iso イメージファイルを<a href="https://www.archlinux.jp/download/">ダウンロード</a>してください。
+    <h3 id="windows">Windows</h3>
+  </li>
+  <li><a href="https://rufus.ie/ja/">Rufus</a> または <a href="https://www.balena.io/etcher/">balenaEtcher</a> を使うのが楽です。
+    <h3 id="macos">macOS</h3>
+  </li>
+  <li><a href="https://www.balena.io/etcher/">balenaEtcher</a> を使うのが楽です。
+    <h3 id="linux">Linux</h3>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">dd</code> コマンドを使用して書き込みます。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span><span class="nb">sudo dd </span><span class="k">if</span><span class="o">=</span>archiso.iso <span class="nv">of</span><span class="o">=</span>/dev/sdHoge <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">status</span><span class="o">=</span>progress
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">archiso.iso</code> は iso イメージへのパス、<code class="language-plaintext highlighter-rouge">/dev/sdHoge</code> は USB フラッシュドライブのデバイスファイルに置き換えてください。
+        <ul>
+          <li>デバイスファイルは、<code class="language-plaintext highlighter-rouge">sudo fdisk -l</code> コマンド等で確認できます。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>GUI が必要な場合は、先述の <a href="https://www.balena.io/etcher/">balenaEtcher</a> を使うこともできます。
+    <h2 id="コンピュータの準備">コンピュータの準備</h2>
+    <h3 id="windows-の設定">Windows の設定</h3>
+  </li>
+  <li>リアルタイムクロックを UTC 基準にします。
+    <ul>
+      <li>Windows は、既定の状態では時計の基準に現地時間を使いますが、これはデュアルブートにおいて相性が悪いです。</li>
+      <li>以下のコマンドを管理者権限のあるターミナルで実行してください。
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>高速スタートアップとハイバネートを無効化します。
+    <ul>
+      <li>これにより、Windows を使用中に「休止状態」にすることができなくなりますが、Arch Linux の使用中に起きる可能性のある問題を避けることができます。</li>
+      <li>「休止状態」を使用する必要がある場合は、代わりに高速スタートアップのみを無効化することができます。
+        <ul>
+          <li>方法については、以下のページをご覧ください:<br />
+<a href="https://www.fmworld.net/cs/azbyclub/qanavi/jsp/qacontents.jsp?PID=6010-9312">富士通Q&amp;A - [Windows 10] 高速スタートアップを無効にする方法を教えてください。 - FMVサポート : 富士通パソコン</a></li>
+        </ul>
+      </li>
+      <li>高速スタートアップとハイバネートを無効化するには、以下のコマンドを管理者権限のあるターミナルで実行してください。
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  powercfg /h off
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>パーティションを準備します。
+    <ul>
+      <li>Windows と Arch Linux を同じストレージ デバイスにインストールする場合は、Windows が専有しているパーティションを縮小してください。
+        <ul>
+          <li>縮小する前に、ストレージに十分な空き容量を確保し、かつデフラグを行う必要がある場合もあります。</li>
+          <li>方法については、以下のページをご覧ください:<br />
+<a href="https://faq.nec-lavie.jp/qasearch/1007/app/servlet/relatedqa?QID=020024">NEC LAVIE公式サイト &gt; サービス＆サポート &gt; Q&amp;A &gt; Q&amp;A番号 020024 「Windows 10で、Cドライブの容量を縮小して新しくドライブを作成する方法について教えてください。」</a></li>
+        </ul>
+      </li>
+      <li>コンピュータに内蔵ストレージ デバイスが複数取り付けられており、物理的に異なるデバイスに Arch Linux をインストールする場合は、「ディスクの管理」から事前にパーティションを初期化しておいてください。
+        <ul>
+          <li>手順は以下のページを参考にしてください:<br />
+<a href="https://docs.microsoft.com/ja-jp/windows-server/storage/disk-management/initialize-new-disks">新しいディスクの初期化 | Microsoft Docs</a></li>
+          <li>パーティションの種類については、<strong>GPT</strong> を選択してください。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Windows の設定を完了したら、次は UEFI の設定を行います。
+    <h3 id="uefi-の設定">UEFI の設定</h3>
+  </li>
+  <li>操作手順はコンピュータに搭載されている UEFI によって異なるため、ここでは手順を記載せず、達成するべき目標のみを記述します。
+    <ul>
+      <li>セキュアブートを無効化してください。</li>
+      <li>ファストブートをできるだけ無効化してください。</li>
+      <li>ブート元デバイスの順番を調節し、USB フラッシュドライブが最初に読み込まれるようにしてください。</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="arch-linux-の基本的なインストール">Arch Linux の基本的なインストール</h2>
+<p>いよいよ、Arch Linux をストレージにインストールします。<br />
+まずは、iso イメージを書き込んだ USB フラッシュドライブから Arch Linux をブートしてください。</p>
+<h3 id="手順-1">手順</h3>
+<h4 id="1-キーマップを設定します">1. キーマップを設定します。</h4>
+<ul>
+  <li>日本語のキーボードを使用している場合は、以下のコマンドを実行します。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>loadkeys jp106
+</code></pre></div>    </div>
+  </li>
+  <li>英字のキーボードを使用している場合は、手順をスキップしてください。
+    <h4 id="2-インターネットに接続します">2. インターネットに接続します。</h4>
+  </li>
+  <li>有線で接続する場合<br />
+LAN ケーブルをコンピュータに接続してください。</li>
+  <li>Wi-Fi で接続する場合
+    <ol>
+      <li><code class="language-plaintext highlighter-rouge">iwctl</code> コマンドを実行します。プロンプトが <code class="language-plaintext highlighter-rouge">[iwd]#</code> に変化したことを確認してください。</li>
+      <li><code class="language-plaintext highlighter-rouge">device list</code> で無線 LAN アダプターの一覧を表示します。<br />
+ <code class="language-plaintext highlighter-rouge">Name</code> の列に表示されているものを覚えるか、メモしてください。通常 <code class="language-plaintext highlighter-rouge">wlan0</code> などが該当します。<br />
+ これはデバイス名で、ステップ 3 以降で使用します。</li>
+      <li><code class="language-plaintext highlighter-rouge">station デバイス名 scan</code> で Wi-Fi ネットワークをスキャンします。</li>
+      <li><code class="language-plaintext highlighter-rouge">station デバイス名 get-networks</code> で近隣にあるアクセスポイントの SSID を確認します。</li>
+      <li><code class="language-plaintext highlighter-rouge">station デバイス名 connect 目的の SSID</code> でアクセスポイントに接続します。
+ コマンドの実行後、パスワードを求められますから入力してください。</li>
+      <li><code class="language-plaintext highlighter-rouge">exit</code> で iwctl から抜けます。
+        <h4 id="3-時計を調節します">3. 時計を調節します。</h4>
+      </li>
+    </ol>
+  </li>
+  <li>NTP サーバから正しい時刻を取得します。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>timedatectl set-ntp <span class="nb">true</span>
+</code></pre></div>    </div>
+    <h4 id="4-パーティションを初期化します">4. パーティションを初期化します。</h4>
+    <ol>
+      <li>目的のパーティションのデバイスファイルの場所を確認します。
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>fdisk <span class="nt">-l</span>
+</code></pre></div>        </div>
+        <p>デバイス の列に表示されているものが、デバイスファイルの場所です。<br />
+いくつか表示されているもののうち、次に該当するものをメモしておきます。</p>
+      </li>
+    </ol>
+  </li>
+  <li>タイプが “EFI システム” となっているもの。</li>
+  <li>Arch Linux をインストールする先のパーティション
+    <ul>
+      <li>「Windows の設定」で用意したパーティションのデバイス ファイルをメモしてください。</li>
+      <li>明確なラベル等は表示されないため、パーティションの順序・大きさ等から目的のパーティションを特定してください。
+        <ul>
+          <li>もしくは、一時的にマウントして目的のパーティションであるかどうかを確認できます:
+            <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># NTFS のパーティションをマウントするために必要</span>
+  <span class="nv">$ </span>pacman <span class="nt">-S</span> ntfs-3g
+  <span class="c"># マウントする</span>
+  <span class="c">## ここでエラーが発生するとき、「パーティションの中身を表示する」をスキップしてください。</span>
+  <span class="c">## エラーが発生する場合は、この手順で目的のパーティションであるかどうかを特定することは危険です。</span>
+  <span class="nv">$ </span>mount <span class="nt">--mkdir</span> <span class="o">[</span>パーティションのデバイス ファイルの場所] /tmp/hogepart
+  <span class="c"># パーティションの中身を表示する</span>
+  <span class="nv">$ </span><span class="nb">ls</span> /tmp/hogepart
+</code></pre></div>            </div>
+            <ol>
+              <li>Arch Linux をインストールするパーティションを ext4 でフォーマットします。</li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>ext4 は Linux において最も一般的なファイルシステムです。</li>
+  <li>次のコマンドでフォーマットできます:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>mkfs.ext4 <span class="o">[</span>ステップ 1 で確認したデバイスファイルのパス]
+  <span class="c"># 例: mkfs.ext4 /dev/sda2 または mkfs.ext4 /dev/nvme1n1p2 など。</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="5-必要なパーティションをマウントします">5. 必要なパーティションをマウントします。</h4>
+<ul>
+  <li>マウントとは、ストレージ デバイスの中にある特定のパーティションと、自分が現在アクセスできる何らかのディレクトリを関連付ける操作のことをいいます。
+    <ol>
+      <li>Linux のインストール先のパーティションをマウントします。
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>mount <span class="o">[</span>ステップ 1 で確認したデバイスファイルのパス] /mnt
+  <span class="c"># 例: mount /dev/sda2 /mnt または mount /dev/nvme1n1p2 /mnt など。</span>
+</code></pre></div>        </div>
+      </li>
+      <li>EFI パーティションをマウントします。
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>mount <span class="nt">--mkdir</span> <span class="o">[</span>ステップ 1 で確認したデバイスファイルのパス] /mnt/boot
+  <span class="c"># 例: mount /dev/sda1 /mnt または mount /dev/nvme1n1p0 /mnt など。</span>
+</code></pre></div>        </div>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="6-基本的な-linux-システムのインストール">6. 基本的な Linux システムのインストール</h3>
+<p>Arch Linux の基本的な内容をインストールするには、<code class="language-plaintext highlighter-rouge">pacstrap</code> コマンドを使用します。\</p>
+<ul>
+  <li>実用的な Linux システムをインストールするには、次のように実行します。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>pacstrap /mnt base base-devel linux linux-firmware nano neofetch <span class="nb">sudo </span>networkmanager git <span class="nb">grep </span>refind intel-ucode bash-completion
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">pacstrap</code> の説明
+    <ul>
+      <li>第1引数には、Linux をインストールするパーティションのマウント先を指定します。</li>
+      <li>第2引数以降には、Linux システムを初期化するとともにインストールしたいパッケージを列挙します。
+        <ul>
+          <li>基本的には、例示されているパッケージを削らないでください。これからのステップでは、これらのパッケージがインストール済みであることを前提に進むからです。</li>
+          <li>パッケージの説明 (一部省略)
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">base</code>, <code class="language-plaintext highlighter-rouge">linux</code>, <code class="language-plaintext highlighter-rouge">linux-firmware</code>: Arch Linux を構成する基本的なパッケージ / グループで、必須です。</li>
+              <li><code class="language-plaintext highlighter-rouge">base-devel</code>: パッケージをビルドしたりするための開発用ツールの集合です。</li>
+              <li><code class="language-plaintext highlighter-rouge">nano</code>: CLI で使えるテキストエディタです。<code class="language-plaintext highlighter-rouge">vim</code> などに置き換えることができます。</li>
+              <li><code class="language-plaintext highlighter-rouge">neofetch</code>: システムの概要を表示します。</li>
+              <li><code class="language-plaintext highlighter-rouge">sudo</code>: 一時的にユーザーに特権を許します。</li>
+              <li><code class="language-plaintext highlighter-rouge">networkmanager</code>: ネットワークへの接続を司ります。</li>
+              <li><code class="language-plaintext highlighter-rouge">git</code>: バージョン管理システム Git のクライアントです。</li>
+              <li><code class="language-plaintext highlighter-rouge">intel-ucode</code>: Intel 製 CPU のマイクロコードです。CPU がリリースされた後に発見されたバグなどを修正します。(<strong>AMD 製 CPU をお使いの方は、代わりに <code class="language-plaintext highlighter-rouge">amd-ucode</code> をインストールしてください。</strong>)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="7-インストールした-arch-linux-を設定します">7. インストールした Arch Linux を設定します。</h3>
+<ol>
+  <li>fstab を生成します。
+<code class="language-plaintext highlighter-rouge">/etc/fstab</code> というファイルがあり、ここには Linux システムがどのパーティションを起動時等にどこにマウントすべきかを記述します。<br />
+以下のコマンドで、自動的に生成できます。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>genfstab <span class="nt">-U</span> /mnt <span class="o">&gt;&gt;</span> /mnt/etc/fstab
+</code></pre></div>    </div>
+  </li>
+  <li>chroot でインストールした Linux システムに憑依します。
+インストールしたシステムに入り込んで、詳細な設定を行います。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>arch-chroot /mnt
+</code></pre></div>    </div>
+  </li>
+  <li>タイムゾーンを設定します。
+以下のコマンドを実行して、タイムゾーンを設定します。日本にお住まいの場合は以下のコマンドを実行してください。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span><span class="nb">sudo </span>timedatectl set-timezone Asia/Tokyo
+ <span class="nv">$ </span>hwclock <span class="nt">--systohc</span>
+</code></pre></div>    </div>
+  </li>
+  <li>国際化
+Linux システムに日本語を教えます。</li>
+  <li><code class="language-plaintext highlighter-rouge">/etc/locale.gen</code> を <code class="language-plaintext highlighter-rouge">nano</code> などのテキストエディタで開き、以下の内容に該当する行のコメントアウトを解除してください。
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> en_US.UTF-8
+ ja_JP.UTF-8
+</code></pre></div>    </div>
+  </li>
+  <li>以下のコマンドを実行して、キーマップを設定します。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>localectl set-keymap jp106
+</code></pre></div>    </div>
+  </li>
+  <li>以下のコマンドを実行して、言語ファイルを生成します。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>locale-gen
+</code></pre></div>    </div>
+  </li>
+  <li>コンピュータのホスト名を設定します。
+英数字を用いて、コンピュータの名前を設定してください。ただし、先頭に数字が来ないようにしてください。<br />
+以下のコマンドを実行することで、設定できます。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span><span class="nb">echo</span> <span class="o">[</span>コンピュータの名前] <span class="o">&gt;&gt;</span> /etc/hostname
+ <span class="c"># 例: echo "arch" &gt;&gt; /etc/hostname</span>
+</code></pre></div>    </div>
+  </li>
+  <li>コンピュータのアカウントを設定します。
+    <ul>
+      <li>まず、root アカウントのパスワードを設定します。以下のコマンドを実行してください。
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>passwd
+</code></pre></div>        </div>
+      </li>
+      <li>次に、自分が普段使用するアカウントを作成し、パスワードを設定します。以下のコマンドを実行してください。
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># 以下の例では、自分のアカウントを wheel グループ (管理者) に所属させ、シェルに Bash を使うようにします。</span>
+ <span class="c"># 名前は、英数字で設定してください。</span>
+ <span class="nv">$ </span>useradd <span class="nt">-m</span> <span class="nt">-G</span> wheel <span class="nt">-s</span> /bin/bash 名前
+ <span class="c"># パスワードを設定します。</span>
+ passwd 名前
+</code></pre></div>        </div>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">wheel</code> グループが <code class="language-plaintext highlighter-rouge">sudo</code> コマンドを使用できるようにします。
+ <code class="language-plaintext highlighter-rouge">sudo</code> の設定ファイルは、<code class="language-plaintext highlighter-rouge">EDITOR=nano visudo</code> コマンドを実行すると開けます。<br />
+ 以下の内容を、開いたテキストファイルに<strong>追記</strong>してください。
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> %wheel ALL=(ALL) ALL
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>必要なサービスの有効化
+普段使用するサービスを、Linux の起動時に同時に起動させるようにしておきます。<br />
+以下のコマンドを実行してください。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>NetworkManager.service
+</code></pre></div>    </div>
+  </li>
+  <li>ブートローダの設定
+Linux を呼び出すには、ブートローダーが必要です。今回は <a href="https://wiki.archlinux.jp/index.php/REFInd">rEFInd</a> という優れたブートローダーを使用します。<br />
+以下に手順を示します。
+    <ol>
+      <li>以下のコマンドで、基本的なファイルを自動的に生成します。
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>refind-install
+</code></pre></div>        </div>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">/boot/refind_linux.conf</code> を編集します。
+        <ul>
+          <li>作業前に、ファイルをバックアップしておきます。以下のコマンドを実行してください。
+            <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cp</span> /boot/refind_linux.conf /boot/refind_linux.conf.bak
+</code></pre></div>            </div>
+          </li>
+        </ul>
+        <ul>
+          <li>以下のコマンドを実行して、rEFInd を設定します。
+            <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">Boot with standard options</span><span class="se">\"</span><span class="s2"> </span><span class="se">\"</span><span class="s2">root=UUID=</span><span class="si">$(</span>blkid <span class="o">[</span>Linux をインストールしたパーティションのデバイス ファイルの場所] <span class="nt">-s</span> UUID <span class="nt">-o</span> value<span class="si">)</span><span class="s2"> rootfstype=ext4 rw splash</span><span class="se">\"</span><span class="s2">"</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h4 id="9-基本的なセットアップの完了">9. 基本的なセットアップの完了</h4>
+<p>以上で、基本的なセットアップは完了したはずです。<code class="language-plaintext highlighter-rouge">exit</code> コマンドを実行して chroot から抜け、<code class="language-plaintext highlighter-rouge">reboot</code> で再起動します。</p>
+<ul>
+  <li>起動しない場合
+    <ul>
+      <li>Windows が起動してしまう場合<br />
+  UEFI の設定で、<code class="language-plaintext highlighter-rouge">rEFInd Boot Manager</code> の優先順位を最高にしてください。</li>
+      <li>Emergency mode に入ってしまう場合<br />
+  <code class="language-plaintext highlighter-rouge">refind_linux.conf</code> の記述が間違っています。もう一度手順を読み込み、やり直してください。</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="10-arch-linux-のデスクトップ環境の導入">10. Arch Linux のデスクトップ環境の導入</h2>
+<ul>
+  <li>デスクトップ環境が必要ない場合、この手順を完全に飛ばすことができます。</li>
+  <li>今回は、<a href="https://kde.org/plasma-desktop/">KDE Plasma</a> というデスクトップ環境を導入します。
+    <ul>
+      <li>スクリーンショット
+  <img src="https://i.imgur.com/xlxiPMR.png" alt="" /></li>
+    </ul>
+  </li>
+  <li>
+    <ol>
+      <li>必要なパッケージをインストールします。
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-Syu</span> plasma kde-applications sddm xorg adobe-source-han-sans-jp-fonts fcitx-im fcitx-configtool fcitx-mozc kcm-fcitx
+</code></pre></div>        </div>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>SDDM が Arch Linux の起動時に自動的に立ち上がるようにします。
+        <ul>
+          <li>SDDM は、X サーバのセッションを開始する役目を担います。</li>
+          <li>以下のコマンドを実行して、自動起動を有効にします。
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>sddm
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>日本語入力の設定をします。
+        <ul>
+          <li>ホームディレクトリ以下の <code class="language-plaintext highlighter-rouge">.xprofile</code> (正確なパス: <code class="language-plaintext highlighter-rouge">$HOME/.xprofile</code>) に以下の内容を書き込んでください。
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  export GTK_IM_MODULE=fcitx
+  export QT_IM_MODULE=fcitx
+  export XMODIFIERS=”@im=fcitx”
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>表示言語を日本語に設定し、キーボードレイアウトを設定します。
+  ```bash
+  $ sudo localectl set-locale ja_JP.UTF-8
+  $ sudo localectl set-x11-keymap jp</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>再起動し、Plasma を起動します。</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>Fcitx (日本語入力メソッド) が自動的に起動するようにします。また、入力メソッドとして登録します。
+        <ul>
+          <li>ここからのコマンドは、Konsole 等のターミナルエミュレータから実行するようにします。</li>
+          <li>自動起動するには、以下のコマンドを実行します。
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>fcitx-autostart
+</code></pre></div>            </div>
+          </li>
+          <li>Fcitx を入力メソッドの1つとして登録します。以下のコマンドを実行して表示された画面から、Mozc を追加します。
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>fcitx-configtool
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>もう一度再起動すると、すべての設定が完了します。</li>
+    </ol>
+  </li>
+</ul>
+
+<h1 id="11-終わりに">11. 終わりに</h1>
+<p>内容の誤り、補足、誤字・脱字 等ございましたら、<a href="https://github.com/yudejp/yude.jp_v2/issues">こちら</a> までお願いします。</p>
+
+    </div>
+
+    <p><strong>匿名でコメントできます。</strong><br>「または Disqus に登録」の下にある「名前」をクリックしてから、「ゲストとして投稿する」にチェックを入れてください。</p>
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        /*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+
+        var disqus_config = function () {
+            this.page.url = "https://yude.jp/blog/2022-07-install-arch-linux";  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = "/blog/install-arch-linux"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://yudejp.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+
+    <a class="u-url"
+        href="/blog/2022-07-install-arch-linux"
+        hidden></a>
+</article>
+        </div>
+        <hr>
+        <div>
+            <a href="https://sites.google.com/site/happybusy/"><img style="margin-left: auto; margin-right:auto"
+                    src="/assets/images/busy_banner.png"></a>
+        </div>
+        <div class="mt-2">
+            <img src="https://count.getloli.com/get/@yude?theme=asoul"
+                alt="表示カウンター (count.getloli.com)"
+                loading="lazy" />
+        </div>
+        <div class="mt-2">
+            <p>
+                リビジョン: 1dd1678e6f4af35125790785ddf19fc9dbae43cb (<a href="https://github.com/yudejp/yude.jp">リポジトリ</a>)<br>
+                <a href="https://jekyllrb-ja.github.io/">Jekyll</a>
+                によってビルドされ、Cloudflare
+                Pages 上でホストされています。<br>
+                &copy; 2022 yude &lt;i[at]yude.jp&gt;. <a
+                    href="https://github.com/yudejp/yude.jp/blob/main/README.md">詳細</a><br>
+            </p>
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+        integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    
+
+    
+
+    
+    <script>
+        const userPrefers = getComputedStyle(document.documentElement).getPropertyValue('content');
+
+        if (theme === "dark") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else if (theme === "light") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+        } else if (userPrefers === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            window.localStorage.setItem('theme', 'dark');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            window.localStorage.setItem('theme', 'light');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+        }
+
+        function modeSwitcher() {
+            let currentMode = document.documentElement.getAttribute('data-theme');
+            if (currentMode === "dark") {
+                document.documentElement.setAttribute('data-theme', 'light');
+                window.localStorage.setItem('theme', 'light');
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                window.localStorage.setItem('theme', 'dark');
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        }
+    </script>
+    
+
+
+
+
+</body>
+
+</html>

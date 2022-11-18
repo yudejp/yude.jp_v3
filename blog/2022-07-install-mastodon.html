@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+    <title>yude.jp | Mastodon インスタンスを高速に作成する</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+    <link rel="alternate"
+        type="application/rss+xml"
+        title="yude.jp RSS"
+        href="/feed.xml" />
+    <link rel="shortcut icon"
+        type="image/png"
+        href="/assets/images/yudejp.png">
+    <link rel="alternate"
+        type="application/rss+xml"
+        href="https://www.yude.jp/feed.xml">
+    <link rel="me"
+        href="https://mstdn.yude.jp/@yude" />
+    <link rel="me"
+        href="https://mstdn.maud.io/@yude" />
+    <link rel="me"
+        href="https://mstdn.jp/@yude" />
+    <link rel="me"
+        href="https://mast.moe/@yude" />
+    <link rel="me"
+        href="https://mstdn.blue/@yude" />
+    <link rel="me"
+        href="https://mstdn.club/@yude" />
+    <link rel="me"
+        href="https://pawoo.net/@yude" />
+    <link rel="me"
+        href="https://sanin.club/@yude" />
+    <link rel="me"
+        href="https://social.vivaldi.net/@yude" />
+
+    <style>
+        body {
+            background-color: #f7fafc;
+        }
+
+        .title {
+            animation: title 2.5s linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes title {
+
+            0%,
+            100% {
+                color: rgb(0, 0, 255);
+            }
+
+            50% {
+                color: rgb(255, 0, 255);
+            }
+        }
+
+        html,
+        html[data-theme="light"] {
+            --light-text-color: hsl(0, 0%, 35%);
+            --main-background-color: hsl(0, 5%, 95%);
+            --main-text-color: hsl(0, 0%, 0%);
+            --card-background-color: hsl(0, 5%, 95%);
+        }
+
+        html[data-theme="dark"] {
+            --light-text-color: hsl(0, 0%, 60%);
+            --main-background-color: hsl(0, 0%, 10%);
+            --main-text-color: hsl(0, 10%, 80%);
+            --card-background-color: #0C0C0C;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            html {
+                content: "dark";
+            }
+        }
+
+        body {
+            color: var(--main-text-color);
+            background-color: var(--main-background-color);
+        }
+
+        .card,
+        .dropdown-menu {
+            background-color: var(--card-background-color) !important;
+        }
+
+        .blockquote {
+            text-shadow: 1px 1px 2px var(--light-text-color);
+        }
+
+        a,
+        .dropdown-item,
+        .dropdown-item-text {
+            color: var(--main-text-color);
+        }
+    </style>
+
+    
+</head>
+
+<body>
+    <script>
+        const theme = localStorage.getItem('theme');
+        if (theme === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
+    <div class="container mt-5">
+        <ul class="nav flex-column flex-md-row">
+            <div class="container-fluid">
+                <a class="navbar-brand"
+                    href="#">
+                    <img src="/assets/images/yudejp.png"
+                        alt="yude.jp logo"
+                        width="40"
+                        height="40"
+                        class="d-inline-block align-text-top">
+                    <a class="text-decoration-none title fs-3 font-monospace"
+                        href="/"
+                        style="position: relative; top: 11px; left: 5px"
+                        tabindex="-1"
+                        aria-disabled="true">yude.jp</a>
+                </a>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/profile"><i
+                        class="fa-solid fa-user"></i>
+                    プロフィール</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/blog"><i class="fa-solid fa-blog"></i>
+                    ブログ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/1ch"><i class="fa-solid fa-comment"></i>
+                    1ch</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"><i class="fa-solid fa-egg"></i> その他</a>
+                <ul class="dropdown-menu">
+                    <li><span class="dropdown-item-text">外部リンク</span></li>
+                    <li><a class="dropdown-item"
+                            href="https://discord.gg/X6srY7X"><i class="fa-brands fa-discord"></i> Discord サーバー</a></li>
+                    <li><a class="dropdown-item"
+                            href="https://github.com/yudejp"><i class="fa-brands fa-github"></i> GitHub Organization</a>
+                    </li>
+                    <li><a class="dropdown-item"
+                            href="https://status.yude.jp"><i class="fa-solid fa-check"></i> サービスの稼働状況</a>
+                    </li>
+                    <hr class="dropdown-divider">
+                    <li><span class="dropdown-item-text">他のページ</span></li>
+                    <li><a class="dropdown-item"
+                            href="/services"><i
+                                class="fa-solid fa-star"></i> サービス</a></li>
+                    <li><a class="dropdown-item"
+                            href="/apps"><i
+                                class="fa-solid fa-bomb"></i> アプリ</a></li>
+                    <li><a class="dropdown-item"
+                            href="/links"><i
+                                class="fa-solid fa-link"></i> リンク集</a></li>
+                    <li><a class="dropdown-item"
+                            href="/tos"><i
+                                class="fa-solid fa-wand-sparkles"></i> yude.jp サービス利用規約</a></li>
+                    <li><a class="dropdown-item"
+                            href="/hcunews"><i
+                                class="fa-solid fa-newspaper"></i> @hcunews について</a></li>
+                </ul>
+            </li>
+            <button type="button"
+                class="btn btn-dark"
+                onClick="modeSwitcher()"
+                id="theme-toggle"></button>
+
+        </ul>
+
+        <nav aria-label="breadcrumb"
+            class="breadcrumb-parent"
+            style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);">
+            <ol class="breadcrumb">
+                
+                <li class="breadcrumb-item"><a href="/">🏠 ホーム</a></li>
+                
+                
+                <li class="breadcrumb-item"><a
+                        href="/blog/">📕 ブログ</a>
+                </li>
+                
+                
+                
+                <li class="breadcrumb-item active"
+                    aria-current="page">Mastodon インスタンスを高速に作成する</li>
+                
+                
+            </ol>
+        </nav>
+        <div style="min-height: 30rem">
+            <article class="post h-entry"
+    itemscope
+    itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header"
+        style="text-align: center">
+        <h1 class="post-title p-name"
+            itemprop="name headline">Mastodon インスタンスを高速に作成する</h1>
+        <p class="post-meta">
+            <i class="fa-solid fa-tags"></i>
+            
+            <span class="badge rounded-pill bg-success">Mastodon</span>
+            
+            <span class="badge rounded-pill bg-success">セルフホスト</span>
+            
+            <span class="badge rounded-pill bg-success">ActivityPub</span>
+            <i style="margin-left: 3px"
+                class="fa-solid fa-calendar-days"></i>
+            <time class="dt-published"
+                datetime="2022-07-25T00:00:00+00:00"
+                itemprop="datePublished">
+                2022/7/25
+            </time><i style="margin-left: 3px"
+                class="fa-solid fa-clock"></i>
+            
+
+3 分で読めます
+</p>
+    </header>
+
+    <div class="post-content e-content"
+        itemprop="articleBody">
+        <h1 id="免責--注意-事項">免責 / 注意 事項</h1>
+<ul>
+  <li>yude はこの記事の内容をあなたが実行した結果の責任を一切負うことができません。自己責任で行ってください。</li>
+</ul>
+
+<h1 id="必要なもの">必要なもの</h1>
+<ul>
+  <li>Cloudflare で管理されている独自ドメイン</li>
+  <li>Docker, Docker Compose, cloudflared がインストールされているマシン
+    <ul>
+      <li>cloudflared のインストール方法については、この記事の最後の方を参照してください。</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="手順">手順</h1>
+
+<ul>
+  <li>インストール中に問題が発生した場合、記事の下の方にある「トラブルシューティング」を参照してください。</li>
+</ul>
+
+<h2 id="1-テンプレートの-git-リポジトリをクローンします">1. テンプレートの Git リポジトリをクローンします。</h2>
+<ul>
+  <li>yude が作成した人のぬくもりのあるテンプレート Git リポジトリをクローンします。
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>git clone https://github.com/yude/docker-mastodon mastodon
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="2-cloudflare-に-cloudflared-からログインします">2. Cloudflare に <code class="language-plaintext highlighter-rouge">cloudflared</code> からログインします。</h2>
+<ul>
+  <li>まず、不具合を防ぐために事前に Cloudflare のダッシュボードにログインしておきます。</li>
+  <li>その後、以下のコマンドを実行すると、Cloudflare の認証ページへの URL が表示されます。
+    <ul>
+      <li>若干処理が長いため、気長に待ってください。
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>cloudflared login
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Cloudflare の認証ページでは、あなたが Mastodon を公開する予定のドメインを指定してください。</li>
+</ul>
+
+<h2 id="3-cloudflare-の設定を行います">3. Cloudflare の設定を行います。</h2>
+<ol>
+  <li>トンネルを定義します。
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>cloudflared tunnel create mastodon
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">mastodon</code> の部分は英数字で任意に設定できます。</li>
+    </ul>
+  </li>
+  <li>ドメインとトンネルを紐付けます。
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>cloudflared tunnel route dns mastodon mstdn.yude.jp
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">mastodon</code> の部分はステップ 1 で定義したトンネル名を指定してください。</li>
+      <li><code class="language-plaintext highlighter-rouge">mstdn.yude.jp</code> の部分は Mastodon を稼働させる予定のドメインを指定してください。</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="4-docker-コンテナの設定を行います">4. Docker コンテナの設定を行います。</h2>
+<p>クローンしたリポジトリ内にある <code class="language-plaintext highlighter-rouge">docker-compose.yaml</code> を開き、必要な項目を設定していきます。</p>
+
+<ul>
+  <li>サービス <code class="language-plaintext highlighter-rouge">cloudflared</code> の <code class="language-plaintext highlighter-rouge">command</code> の項にある <code class="language-plaintext highlighter-rouge">mastodon</code> の部分を、ステップ 4.1 で指定したトンネル名に変更してください。<br />
+例のとおりに <code class="language-plaintext highlighter-rouge">mastodon</code> とした場合は、何もする必要はありません。</li>
+</ul>
+
+<h2 id="5-mastodon-の設定を行います">5. Mastodon の設定を行います。</h2>
+<ol>
+  <li>まずは、設定ファイルのテンプレートをダウンロードします。
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>wget <span class="nt">-O</span> .env.production https://raw.githubusercontent.com/mastodon/mastodon/main/.env.production.sample
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">.env.production</code> を開き、必要な項目を設定していきます。
+    <ul>
+      <li>まずは、設定に使用するコマンドを2つ示します。これらは、両方とも <code class="language-plaintext highlighter-rouge">docker-compose.yaml</code> が存在するディレクトリで実行してください。</li>
+    </ul>
+    <ul>
+      <li>コマンド1: <code class="language-plaintext highlighter-rouge">docker compose run --rm web bundle exec rake secret</code></li>
+      <li>コマンド2: <code class="language-plaintext highlighter-rouge">docker compose run --rm web bundle exec rake mastodon:webpush:generate_vapid_key</code></li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>以下が <code class="language-plaintext highlighter-rouge">.env.production</code> 中の設定項目です。
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">S3_ENABLED</code>: <code class="language-plaintext highlighter-rouge">false</code> に設定します。</li>
+      <li><code class="language-plaintext highlighter-rouge">LOCAL_DOMAIN</code>: Mastodon を稼働させる予定のドメイン (例: <code class="language-plaintext highlighter-rouge">mstdn.yude.jp</code>)</li>
+      <li><code class="language-plaintext highlighter-rouge">REDIS_HOST</code>: <code class="language-plaintext highlighter-rouge">redis</code> に変更してください。</li>
+      <li><code class="language-plaintext highlighter-rouge">DB_HOST</code>: <code class="language-plaintext highlighter-rouge">db</code> に変更してください。</li>
+      <li><code class="language-plaintext highlighter-rouge">ES_ENABLED</code>: 今回は <code class="language-plaintext highlighter-rouge">false</code> に変更してください。</li>
+      <li><code class="language-plaintext highlighter-rouge">SECRET_KEY_BASE</code>: <strong>コマンド1</strong>を実行して得られた文字列を貼り付けてください。</li>
+      <li><code class="language-plaintext highlighter-rouge">OTP_SECRET</code>: <strong>コマンド1</strong>を実行して得られた文字列を貼り付けてください。ただし、<code class="language-plaintext highlighter-rouge">SECRET_KEY_BASE</code> とは異なる文字列になるようにしてください。(2回生成コマンドを実行してください。)</li>
+      <li><code class="language-plaintext highlighter-rouge">VAPID_PRIVATE_KEY</code> &amp; <code class="language-plaintext highlighter-rouge">VAPID_PUBLIC_KEY</code>: <strong>コマンド2</strong>を実行して得られた文字列を貼り付けてください。コマンドを実行すると、そのまま貼り付けられる形式で結果を得られます。</li>
+    </ul>
+    <hr />
+
+    <ul>
+      <li>
+        <p>以下の設定項目には、SMTP サーバ (電子メールの送信を担当するサーバ) が必要です。なんらかの手段によって、これを用意してください。</p>
+
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">SMTP_SERVER</code>: SMTP サーバのアドレスを指定してください。</li>
+          <li><code class="language-plaintext highlighter-rouge">SMTP_PORT</code>: SMTP サーバのポート番号を指定してください。</li>
+          <li><code class="language-plaintext highlighter-rouge">SMTP_LOGIN</code>: SMTP サーバのユーザ ID を指定してください。</li>
+          <li><code class="language-plaintext highlighter-rouge">SMTP_PASSWORD</code>: SMTP サーバのパスワードを指定してください。</li>
+          <li><code class="language-plaintext highlighter-rouge">SMTP_FROM_ADDRESS</code>: サーバーの利用者から、Mastodon インスタンスからのメールに付属するメールアドレスをどのように見せたいかを指定してください。(例: <code class="language-plaintext highlighter-rouge">noreply@yude.jp</code>)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <hr />
+
+    <ul>
+      <li>また、自分しか使用しない場合は、<code class="language-plaintext highlighter-rouge">.env.production</code> に以下を追記してください。
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  SINGLE_USER_MODE=true
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>アセットファイルとデータベースを初期化します。
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>docker compose run <span class="nt">--rm</span> web rails db:migrate
+ <span class="nv">$ </span>docker compose run <span class="nt">--rm</span> web rails assets:precompile
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="6-起動します">6. 起動します。</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker compose up -d
+</code></pre></div></div>
+<ul>
+  <li>起動後、あなたのアカウントをできるだけ早く作成してください。</li>
+  <li>起動したら、以下のコマンドであなたのアカウントをオーナーに設定してください。
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> <span class="si">$(</span>docker compose ps <span class="nt">-q</span> web<span class="si">)</span> bin/tootctl accounts modify your_name <span class="nt">--role</span> Owner
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">your_name</code> にはあなたのスクリーンネームを指定します。(例: <code class="language-plaintext highlighter-rouge">@your_name</code> と表示されているものを、<code class="language-plaintext highlighter-rouge">your_name</code> として指定します。)</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="参考-cloudflared-をインストールする">参考: cloudflared をインストールする</h1>
+<ul>
+  <li>Debian の場合
+    <ol>
+      <li>リポジトリを追加します。
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/ buster main"</span> | <span class="nb">sudo tee</span> /etc/apt/sources.list.d/cloudflare-main.list 
+</code></pre></div>        </div>
+      </li>
+      <li>公開鍵を追加します。
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span><span class="nb">sudo </span>curl https://pkg.cloudflare.com/cloudflare-main.gpg <span class="nt">-o</span> /usr/share/keyrings/cloudflare-main.gpg
+</code></pre></div>        </div>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">cloudflared</code> をインストールします。
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span><span class="nb">sudo </span>apt update<span class="p">;</span> <span class="nb">sudo </span>apt <span class="nt">-y</span> <span class="nb">install </span>cloudflared
+</code></pre></div>        </div>
+      </li>
+    </ol>
+  </li>
+  <li>その他のディストリビューションについては、<a href="https://pkg.cloudflare.com/">こちら</a> を参照してください。</li>
+</ul>
+
+<h1 id="トラブルシューティング">トラブルシューティング</h1>
+
+<ul>
+  <li>Docker Compose について:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">docker compose</code> を実行して、<code class="language-plaintext highlighter-rouge">'compose' is not a docker command.</code> と表示されないことを確認してください。</li>
+      <li>もしそのように表示されてしまった場合、<code class="language-plaintext highlighter-rouge">docker-compose</code> というコマンドが存在するか確認してください。
+        <ul>
+          <li>存在した場合
+            <ul>
+              <li>記事中の <code class="language-plaintext highlighter-rouge">docker compose</code> の部分を <code class="language-plaintext highlighter-rouge">docker-compose</code> に読み替えてください。</li>
+            </ul>
+          </li>
+          <li>存在しない場合
+            <ul>
+              <li>Docker の公式リポジトリを使用して、最新の Docker Engine と Docker Compose Plugin をインストールしてください。</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Error 1033: Argo Tunnel error</code> が発生する場合
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">cloudflared</code> の動作に異常があります。以下のコマンドを実行してログを表示することで、問題解決の助けとなるでしょう。
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">docker compose logs cloudflared</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Internal Server Error</code> が発生する。
+    <ul>
+      <li>多くはファイルの権限が間違っていることが原因です。以下のコマンドで権限を修正できます。
+  <code class="language-plaintext highlighter-rouge">docker compose exec -u root web chown -R mastodon:mastodon ./</code></li>
+    </ul>
+  </li>
+</ul>
+
+    </div>
+
+    <p><strong>匿名でコメントできます。</strong><br>「または Disqus に登録」の下にある「名前」をクリックしてから、「ゲストとして投稿する」にチェックを入れてください。</p>
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        /*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+
+        var disqus_config = function () {
+            this.page.url = "https://yude.jp/blog/2022-07-install-mastodon";  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = "/blog/install-mastodon"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://yudejp.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+
+    <a class="u-url"
+        href="/blog/2022-07-install-mastodon"
+        hidden></a>
+</article>
+        </div>
+        <hr>
+        <div>
+            <a href="https://sites.google.com/site/happybusy/"><img style="margin-left: auto; margin-right:auto"
+                    src="/assets/images/busy_banner.png"></a>
+        </div>
+        <div class="mt-2">
+            <img src="https://count.getloli.com/get/@yude?theme=asoul"
+                alt="表示カウンター (count.getloli.com)"
+                loading="lazy" />
+        </div>
+        <div class="mt-2">
+            <p>
+                リビジョン: 1dd1678e6f4af35125790785ddf19fc9dbae43cb (<a href="https://github.com/yudejp/yude.jp">リポジトリ</a>)<br>
+                <a href="https://jekyllrb-ja.github.io/">Jekyll</a>
+                によってビルドされ、Cloudflare
+                Pages 上でホストされています。<br>
+                &copy; 2022 yude &lt;i[at]yude.jp&gt;. <a
+                    href="https://github.com/yudejp/yude.jp/blob/main/README.md">詳細</a><br>
+            </p>
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+        integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    
+
+    
+
+    
+    <script>
+        const userPrefers = getComputedStyle(document.documentElement).getPropertyValue('content');
+
+        if (theme === "dark") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else if (theme === "light") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+        } else if (userPrefers === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            window.localStorage.setItem('theme', 'dark');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            window.localStorage.setItem('theme', 'light');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+        }
+
+        function modeSwitcher() {
+            let currentMode = document.documentElement.getAttribute('data-theme');
+            if (currentMode === "dark") {
+                document.documentElement.setAttribute('data-theme', 'light');
+                window.localStorage.setItem('theme', 'light');
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                window.localStorage.setItem('theme', 'dark');
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        }
+    </script>
+    
+
+
+
+
+</body>
+
+</html>

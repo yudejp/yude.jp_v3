@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+    <title>yude.jp | 🏠 ホーム</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+    <link rel="alternate"
+        type="application/rss+xml"
+        title="yude.jp RSS"
+        href="/feed.xml" />
+    <link rel="shortcut icon"
+        type="image/png"
+        href="/assets/images/yudejp.png">
+    <link rel="alternate"
+        type="application/rss+xml"
+        href="https://www.yude.jp/feed.xml">
+    <link rel="me"
+        href="https://mstdn.yude.jp/@yude" />
+    <link rel="me"
+        href="https://mstdn.maud.io/@yude" />
+    <link rel="me"
+        href="https://mstdn.jp/@yude" />
+    <link rel="me"
+        href="https://mast.moe/@yude" />
+    <link rel="me"
+        href="https://mstdn.blue/@yude" />
+    <link rel="me"
+        href="https://mstdn.club/@yude" />
+    <link rel="me"
+        href="https://pawoo.net/@yude" />
+    <link rel="me"
+        href="https://sanin.club/@yude" />
+    <link rel="me"
+        href="https://social.vivaldi.net/@yude" />
+
+    <style>
+        body {
+            background-color: #f7fafc;
+        }
+
+        .title {
+            animation: title 2.5s linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes title {
+
+            0%,
+            100% {
+                color: rgb(0, 0, 255);
+            }
+
+            50% {
+                color: rgb(255, 0, 255);
+            }
+        }
+
+        html,
+        html[data-theme="light"] {
+            --light-text-color: hsl(0, 0%, 35%);
+            --main-background-color: hsl(0, 5%, 95%);
+            --main-text-color: hsl(0, 0%, 0%);
+            --card-background-color: hsl(0, 5%, 95%);
+        }
+
+        html[data-theme="dark"] {
+            --light-text-color: hsl(0, 0%, 60%);
+            --main-background-color: hsl(0, 0%, 10%);
+            --main-text-color: hsl(0, 10%, 80%);
+            --card-background-color: #0C0C0C;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            html {
+                content: "dark";
+            }
+        }
+
+        body {
+            color: var(--main-text-color);
+            background-color: var(--main-background-color);
+        }
+
+        .card,
+        .dropdown-menu {
+            background-color: var(--card-background-color) !important;
+        }
+
+        .blockquote {
+            text-shadow: 1px 1px 2px var(--light-text-color);
+        }
+
+        a,
+        .dropdown-item,
+        .dropdown-item-text {
+            color: var(--main-text-color);
+        }
+    </style>
+
+    
+    <style>
+        #particles-js {
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <script>
+        const theme = localStorage.getItem('theme');
+        if (theme === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
+    <div class="container mt-5">
+        <ul class="nav flex-column flex-md-row">
+            <div class="container-fluid">
+                <a class="navbar-brand"
+                    href="#">
+                    <img src="/assets/images/yudejp.png"
+                        alt="yude.jp logo"
+                        width="40"
+                        height="40"
+                        class="d-inline-block align-text-top">
+                    <a class="text-decoration-none title fs-3 font-monospace"
+                        href="/"
+                        style="position: relative; top: 11px; left: 5px"
+                        tabindex="-1"
+                        aria-disabled="true">yude.jp</a>
+                </a>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/profile"><i
+                        class="fa-solid fa-user"></i>
+                    プロフィール</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/blog"><i class="fa-solid fa-blog"></i>
+                    ブログ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/1ch"><i class="fa-solid fa-comment"></i>
+                    1ch</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"><i class="fa-solid fa-egg"></i> その他</a>
+                <ul class="dropdown-menu">
+                    <li><span class="dropdown-item-text">外部リンク</span></li>
+                    <li><a class="dropdown-item"
+                            href="https://discord.gg/X6srY7X"><i class="fa-brands fa-discord"></i> Discord サーバー</a></li>
+                    <li><a class="dropdown-item"
+                            href="https://github.com/yudejp"><i class="fa-brands fa-github"></i> GitHub Organization</a>
+                    </li>
+                    <li><a class="dropdown-item"
+                            href="https://status.yude.jp"><i class="fa-solid fa-check"></i> サービスの稼働状況</a>
+                    </li>
+                    <hr class="dropdown-divider">
+                    <li><span class="dropdown-item-text">他のページ</span></li>
+                    <li><a class="dropdown-item"
+                            href="/services"><i
+                                class="fa-solid fa-star"></i> サービス</a></li>
+                    <li><a class="dropdown-item"
+                            href="/apps"><i
+                                class="fa-solid fa-bomb"></i> アプリ</a></li>
+                    <li><a class="dropdown-item"
+                            href="/links"><i
+                                class="fa-solid fa-link"></i> リンク集</a></li>
+                    <li><a class="dropdown-item"
+                            href="/tos"><i
+                                class="fa-solid fa-wand-sparkles"></i> yude.jp サービス利用規約</a></li>
+                    <li><a class="dropdown-item"
+                            href="/hcunews"><i
+                                class="fa-solid fa-newspaper"></i> @hcunews について</a></li>
+                </ul>
+            </li>
+            <button type="button"
+                class="btn btn-dark"
+                onClick="modeSwitcher()"
+                id="theme-toggle"></button>
+
+        </ul>
+
+        <nav aria-label="breadcrumb"
+            class="breadcrumb-parent"
+            style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);">
+            <ol class="breadcrumb">
+                
+                <li class="breadcrumb-item"><a href="/">🏠 ホーム</a></li>
+                
+            </ol>
+        </nav>
+        <div style="min-height: 30rem">
+            <div class="container" id="particles-js" style="position: relative; height: 5rem; z-index: 100">
+  <div style="position: absolute; width: 100%; z-index: 200">
+    <figure class="text-center">
+    <blockquote class="blockquote">
+      <p id="text" class="blockquote-text"></p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      <span id="artist"></span> / <cite id="title"></cite> <a href="javascript:void(0)" onclick="updateText(); return false;" class="fs-4 text-decoration-none">🔄</a>
+    </figcaption>
+    
+  </figure>
+  </div>
+</div>
+
+<hr />
+
+<h4 id="最新の記事">最新の記事</h4>
+
+<ul>
+  <li><a href="/blog/2022-07-install-mastodon">Mastodon インスタンスを高速に作成する</a></li>
+</ul>
+
+<h4 id="見ましょう">見ましょう</h4>
+<ul>
+  <li><a href="https://lycoris-recoil.com/">オリジナルTVアニメーション「リコリス・リコイル」公式サイト</a></li>
+  <li><a href="https://tsurekano-anime.com/">TVアニメ「継母の連れ子が元カノだった」公式サイト</a></li>
+  <li><a href="https://www.lovelive-anime.jp/yuigaoka/">「ラブライブ！スーパースター!!」公式サイト</a></li>
+  <li><a href="https://cuckoos-anime.com/">TVアニメ「カッコウの許嫁」公式サイト</a></li>
+  <li><a href="https://soreayu.com/">TVアニメ「それでも歩は寄せてくる」公式サイト</a></li>
+</ul>
+
+<h4 id="ロシアによるウクライナへの侵攻に反対します">ロシアによるウクライナへの侵攻に反対します</h4>
+<ul>
+  <li><a href="https://zverok.space/blog/2022-03-03-WAR.html">Appeal to Ruby community from Kharkiv Rubyist</a></li>
+  <li><a href="https://war.ukraine.ua/">War in Ukraine: official website, MFA of Ukraine</a></li>
+</ul>
+
+        </div>
+        <hr>
+        <div>
+            <a href="https://sites.google.com/site/happybusy/"><img style="margin-left: auto; margin-right:auto"
+                    src="/assets/images/busy_banner.png"></a>
+        </div>
+        <div class="mt-2">
+            <img src="https://count.getloli.com/get/@yude?theme=asoul"
+                alt="表示カウンター (count.getloli.com)"
+                loading="lazy" />
+        </div>
+        <div class="mt-2">
+            <p>
+                リビジョン: 1dd1678e6f4af35125790785ddf19fc9dbae43cb (<a href="https://github.com/yudejp/yude.jp">リポジトリ</a>)<br>
+                <a href="https://jekyllrb-ja.github.io/">Jekyll</a>
+                によってビルドされ、Cloudflare
+                Pages 上でホストされています。<br>
+                &copy; 2022 yude &lt;i[at]yude.jp&gt;. <a
+                    href="https://github.com/yudejp/yude.jp/blob/main/README.md">詳細</a><br>
+            </p>
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+        integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 20,
+                    "density": {
+                        "enable": false,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#2f2f2f"
+                },
+                "shape": {
+                    "type": "star",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                    "image": {
+                        "src": "http://wiki.lexisnexis.com/academic/images/f/fb/Itunes_podcast_icon_300.jpg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 4,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": false,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 14,
+                    "direction": "left",
+                    "random": false,
+                    "straight": true,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 200,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+        update = function () {
+            requestAnimationFrame(update);
+        };
+        requestAnimationFrame(update);
+    </script>
+    
+
+    
+    <!-- Quotes loader & updater -->
+    <script src="assets/quotes.js"></script>
+    <script>
+        function updateText() {
+            let selected_word = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById("text").innerHTML = selected_word.text;
+            document.getElementById("artist").innerHTML = selected_word.artist;
+            document.getElementById("title").innerHTML = selected_word.title;
+        }
+        updateText();
+    </script>
+    
+
+    
+    <script>
+        const userPrefers = getComputedStyle(document.documentElement).getPropertyValue('content');
+
+        if (theme === "dark") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+            pJSDom[0].pJS.particles.color.value = "#f0f8ff";
+            pJSDom[0].pJS.fn.particlesRefresh();
+        } else if (theme === "light") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+            pJSDom[0].pJS.particles.color.value = "#2f4f4f";
+            pJSDom[0].pJS.fn.particlesRefresh();
+        } else if (userPrefers === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            window.localStorage.setItem('theme', 'dark');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+            pJSDom[0].pJS.particles.color.value = "#f0f8ff";
+            pJSDom[0].pJS.fn.particlesRefresh();
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            window.localStorage.setItem('theme', 'light');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+            pJSDom[0].pJS.particles.color.value = "#2f4f4f";
+            pJSDom[0].pJS.fn.particlesRefresh();
+        }
+
+        function modeSwitcher() {
+            let currentMode = document.documentElement.getAttribute('data-theme');
+            if (currentMode === "dark") {
+                document.documentElement.setAttribute('data-theme', 'light');
+                window.localStorage.setItem('theme', 'light');
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+                pJSDom[0].pJS.particles.color.value = "#2f4f4f";
+                pJSDom[0].pJS.fn.particlesRefresh();
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                window.localStorage.setItem('theme', 'dark');
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+
+                pJSDom[0].pJS.particles.color.value = "#f0f8ff";
+                pJSDom[0].pJS.fn.particlesRefresh();
+            }
+        }
+    </script>
+    
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>yude.jp</title>
+    <description>yude.jp のトップページです。</description>
+    <link>https://www.yude.jp//</link>
+    <atom:link href="https://www.yude.jp//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 18 Nov 2022 12:42:03 +0000</pubDate>
+    <lastBuildDate>Fri, 18 Nov 2022 12:42:03 +0000</lastBuildDate>
+    <generator>Jekyll v4.2.2</generator>
+    
+      <item>
+        <title>Mastodon インスタンスを高速に作成する</title>
+        <description>&lt;h1 id=&quot;免責--注意-事項&quot;&gt;免責 / 注意 事項&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;yude はこの記事の内容をあなたが実行した結果の責任を一切負うことができません。自己責任で行ってください。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;必要なもの&quot;&gt;必要なもの&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Cloudflare で管理されている独自ドメイン&lt;/li&gt;
+  &lt;li&gt;Docker, Docker Compose, cloudflared がインストールされているマシン
+    &lt;ul&gt;
+      &lt;li&gt;cloudflared のインストール方法については、この記事の最後の方を参照してください。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;手順&quot;&gt;手順&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;インストール中に問題が発生した場合、記事の下の方にある「トラブルシューティング」を参照してください。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-テンプレートの-git-リポジトリをクローンします&quot;&gt;1. テンプレートの Git リポジトリをクローンします。&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;yude が作成した人のぬくもりのあるテンプレート Git リポジトリをクローンします。
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/yude/docker-mastodon mastodon
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-cloudflare-に-cloudflared-からログインします&quot;&gt;2. Cloudflare に &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudflared&lt;/code&gt; からログインします。&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;まず、不具合を防ぐために事前に Cloudflare のダッシュボードにログインしておきます。&lt;/li&gt;
+  &lt;li&gt;その後、以下のコマンドを実行すると、Cloudflare の認証ページへの URL が表示されます。
+    &lt;ul&gt;
+      &lt;li&gt;若干処理が長いため、気長に待ってください。
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cloudflared login
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Cloudflare の認証ページでは、あなたが Mastodon を公開する予定のドメインを指定してください。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-cloudflare-の設定を行います&quot;&gt;3. Cloudflare の設定を行います。&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;トンネルを定義します。
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cloudflared tunnel create mastodon
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mastodon&lt;/code&gt; の部分は英数字で任意に設定できます。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ドメインとトンネルを紐付けます。
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cloudflared tunnel route dns mastodon mstdn.yude.jp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mastodon&lt;/code&gt; の部分はステップ 1 で定義したトンネル名を指定してください。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mstdn.yude.jp&lt;/code&gt; の部分は Mastodon を稼働させる予定のドメインを指定してください。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;4-docker-コンテナの設定を行います&quot;&gt;4. Docker コンテナの設定を行います。&lt;/h2&gt;
+&lt;p&gt;クローンしたリポジトリ内にある &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose.yaml&lt;/code&gt; を開き、必要な項目を設定していきます。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;サービス &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudflared&lt;/code&gt; の &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;command&lt;/code&gt; の項にある &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mastodon&lt;/code&gt; の部分を、ステップ 4.1 で指定したトンネル名に変更してください。&lt;br /&gt;
+例のとおりに &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mastodon&lt;/code&gt; とした場合は、何もする必要はありません。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;5-mastodon-の設定を行います&quot;&gt;5. Mastodon の設定を行います。&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;まずは、設定ファイルのテンプレートをダウンロードします。
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; .env.production https://raw.githubusercontent.com/mastodon/mastodon/main/.env.production.sample
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env.production&lt;/code&gt; を開き、必要な項目を設定していきます。
+    &lt;ul&gt;
+      &lt;li&gt;まずは、設定に使用するコマンドを2つ示します。これらは、両方とも &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose.yaml&lt;/code&gt; が存在するディレクトリで実行してください。&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+      &lt;li&gt;コマンド1: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker compose run --rm web bundle exec rake secret&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;コマンド2: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker compose run --rm web bundle exec rake mastodon:webpush:generate_vapid_key&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;以下が &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env.production&lt;/code&gt; 中の設定項目です。
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;S3_ENABLED&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;false&lt;/code&gt; に設定します。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LOCAL_DOMAIN&lt;/code&gt;: Mastodon を稼働させる予定のドメイン (例: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mstdn.yude.jp&lt;/code&gt;)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REDIS_HOST&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;redis&lt;/code&gt; に変更してください。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DB_HOST&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;db&lt;/code&gt; に変更してください。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ES_ENABLED&lt;/code&gt;: 今回は &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;false&lt;/code&gt; に変更してください。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SECRET_KEY_BASE&lt;/code&gt;: &lt;strong&gt;コマンド1&lt;/strong&gt;を実行して得られた文字列を貼り付けてください。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OTP_SECRET&lt;/code&gt;: &lt;strong&gt;コマンド1&lt;/strong&gt;を実行して得られた文字列を貼り付けてください。ただし、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SECRET_KEY_BASE&lt;/code&gt; とは異なる文字列になるようにしてください。(2回生成コマンドを実行してください。)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VAPID_PRIVATE_KEY&lt;/code&gt; &amp;amp; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VAPID_PUBLIC_KEY&lt;/code&gt;: &lt;strong&gt;コマンド2&lt;/strong&gt;を実行して得られた文字列を貼り付けてください。コマンドを実行すると、そのまま貼り付けられる形式で結果を得られます。&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;hr /&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;以下の設定項目には、SMTP サーバ (電子メールの送信を担当するサーバ) が必要です。なんらかの手段によって、これを用意してください。&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SMTP_SERVER&lt;/code&gt;: SMTP サーバのアドレスを指定してください。&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SMTP_PORT&lt;/code&gt;: SMTP サーバのポート番号を指定してください。&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SMTP_LOGIN&lt;/code&gt;: SMTP サーバのユーザ ID を指定してください。&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SMTP_PASSWORD&lt;/code&gt;: SMTP サーバのパスワードを指定してください。&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SMTP_FROM_ADDRESS&lt;/code&gt;: サーバーの利用者から、Mastodon インスタンスからのメールに付属するメールアドレスをどのように見せたいかを指定してください。(例: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;noreply@yude.jp&lt;/code&gt;)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;hr /&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;また、自分しか使用しない場合は、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env.production&lt;/code&gt; に以下を追記してください。
+        &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  SINGLE_USER_MODE=true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;アセットファイルとデータベースを初期化します。
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker compose run &lt;span class=&quot;nt&quot;&gt;--rm&lt;/span&gt; web rails db:migrate
+ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker compose run &lt;span class=&quot;nt&quot;&gt;--rm&lt;/span&gt; web rails assets:precompile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;6-起動します&quot;&gt;6. 起動します。&lt;/h2&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker compose up -d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;起動後、あなたのアカウントをできるだけ早く作成してください。&lt;/li&gt;
+  &lt;li&gt;起動したら、以下のコマンドであなたのアカウントをオーナーに設定してください。
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;docker compose ps &lt;span class=&quot;nt&quot;&gt;-q&lt;/span&gt; web&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; bin/tootctl accounts modify your_name &lt;span class=&quot;nt&quot;&gt;--role&lt;/span&gt; Owner
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;your_name&lt;/code&gt; にはあなたのスクリーンネームを指定します。(例: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@your_name&lt;/code&gt; と表示されているものを、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;your_name&lt;/code&gt; として指定します。)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;参考-cloudflared-をインストールする&quot;&gt;参考: cloudflared をインストールする&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Debian の場合
+    &lt;ol&gt;
+      &lt;li&gt;リポジトリを追加します。
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/ buster main&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sudo tee&lt;/span&gt; /etc/apt/sources.list.d/cloudflare-main.list 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;公開鍵を追加します。
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;curl https://pkg.cloudflare.com/cloudflare-main.gpg &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; /usr/share/keyrings/cloudflare-main.gpg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudflared&lt;/code&gt; をインストールします。
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;cloudflared
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;その他のディストリビューションについては、&lt;a href=&quot;https://pkg.cloudflare.com/&quot;&gt;こちら&lt;/a&gt; を参照してください。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;トラブルシューティング&quot;&gt;トラブルシューティング&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Docker Compose について:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker compose&lt;/code&gt; を実行して、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;'compose' is not a docker command.&lt;/code&gt; と表示されないことを確認してください。&lt;/li&gt;
+      &lt;li&gt;もしそのように表示されてしまった場合、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt; というコマンドが存在するか確認してください。
+        &lt;ul&gt;
+          &lt;li&gt;存在した場合
+            &lt;ul&gt;
+              &lt;li&gt;記事中の &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker compose&lt;/code&gt; の部分を &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt; に読み替えてください。&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;存在しない場合
+            &lt;ul&gt;
+              &lt;li&gt;Docker の公式リポジトリを使用して、最新の Docker Engine と Docker Compose Plugin をインストールしてください。&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Error 1033: Argo Tunnel error&lt;/code&gt; が発生する場合
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudflared&lt;/code&gt; の動作に異常があります。以下のコマンドを実行してログを表示することで、問題解決の助けとなるでしょう。
+        &lt;ul&gt;
+          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker compose logs cloudflared&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Internal Server Error&lt;/code&gt; が発生する。
+    &lt;ul&gt;
+      &lt;li&gt;多くはファイルの権限が間違っていることが原因です。以下のコマンドで権限を修正できます。
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker compose exec -u root web chown -R mastodon:mastodon ./&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 25 Jul 2022 00:00:00 +0000</pubDate>
+        <link>https://www.yude.jp//blog/2022-07-install-mastodon</link>
+        <guid isPermaLink="true">https://www.yude.jp//blog/2022-07-install-mastodon</guid>
+        
+        <category>Mastodon</category>
+        
+        <category>セルフホスト</category>
+        
+        <category>ActivityPub</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Windows 11 と Arch Linux のデュアルブートを設定しました</title>
+        <description>&lt;h1 id=&quot;はじめに&quot;&gt;はじめに&lt;/h1&gt;
+&lt;p&gt;2022年7月に &lt;a href=&quot;https://www.lenovo.com/jp/ja/notebooks/thinkpad/e-series/ThinkPad-E14-Gen-3-14%E2%80%9D-AMD/p/22TPE14E4A3&quot;&gt;Lenovo ThinkPad E14 Gen 3 (AMD)&lt;/a&gt; を導入し、Windows 11 と Arch Linux のデュアルブートを設定しました。&lt;br /&gt;
+この記事では、その方法を備忘録として公開します。&lt;br /&gt;
+また、Windows 11 としていますが、UEFI でブートするように設定されている Windows 7 以上の Windows であれば問題なく実行できるはずです。&lt;/p&gt;
+
+&lt;h1 id=&quot;免責--注意-事項&quot;&gt;免責 / 注意 事項&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;yude はこの記事の内容をあなたが実行した結果の責任を一切負うことができません。自己責任で行ってください。
+    &lt;ul&gt;
+      &lt;li&gt;Arch Linux, Gentoo Linux, Linux From Scratch などのソースベースの Linux ディストリビューションをインストールしたことがないレベルの初学者の方は、本番環境のコンピュータで行うことを全く推奨しません。パーティションテーブルを破壊しても問題のないコンピュータで実行してください。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;操作を行う前に、必要なデータをバックアップしてください。また、インストール前に、できるだけ関係のないストレージをコンピュータから取り外しておくことを推奨します。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;用意&quot;&gt;用意&lt;/h1&gt;
+&lt;p&gt;インストールする前に、コンピュータが条件を満たしていることを確認します。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;UEFI に対応していること。2012 年以降に製造されたコンピュータであれば、大抵問題ありません。&lt;/li&gt;
+  &lt;li&gt;デスクトップ環境を導入する場合は 2 GB 以上のメモリ。そうでない場合は 512 MB。&lt;/li&gt;
+  &lt;li&gt;アーキテクチャが x86_64 であること。&lt;/li&gt;
+  &lt;li&gt;Apple の T2 チップ搭載 Mac 等、特殊なハードウェアでないこと。元々 Windows が稼働しているコンピュータであれば、大抵問題ありません。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;その他、&lt;a href=&quot;https://wiki.archlinux.jp/index.php/%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%82%AC%E3%82%A4%E3%83%89&quot;&gt;インストールガイド&lt;/a&gt;に記載されている条件を満たしていることを確認してください。&lt;/p&gt;
+
+&lt;h1 id=&quot;手順&quot;&gt;手順&lt;/h1&gt;
+&lt;h2 id=&quot;ブート-usb-の準備&quot;&gt;ブート USB の準備&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;まず、Arch Linux の最新の iso イメージファイルを&lt;a href=&quot;https://www.archlinux.jp/download/&quot;&gt;ダウンロード&lt;/a&gt;してください。
+    &lt;h3 id=&quot;windows&quot;&gt;Windows&lt;/h3&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://rufus.ie/ja/&quot;&gt;Rufus&lt;/a&gt; または &lt;a href=&quot;https://www.balena.io/etcher/&quot;&gt;balenaEtcher&lt;/a&gt; を使うのが楽です。
+    &lt;h3 id=&quot;macos&quot;&gt;macOS&lt;/h3&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.balena.io/etcher/&quot;&gt;balenaEtcher&lt;/a&gt; を使うのが楽です。
+    &lt;h3 id=&quot;linux&quot;&gt;Linux&lt;/h3&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dd&lt;/code&gt; コマンドを使用して書き込みます。
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;archiso.iso &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sdHoge &lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1M &lt;span class=&quot;nv&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;progress
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;archiso.iso&lt;/code&gt; は iso イメージへのパス、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev/sdHoge&lt;/code&gt; は USB フラッシュドライブのデバイスファイルに置き換えてください。
+        &lt;ul&gt;
+          &lt;li&gt;デバイスファイルは、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo fdisk -l&lt;/code&gt; コマンド等で確認できます。&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;GUI が必要な場合は、先述の &lt;a href=&quot;https://www.balena.io/etcher/&quot;&gt;balenaEtcher&lt;/a&gt; を使うこともできます。
+    &lt;h2 id=&quot;コンピュータの準備&quot;&gt;コンピュータの準備&lt;/h2&gt;
+    &lt;h3 id=&quot;windows-の設定&quot;&gt;Windows の設定&lt;/h3&gt;
+  &lt;/li&gt;
+  &lt;li&gt;リアルタイムクロックを UTC 基準にします。
+    &lt;ul&gt;
+      &lt;li&gt;Windows は、既定の状態では時計の基準に現地時間を使いますが、これはデュアルブートにおいて相性が悪いです。&lt;/li&gt;
+      &lt;li&gt;以下のコマンドを管理者権限のあるターミナルで実行してください。
+        &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;reg add &quot;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation&quot; /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;高速スタートアップとハイバネートを無効化します。
+    &lt;ul&gt;
+      &lt;li&gt;これにより、Windows を使用中に「休止状態」にすることができなくなりますが、Arch Linux の使用中に起きる可能性のある問題を避けることができます。&lt;/li&gt;
+      &lt;li&gt;「休止状態」を使用する必要がある場合は、代わりに高速スタートアップのみを無効化することができます。
+        &lt;ul&gt;
+          &lt;li&gt;方法については、以下のページをご覧ください:&lt;br /&gt;
+&lt;a href=&quot;https://www.fmworld.net/cs/azbyclub/qanavi/jsp/qacontents.jsp?PID=6010-9312&quot;&gt;富士通Q&amp;amp;A - [Windows 10] 高速スタートアップを無効にする方法を教えてください。 - FMVサポート : 富士通パソコン&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;高速スタートアップとハイバネートを無効化するには、以下のコマンドを管理者権限のあるターミナルで実行してください。
+        &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  powercfg /h off
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;パーティションを準備します。
+    &lt;ul&gt;
+      &lt;li&gt;Windows と Arch Linux を同じストレージ デバイスにインストールする場合は、Windows が専有しているパーティションを縮小してください。
+        &lt;ul&gt;
+          &lt;li&gt;縮小する前に、ストレージに十分な空き容量を確保し、かつデフラグを行う必要がある場合もあります。&lt;/li&gt;
+          &lt;li&gt;方法については、以下のページをご覧ください:&lt;br /&gt;
+&lt;a href=&quot;https://faq.nec-lavie.jp/qasearch/1007/app/servlet/relatedqa?QID=020024&quot;&gt;NEC LAVIE公式サイト &amp;gt; サービス＆サポート &amp;gt; Q&amp;amp;A &amp;gt; Q&amp;amp;A番号 020024 「Windows 10で、Cドライブの容量を縮小して新しくドライブを作成する方法について教えてください。」&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;コンピュータに内蔵ストレージ デバイスが複数取り付けられており、物理的に異なるデバイスに Arch Linux をインストールする場合は、「ディスクの管理」から事前にパーティションを初期化しておいてください。
+        &lt;ul&gt;
+          &lt;li&gt;手順は以下のページを参考にしてください:&lt;br /&gt;
+&lt;a href=&quot;https://docs.microsoft.com/ja-jp/windows-server/storage/disk-management/initialize-new-disks&quot;&gt;新しいディスクの初期化 | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;パーティションの種類については、&lt;strong&gt;GPT&lt;/strong&gt; を選択してください。&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Windows の設定を完了したら、次は UEFI の設定を行います。
+    &lt;h3 id=&quot;uefi-の設定&quot;&gt;UEFI の設定&lt;/h3&gt;
+  &lt;/li&gt;
+  &lt;li&gt;操作手順はコンピュータに搭載されている UEFI によって異なるため、ここでは手順を記載せず、達成するべき目標のみを記述します。
+    &lt;ul&gt;
+      &lt;li&gt;セキュアブートを無効化してください。&lt;/li&gt;
+      &lt;li&gt;ファストブートをできるだけ無効化してください。&lt;/li&gt;
+      &lt;li&gt;ブート元デバイスの順番を調節し、USB フラッシュドライブが最初に読み込まれるようにしてください。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;arch-linux-の基本的なインストール&quot;&gt;Arch Linux の基本的なインストール&lt;/h2&gt;
+&lt;p&gt;いよいよ、Arch Linux をストレージにインストールします。&lt;br /&gt;
+まずは、iso イメージを書き込んだ USB フラッシュドライブから Arch Linux をブートしてください。&lt;/p&gt;
+&lt;h3 id=&quot;手順-1&quot;&gt;手順&lt;/h3&gt;
+&lt;h4 id=&quot;1-キーマップを設定します&quot;&gt;1. キーマップを設定します。&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;日本語のキーボードを使用している場合は、以下のコマンドを実行します。
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;loadkeys jp106
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;英字のキーボードを使用している場合は、手順をスキップしてください。
+    &lt;h4 id=&quot;2-インターネットに接続します&quot;&gt;2. インターネットに接続します。&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;有線で接続する場合&lt;br /&gt;
+LAN ケーブルをコンピュータに接続してください。&lt;/li&gt;
+  &lt;li&gt;Wi-Fi で接続する場合
+    &lt;ol&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iwctl&lt;/code&gt; コマンドを実行します。プロンプトが &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[iwd]#&lt;/code&gt; に変化したことを確認してください。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;device list&lt;/code&gt; で無線 LAN アダプターの一覧を表示します。&lt;br /&gt;
+ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Name&lt;/code&gt; の列に表示されているものを覚えるか、メモしてください。通常 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wlan0&lt;/code&gt; などが該当します。&lt;br /&gt;
+ これはデバイス名で、ステップ 3 以降で使用します。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;station デバイス名 scan&lt;/code&gt; で Wi-Fi ネットワークをスキャンします。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;station デバイス名 get-networks&lt;/code&gt; で近隣にあるアクセスポイントの SSID を確認します。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;station デバイス名 connect 目的の SSID&lt;/code&gt; でアクセスポイントに接続します。
+ コマンドの実行後、パスワードを求められますから入力してください。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit&lt;/code&gt; で iwctl から抜けます。
+        &lt;h4 id=&quot;3-時計を調節します&quot;&gt;3. 時計を調節します。&lt;/h4&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;NTP サーバから正しい時刻を取得します。
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;timedatectl set-ntp &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;h4 id=&quot;4-パーティションを初期化します&quot;&gt;4. パーティションを初期化します。&lt;/h4&gt;
+    &lt;ol&gt;
+      &lt;li&gt;目的のパーティションのデバイスファイルの場所を確認します。
+        &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;fdisk &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+        &lt;p&gt;デバイス の列に表示されているものが、デバイスファイルの場所です。&lt;br /&gt;
+いくつか表示されているもののうち、次に該当するものをメモしておきます。&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;タイプが “EFI システム” となっているもの。&lt;/li&gt;
+  &lt;li&gt;Arch Linux をインストールする先のパーティション
+    &lt;ul&gt;
+      &lt;li&gt;「Windows の設定」で用意したパーティションのデバイス ファイルをメモしてください。&lt;/li&gt;
+      &lt;li&gt;明確なラベル等は表示されないため、パーティションの順序・大きさ等から目的のパーティションを特定してください。
+        &lt;ul&gt;
+          &lt;li&gt;もしくは、一時的にマウントして目的のパーティションであるかどうかを確認できます:
+            &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c&quot;&gt;# NTFS のパーティションをマウントするために必要&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; ntfs-3g
+  &lt;span class=&quot;c&quot;&gt;# マウントする&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;## ここでエラーが発生するとき、「パーティションの中身を表示する」をスキップしてください。&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;## エラーが発生する場合は、この手順で目的のパーティションであるかどうかを特定することは危険です。&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount &lt;span class=&quot;nt&quot;&gt;--mkdir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;パーティションのデバイス ファイルの場所] /tmp/hogepart
+  &lt;span class=&quot;c&quot;&gt;# パーティションの中身を表示する&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; /tmp/hogepart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+            &lt;ol&gt;
+              &lt;li&gt;Arch Linux をインストールするパーティションを ext4 でフォーマットします。&lt;/li&gt;
+            &lt;/ol&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ext4 は Linux において最も一般的なファイルシステムです。&lt;/li&gt;
+  &lt;li&gt;次のコマンドでフォーマットできます:
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext4 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ステップ 1 で確認したデバイスファイルのパス]
+  &lt;span class=&quot;c&quot;&gt;# 例: mkfs.ext4 /dev/sda2 または mkfs.ext4 /dev/nvme1n1p2 など。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;5-必要なパーティションをマウントします&quot;&gt;5. 必要なパーティションをマウントします。&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;マウントとは、ストレージ デバイスの中にある特定のパーティションと、自分が現在アクセスできる何らかのディレクトリを関連付ける操作のことをいいます。
+    &lt;ol&gt;
+      &lt;li&gt;Linux のインストール先のパーティションをマウントします。
+        &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ステップ 1 で確認したデバイスファイルのパス] /mnt
+  &lt;span class=&quot;c&quot;&gt;# 例: mount /dev/sda2 /mnt または mount /dev/nvme1n1p2 /mnt など。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;EFI パーティションをマウントします。
+        &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount &lt;span class=&quot;nt&quot;&gt;--mkdir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ステップ 1 で確認したデバイスファイルのパス] /mnt/boot
+  &lt;span class=&quot;c&quot;&gt;# 例: mount /dev/sda1 /mnt または mount /dev/nvme1n1p0 /mnt など。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;6-基本的な-linux-システムのインストール&quot;&gt;6. 基本的な Linux システムのインストール&lt;/h3&gt;
+&lt;p&gt;Arch Linux の基本的な内容をインストールするには、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pacstrap&lt;/code&gt; コマンドを使用します。\&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;実用的な Linux システムをインストールするには、次のように実行します。
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacstrap /mnt base base-devel linux linux-firmware nano neofetch &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;networkmanager git &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;refind intel-ucode bash-completion
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pacstrap&lt;/code&gt; の説明
+    &lt;ul&gt;
+      &lt;li&gt;第1引数には、Linux をインストールするパーティションのマウント先を指定します。&lt;/li&gt;
+      &lt;li&gt;第2引数以降には、Linux システムを初期化するとともにインストールしたいパッケージを列挙します。
+        &lt;ul&gt;
+          &lt;li&gt;基本的には、例示されているパッケージを削らないでください。これからのステップでは、これらのパッケージがインストール済みであることを前提に進むからです。&lt;/li&gt;
+          &lt;li&gt;パッケージの説明 (一部省略)
+            &lt;ul&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;base&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;linux&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;linux-firmware&lt;/code&gt;: Arch Linux を構成する基本的なパッケージ / グループで、必須です。&lt;/li&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;base-devel&lt;/code&gt;: パッケージをビルドしたりするための開発用ツールの集合です。&lt;/li&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nano&lt;/code&gt;: CLI で使えるテキストエディタです。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vim&lt;/code&gt; などに置き換えることができます。&lt;/li&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;neofetch&lt;/code&gt;: システムの概要を表示します。&lt;/li&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt;: 一時的にユーザーに特権を許します。&lt;/li&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;networkmanager&lt;/code&gt;: ネットワークへの接続を司ります。&lt;/li&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git&lt;/code&gt;: バージョン管理システム Git のクライアントです。&lt;/li&gt;
+              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;intel-ucode&lt;/code&gt;: Intel 製 CPU のマイクロコードです。CPU がリリースされた後に発見されたバグなどを修正します。(&lt;strong&gt;AMD 製 CPU をお使いの方は、代わりに &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;amd-ucode&lt;/code&gt; をインストールしてください。&lt;/strong&gt;)&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;7-インストールした-arch-linux-を設定します&quot;&gt;7. インストールした Arch Linux を設定します。&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;fstab を生成します。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/fstab&lt;/code&gt; というファイルがあり、ここには Linux システムがどのパーティションを起動時等にどこにマウントすべきかを記述します。&lt;br /&gt;
+以下のコマンドで、自動的に生成できます。
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;genfstab &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; /mnt &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /mnt/etc/fstab
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;chroot でインストールした Linux システムに憑依します。
+インストールしたシステムに入り込んで、詳細な設定を行います。
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;arch-chroot /mnt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;タイムゾーンを設定します。
+以下のコマンドを実行して、タイムゾーンを設定します。日本にお住まいの場合は以下のコマンドを実行してください。
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;timedatectl set-timezone Asia/Tokyo
+ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;hwclock &lt;span class=&quot;nt&quot;&gt;--systohc&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;国際化
+Linux システムに日本語を教えます。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/locale.gen&lt;/code&gt; を &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nano&lt;/code&gt; などのテキストエディタで開き、以下の内容に該当する行のコメントアウトを解除してください。
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; en_US.UTF-8
+ ja_JP.UTF-8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;以下のコマンドを実行して、キーマップを設定します。
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;localectl set-keymap jp106
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;以下のコマンドを実行して、言語ファイルを生成します。
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;locale-gen
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;コンピュータのホスト名を設定します。
+英数字を用いて、コンピュータの名前を設定してください。ただし、先頭に数字が来ないようにしてください。&lt;br /&gt;
+以下のコマンドを実行することで、設定できます。
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;コンピュータの名前] &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /etc/hostname
+ &lt;span class=&quot;c&quot;&gt;# 例: echo &quot;arch&quot; &amp;gt;&amp;gt; /etc/hostname&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;コンピュータのアカウントを設定します。
+    &lt;ul&gt;
+      &lt;li&gt;まず、root アカウントのパスワードを設定します。以下のコマンドを実行してください。
+        &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;次に、自分が普段使用するアカウントを作成し、パスワードを設定します。以下のコマンドを実行してください。
+        &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;c&quot;&gt;# 以下の例では、自分のアカウントを wheel グループ (管理者) に所属させ、シェルに Bash を使うようにします。&lt;/span&gt;
+ &lt;span class=&quot;c&quot;&gt;# 名前は、英数字で設定してください。&lt;/span&gt;
+ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; wheel &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /bin/bash 名前
+ &lt;span class=&quot;c&quot;&gt;# パスワードを設定します。&lt;/span&gt;
+ passwd 名前
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wheel&lt;/code&gt; グループが &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt; コマンドを使用できるようにします。
+ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt; の設定ファイルは、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EDITOR=nano visudo&lt;/code&gt; コマンドを実行すると開けます。&lt;br /&gt;
+ 以下の内容を、開いたテキストファイルに&lt;strong&gt;追記&lt;/strong&gt;してください。
+        &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; %wheel ALL=(ALL) ALL
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;必要なサービスの有効化
+普段使用するサービスを、Linux の起動時に同時に起動させるようにしておきます。&lt;br /&gt;
+以下のコマンドを実行してください。
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;NetworkManager.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ブートローダの設定
+Linux を呼び出すには、ブートローダーが必要です。今回は &lt;a href=&quot;https://wiki.archlinux.jp/index.php/REFInd&quot;&gt;rEFInd&lt;/a&gt; という優れたブートローダーを使用します。&lt;br /&gt;
+以下に手順を示します。
+    &lt;ol&gt;
+      &lt;li&gt;以下のコマンドで、基本的なファイルを自動的に生成します。
+        &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;refind-install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/boot/refind_linux.conf&lt;/code&gt; を編集します。
+        &lt;ul&gt;
+          &lt;li&gt;作業前に、ファイルをバックアップしておきます。以下のコマンドを実行してください。
+            &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /boot/refind_linux.conf /boot/refind_linux.conf.bak
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;ul&gt;
+          &lt;li&gt;以下のコマンドを実行して、rEFInd を設定します。
+            &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Boot with standard options&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;root=UUID=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;blkid &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Linux をインストールしたパーティションのデバイス ファイルの場所] &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; UUID &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; value&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; rootfstype=ext4 rw splash&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;9-基本的なセットアップの完了&quot;&gt;9. 基本的なセットアップの完了&lt;/h4&gt;
+&lt;p&gt;以上で、基本的なセットアップは完了したはずです。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit&lt;/code&gt; コマンドを実行して chroot から抜け、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reboot&lt;/code&gt; で再起動します。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;起動しない場合
+    &lt;ul&gt;
+      &lt;li&gt;Windows が起動してしまう場合&lt;br /&gt;
+  UEFI の設定で、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rEFInd Boot Manager&lt;/code&gt; の優先順位を最高にしてください。&lt;/li&gt;
+      &lt;li&gt;Emergency mode に入ってしまう場合&lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;refind_linux.conf&lt;/code&gt; の記述が間違っています。もう一度手順を読み込み、やり直してください。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;10-arch-linux-のデスクトップ環境の導入&quot;&gt;10. Arch Linux のデスクトップ環境の導入&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;デスクトップ環境が必要ない場合、この手順を完全に飛ばすことができます。&lt;/li&gt;
+  &lt;li&gt;今回は、&lt;a href=&quot;https://kde.org/plasma-desktop/&quot;&gt;KDE Plasma&lt;/a&gt; というデスクトップ環境を導入します。
+    &lt;ul&gt;
+      &lt;li&gt;スクリーンショット
+  &lt;img src=&quot;https://i.imgur.com/xlxiPMR.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;必要なパッケージをインストールします。
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-Syu&lt;/span&gt; plasma kde-applications sddm xorg adobe-source-han-sans-jp-fonts fcitx-im fcitx-configtool fcitx-mozc kcm-fcitx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;SDDM が Arch Linux の起動時に自動的に立ち上がるようにします。
+        &lt;ul&gt;
+          &lt;li&gt;SDDM は、X サーバのセッションを開始する役目を担います。&lt;/li&gt;
+          &lt;li&gt;以下のコマンドを実行して、自動起動を有効にします。
+            &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;sddm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;日本語入力の設定をします。
+        &lt;ul&gt;
+          &lt;li&gt;ホームディレクトリ以下の &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.xprofile&lt;/code&gt; (正確なパス: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$HOME/.xprofile&lt;/code&gt;) に以下の内容を書き込んでください。
+            &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  export GTK_IM_MODULE=fcitx
+  export QT_IM_MODULE=fcitx
+  export XMODIFIERS=”@im=fcitx”
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;表示言語を日本語に設定し、キーボードレイアウトを設定します。
+  ```bash
+  $ sudo localectl set-locale ja_JP.UTF-8
+  $ sudo localectl set-x11-keymap jp&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;再起動し、Plasma を起動します。&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;Fcitx (日本語入力メソッド) が自動的に起動するようにします。また、入力メソッドとして登録します。
+        &lt;ul&gt;
+          &lt;li&gt;ここからのコマンドは、Konsole 等のターミナルエミュレータから実行するようにします。&lt;/li&gt;
+          &lt;li&gt;自動起動するには、以下のコマンドを実行します。
+            &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;fcitx-autostart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+          &lt;li&gt;Fcitx を入力メソッドの1つとして登録します。以下のコマンドを実行して表示された画面から、Mozc を追加します。
+            &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;fcitx-configtool
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;もう一度再起動すると、すべての設定が完了します。&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;11-終わりに&quot;&gt;11. 終わりに&lt;/h1&gt;
+&lt;p&gt;内容の誤り、補足、誤字・脱字 等ございましたら、&lt;a href=&quot;https://github.com/yudejp/yude.jp_v2/issues&quot;&gt;こちら&lt;/a&gt; までお願いします。&lt;/p&gt;
+</description>
+        <pubDate>Tue, 05 Jul 2022 00:00:00 +0000</pubDate>
+        <link>https://www.yude.jp//blog/2022-07-install-arch-linux</link>
+        <guid isPermaLink="true">https://www.yude.jp//blog/2022-07-install-arch-linux</guid>
+        
+        <category>Windows</category>
+        
+        <category>Arch Linux</category>
+        
+        <category>デュアルブート</category>
+        
+        <category>rEFInd</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

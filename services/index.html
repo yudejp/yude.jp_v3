@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+    <title>yude.jp | ⭐ サービス</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+    <link rel="alternate"
+        type="application/rss+xml"
+        title="yude.jp RSS"
+        href="/feed.xml" />
+    <link rel="shortcut icon"
+        type="image/png"
+        href="/assets/images/yudejp.png">
+    <link rel="alternate"
+        type="application/rss+xml"
+        href="https://www.yude.jp/feed.xml">
+    <link rel="me"
+        href="https://mstdn.yude.jp/@yude" />
+    <link rel="me"
+        href="https://mstdn.maud.io/@yude" />
+    <link rel="me"
+        href="https://mstdn.jp/@yude" />
+    <link rel="me"
+        href="https://mast.moe/@yude" />
+    <link rel="me"
+        href="https://mstdn.blue/@yude" />
+    <link rel="me"
+        href="https://mstdn.club/@yude" />
+    <link rel="me"
+        href="https://pawoo.net/@yude" />
+    <link rel="me"
+        href="https://sanin.club/@yude" />
+    <link rel="me"
+        href="https://social.vivaldi.net/@yude" />
+
+    <style>
+        body {
+            background-color: #f7fafc;
+        }
+
+        .title {
+            animation: title 2.5s linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes title {
+
+            0%,
+            100% {
+                color: rgb(0, 0, 255);
+            }
+
+            50% {
+                color: rgb(255, 0, 255);
+            }
+        }
+
+        html,
+        html[data-theme="light"] {
+            --light-text-color: hsl(0, 0%, 35%);
+            --main-background-color: hsl(0, 5%, 95%);
+            --main-text-color: hsl(0, 0%, 0%);
+            --card-background-color: hsl(0, 5%, 95%);
+        }
+
+        html[data-theme="dark"] {
+            --light-text-color: hsl(0, 0%, 60%);
+            --main-background-color: hsl(0, 0%, 10%);
+            --main-text-color: hsl(0, 10%, 80%);
+            --card-background-color: #0C0C0C;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            html {
+                content: "dark";
+            }
+        }
+
+        body {
+            color: var(--main-text-color);
+            background-color: var(--main-background-color);
+        }
+
+        .card,
+        .dropdown-menu {
+            background-color: var(--card-background-color) !important;
+        }
+
+        .blockquote {
+            text-shadow: 1px 1px 2px var(--light-text-color);
+        }
+
+        a,
+        .dropdown-item,
+        .dropdown-item-text {
+            color: var(--main-text-color);
+        }
+    </style>
+
+    
+</head>
+
+<body>
+    <script>
+        const theme = localStorage.getItem('theme');
+        if (theme === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
+    <div class="container mt-5">
+        <ul class="nav flex-column flex-md-row">
+            <div class="container-fluid">
+                <a class="navbar-brand"
+                    href="#">
+                    <img src="/assets/images/yudejp.png"
+                        alt="yude.jp logo"
+                        width="40"
+                        height="40"
+                        class="d-inline-block align-text-top">
+                    <a class="text-decoration-none title fs-3 font-monospace"
+                        href="/"
+                        style="position: relative; top: 11px; left: 5px"
+                        tabindex="-1"
+                        aria-disabled="true">yude.jp</a>
+                </a>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/profile"><i
+                        class="fa-solid fa-user"></i>
+                    プロフィール</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/blog"><i class="fa-solid fa-blog"></i>
+                    ブログ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/1ch"><i class="fa-solid fa-comment"></i>
+                    1ch</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"><i class="fa-solid fa-egg"></i> その他</a>
+                <ul class="dropdown-menu">
+                    <li><span class="dropdown-item-text">外部リンク</span></li>
+                    <li><a class="dropdown-item"
+                            href="https://discord.gg/X6srY7X"><i class="fa-brands fa-discord"></i> Discord サーバー</a></li>
+                    <li><a class="dropdown-item"
+                            href="https://github.com/yudejp"><i class="fa-brands fa-github"></i> GitHub Organization</a>
+                    </li>
+                    <li><a class="dropdown-item"
+                            href="https://status.yude.jp"><i class="fa-solid fa-check"></i> サービスの稼働状況</a>
+                    </li>
+                    <hr class="dropdown-divider">
+                    <li><span class="dropdown-item-text">他のページ</span></li>
+                    <li><a class="dropdown-item"
+                            href="#"><i
+                                class="fa-solid fa-star"></i> サービス</a></li>
+                    <li><a class="dropdown-item"
+                            href="/apps"><i
+                                class="fa-solid fa-bomb"></i> アプリ</a></li>
+                    <li><a class="dropdown-item"
+                            href="/links"><i
+                                class="fa-solid fa-link"></i> リンク集</a></li>
+                    <li><a class="dropdown-item"
+                            href="/tos"><i
+                                class="fa-solid fa-wand-sparkles"></i> yude.jp サービス利用規約</a></li>
+                    <li><a class="dropdown-item"
+                            href="/hcunews"><i
+                                class="fa-solid fa-newspaper"></i> @hcunews について</a></li>
+                </ul>
+            </li>
+            <button type="button"
+                class="btn btn-dark"
+                onClick="modeSwitcher()"
+                id="theme-toggle"></button>
+
+        </ul>
+
+        <nav aria-label="breadcrumb"
+            class="breadcrumb-parent"
+            style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);">
+            <ol class="breadcrumb">
+                
+                <li class="breadcrumb-item"><a href="/">🏠 ホーム</a></li>
+                
+                
+                <li class="breadcrumb-item active"
+                    aria-current="page">⭐ サービス</li>
+                
+                
+            </ol>
+        </nav>
+        <div style="min-height: 30rem">
+            <h1 id="サービス一覧">サービス一覧</h1>
+<p>以下に yude.jp で稼働中の公開サービスを示します。</p>
+
+<h2 id="automuteus">AutoMuteUs</h2>
+<p>Among Us の自動ミュート Discord ボット</p>
+<ul>
+  <li>API: <a href="https://galactus.yude.jp">galactus.yude.jp</a></li>
+  <li>招待 URL: <a href="https://discord.com/api/oauth2/authorize?client_id=786468213688369152&amp;permissions=8&amp;scope=bot">こちら</a></li>
+</ul>
+
+<h2 id="teamspeak-3-サーバー">TeamSpeak 3 サーバー</h2>
+<ul>
+  <li>サーバーアドレス: <code class="language-plaintext highlighter-rouge">yude.jp</code></li>
+</ul>
+
+<h2 id="minecraft-サーバー">Minecraft サーバー</h2>
+<ul>
+  <li>サーバーアドレス: <code class="language-plaintext highlighter-rouge">yude.jp</code></li>
+</ul>
+
+<p>詳細は <a href="/services/minecraft">こちら</a></p>
+
+<h2 id="gitea-インスタンス">Gitea インスタンス</h2>
+<ul>
+  <li><a href="https://git.yude.jp">git.yude.jp</a></li>
+</ul>
+
+<h2 id="jmusicbot-jp">JMusicBot-JP</h2>
+<p>Discord ミュージックボット</p>
+<ul>
+  <li>招待 URL: <a href="https://discord.com/oauth2/authorize?client_id=429638220456656896&amp;scope=bot&amp;permissions=338963472">こちら</a></li>
+</ul>
+
+<h2 id="tor-ノード">Tor ノード</h2>
+<ul>
+  <li>リレー: <a href="https://metrics.torproject.org/rs.html#details/CF762EF3C86B104C301511894547C72371F952A4">CF762EF3C86B104C301511894547C72371F952A4</a></li>
+  <li>Hidden Service: <a href="http://yude3mzscyufx5u3zup72ium7tgecy3bd67p7t6vqhaywvr7e2gqpcqd.onion">yude3mzscyufx5u3zup72ium7tgecy3bd67p7t6vqhaywvr7e2gqpcqd.onion</a></li>
+</ul>
+
+<h2 id="i2p-ノード">I2P ノード</h2>
+<ul>
+  <li>Hidden Service: <a href="http://yude.i2p/?i2paddresshelper=idabfrazqbh7upvo2f5hx3ajpqglrwny66qbvcoatfqoq64ifiaq.b32.i2p">idabfrazqbh7upvo2f5hx3ajpqglrwny66qbvcoatfqoq64ifiaq.b32.i2p</a></li>
+</ul>
+
+        </div>
+        <hr>
+        <div>
+            <a href="https://sites.google.com/site/happybusy/"><img style="margin-left: auto; margin-right:auto"
+                    src="/assets/images/busy_banner.png"></a>
+        </div>
+        <div class="mt-2">
+            <img src="https://count.getloli.com/get/@yude?theme=asoul"
+                alt="表示カウンター (count.getloli.com)"
+                loading="lazy" />
+        </div>
+        <div class="mt-2">
+            <p>
+                リビジョン: 1dd1678e6f4af35125790785ddf19fc9dbae43cb (<a href="https://github.com/yudejp/yude.jp">リポジトリ</a>)<br>
+                <a href="https://jekyllrb-ja.github.io/">Jekyll</a>
+                によってビルドされ、Cloudflare
+                Pages 上でホストされています。<br>
+                &copy; 2022 yude &lt;i[at]yude.jp&gt;. <a
+                    href="https://github.com/yudejp/yude.jp/blob/main/README.md">詳細</a><br>
+            </p>
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+        integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    
+
+    
+
+    
+    <script>
+        const userPrefers = getComputedStyle(document.documentElement).getPropertyValue('content');
+
+        if (theme === "dark") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else if (theme === "light") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+        } else if (userPrefers === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            window.localStorage.setItem('theme', 'dark');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            window.localStorage.setItem('theme', 'light');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+        }
+
+        function modeSwitcher() {
+            let currentMode = document.documentElement.getAttribute('data-theme');
+            if (currentMode === "dark") {
+                document.documentElement.setAttribute('data-theme', 'light');
+                window.localStorage.setItem('theme', 'light');
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                window.localStorage.setItem('theme', 'dark');
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        }
+    </script>
+    
+
+
+
+
+</body>
+
+</html>

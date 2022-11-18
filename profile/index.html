@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+    <title>yude.jp | 👤 プロフィール</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+    <link rel="alternate"
+        type="application/rss+xml"
+        title="yude.jp RSS"
+        href="/feed.xml" />
+    <link rel="shortcut icon"
+        type="image/png"
+        href="/assets/images/yudejp.png">
+    <link rel="alternate"
+        type="application/rss+xml"
+        href="https://www.yude.jp/feed.xml">
+    <link rel="me"
+        href="https://mstdn.yude.jp/@yude" />
+    <link rel="me"
+        href="https://mstdn.maud.io/@yude" />
+    <link rel="me"
+        href="https://mstdn.jp/@yude" />
+    <link rel="me"
+        href="https://mast.moe/@yude" />
+    <link rel="me"
+        href="https://mstdn.blue/@yude" />
+    <link rel="me"
+        href="https://mstdn.club/@yude" />
+    <link rel="me"
+        href="https://pawoo.net/@yude" />
+    <link rel="me"
+        href="https://sanin.club/@yude" />
+    <link rel="me"
+        href="https://social.vivaldi.net/@yude" />
+
+    <style>
+        body {
+            background-color: #f7fafc;
+        }
+
+        .title {
+            animation: title 2.5s linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes title {
+
+            0%,
+            100% {
+                color: rgb(0, 0, 255);
+            }
+
+            50% {
+                color: rgb(255, 0, 255);
+            }
+        }
+
+        html,
+        html[data-theme="light"] {
+            --light-text-color: hsl(0, 0%, 35%);
+            --main-background-color: hsl(0, 5%, 95%);
+            --main-text-color: hsl(0, 0%, 0%);
+            --card-background-color: hsl(0, 5%, 95%);
+        }
+
+        html[data-theme="dark"] {
+            --light-text-color: hsl(0, 0%, 60%);
+            --main-background-color: hsl(0, 0%, 10%);
+            --main-text-color: hsl(0, 10%, 80%);
+            --card-background-color: #0C0C0C;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            html {
+                content: "dark";
+            }
+        }
+
+        body {
+            color: var(--main-text-color);
+            background-color: var(--main-background-color);
+        }
+
+        .card,
+        .dropdown-menu {
+            background-color: var(--card-background-color) !important;
+        }
+
+        .blockquote {
+            text-shadow: 1px 1px 2px var(--light-text-color);
+        }
+
+        a,
+        .dropdown-item,
+        .dropdown-item-text {
+            color: var(--main-text-color);
+        }
+    </style>
+
+    
+</head>
+
+<body>
+    <script>
+        const theme = localStorage.getItem('theme');
+        if (theme === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
+    <div class="container mt-5">
+        <ul class="nav flex-column flex-md-row">
+            <div class="container-fluid">
+                <a class="navbar-brand"
+                    href="#">
+                    <img src="/assets/images/yudejp.png"
+                        alt="yude.jp logo"
+                        width="40"
+                        height="40"
+                        class="d-inline-block align-text-top">
+                    <a class="text-decoration-none title fs-3 font-monospace"
+                        href="/"
+                        style="position: relative; top: 11px; left: 5px"
+                        tabindex="-1"
+                        aria-disabled="true">yude.jp</a>
+                </a>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link active"
+                    href="#"><i
+                        class="fa-solid fa-user"></i>
+                    プロフィール</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/blog"><i class="fa-solid fa-blog"></i>
+                    ブログ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/1ch"><i class="fa-solid fa-comment"></i>
+                    1ch</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"><i class="fa-solid fa-egg"></i> その他</a>
+                <ul class="dropdown-menu">
+                    <li><span class="dropdown-item-text">外部リンク</span></li>
+                    <li><a class="dropdown-item"
+                            href="https://discord.gg/X6srY7X"><i class="fa-brands fa-discord"></i> Discord サーバー</a></li>
+                    <li><a class="dropdown-item"
+                            href="https://github.com/yudejp"><i class="fa-brands fa-github"></i> GitHub Organization</a>
+                    </li>
+                    <li><a class="dropdown-item"
+                            href="https://status.yude.jp"><i class="fa-solid fa-check"></i> サービスの稼働状況</a>
+                    </li>
+                    <hr class="dropdown-divider">
+                    <li><span class="dropdown-item-text">他のページ</span></li>
+                    <li><a class="dropdown-item"
+                            href="/services"><i
+                                class="fa-solid fa-star"></i> サービス</a></li>
+                    <li><a class="dropdown-item"
+                            href="/apps"><i
+                                class="fa-solid fa-bomb"></i> アプリ</a></li>
+                    <li><a class="dropdown-item"
+                            href="/links"><i
+                                class="fa-solid fa-link"></i> リンク集</a></li>
+                    <li><a class="dropdown-item"
+                            href="/tos"><i
+                                class="fa-solid fa-wand-sparkles"></i> yude.jp サービス利用規約</a></li>
+                    <li><a class="dropdown-item"
+                            href="/hcunews"><i
+                                class="fa-solid fa-newspaper"></i> @hcunews について</a></li>
+                </ul>
+            </li>
+            <button type="button"
+                class="btn btn-dark"
+                onClick="modeSwitcher()"
+                id="theme-toggle"></button>
+
+        </ul>
+
+        <nav aria-label="breadcrumb"
+            class="breadcrumb-parent"
+            style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);">
+            <ol class="breadcrumb">
+                
+                <li class="breadcrumb-item"><a href="/">🏠 ホーム</a></li>
+                
+                
+                <li class="breadcrumb-item active"
+                    aria-current="page">👤 プロフィール</li>
+                
+                
+            </ol>
+        </nav>
+        <div style="min-height: 30rem">
+            <h1 id="yude">yude</h1>
+<p><img src="/assets/images/avatar.jpg" style="max-width: 200px" /></p>
+
+<ul>
+  <li>アイコン: <a href="https://twitter.com/xmnts">Minkasy</a> さんより</li>
+</ul>
+
+<div class="card" style="max-width: 30rem">
+  <div class="card-body">
+    <small>再生中</small>
+    <h5 class="card-title" id="spotify_title">何も再生していません。</h5>
+    <h6 class="card-subtitle mb-2 text-muted" id="spotify_artist"></h6>
+    <small class="text-muted"><a href="https://spotify.com">Spotify</a> による情報, <a href="https://vercel-spotify-api.vercel.app/api/Spotify">API</a></small>
+  </div>
+</div>
+
+<div class="card mt-1" style="max-width: 30rem;">
+  <div class="card-body">
+    <small>プレイ中</small>
+    <h5 class="card-title" id="game_title">何もプレイしていません。</h5>
+    <small class="text-muted"><a href="https://discord.com">Discord</a> による情報</small>
+  </div>
+</div>
+
+<hr />
+
+<ul>
+  <li>生年月日: 2001 年 11 月 19 日 (20 歳)</li>
+  <li>出身地: 日本, 鳥取県 鳥取市</li>
+  <li>所在地: 日本, 広島県 広島市</li>
+</ul>
+
+<h2 id="所属">所属</h2>
+<ul>
+  <li><a href="https://www.hiroshima-cu.ac.jp/">広島市立大学</a> <a href="https://www2.info.hiroshima-cu.ac.jp/">情報科学部</a> (2020/4 -) 学部3年
+    <ul>
+      <li>学科 / 研究室
+        <ul>
+          <li><a href="https://www.hiroshima-cu.ac.jp/department/sciences/info/">情報工学科</a> (2021/4 -)</li>
+          <li><a href="http://www.net.info.hiroshima-cu.ac.jp/">情報ネットワーク研究室</a> (2022/10 -)</li>
+        </ul>
+      </li>
+      <li>サークル / クラブ
+        <ul>
+          <li><a href="https://twitter.com/masukenDP">マスコミ研究会</a> (2020/5 -)</li>
+          <li><a href="https://twitter.com/HCU_ProgramClub">プログラミング同好会</a> (2020/4 -)</li>
+          <li><a href="https://twitter.com/hcunovelgame">ノベルゲーム研究会</a> (2020/4 -)</li>
+          <li><a href="https://ichidaisai.com">大学祭実行委員会</a> システム局 (2022/4 -)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>鳥取県立鳥取東高等学校 理数科 (2017/4 - 2020/3)
+    <ul>
+      <li>弓道部 (2017/4 - 2019/3)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="資格--免許">資格 / 免許</h2>
+<ul>
+  <li>IPA 基本情報技術者 (2022/4)</li>
+  <li>TOEIC Listening &amp; Reading IPテスト 960点 (2021/12)</li>
+  <li>普通自動車第一種運転免許 (AT限定, 2021/6)</li>
+  <li>実用英語技能検定 2級 (2018/10)</li>
+  <li>全日本弓道連盟 審査 1級 (2015)</li>
+</ul>
+
+<h2 id="連絡先--sns">連絡先 / SNS</h2>
+<ul>
+    <li><i class="fa-solid fa-phone"></i> 電話: <a href="tel:07089091949">+81 70-8909-1949</a></li>
+    <li>
+        <i class="fa-solid fa-envelope"></i>
+        電子メール: <a href="mailto:%69@%79%75%64%65.%6A%70" rel="me">i&#064;yude.jp</a></li>
+    <li><i class="fa-brands fa-twitter"></i> Twitter: <a href="https://twitter.com/yude_jp" rel="me">@yude_jp</a></li>
+    <li><i class="fa-brands fa-discord"></i> Discord: <a href="https://discord.com/users/116124230243975173" rel="me">yude#3205</a></li>
+    <li><i class="fa-brands fa-telegram"></i> Telegram: <a href="https://t.me/yudejp" rel="me">t.me/yudejp</a></li>
+    <li><i class="fa-brands fa-github"></i> GitHub: <a href="https://github.com/yude" rel="me">yude</a></li>
+    <li><i class="fa-brands fa-mastodon"></i> Mastodon: <a href="https://mstdn.yude.jp/@yude" rel="me">@yude@mstdn.yude.jp</a></li>
+    <li><i class="fa-brands fa-keybase"></i> Keybase: <a href="https://keybase.io/yude" rel="me">yude</a></li>
+</ul>
+
+<p>その他のアカウントについては、<a href="https://scrapbox.io/yude/%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88">こちら</a>を御覧ください。</p>
+
+<h2 id="リンク">リンク</h2>
+<ul>
+  <li>Scrapbox: <a href="https://scrapbox.io/yude">油田</a>
+    <ul>
+      <li><a href="https://scrapbox.io/yude/%E5%88%B6%E4%BD%9C%E7%89%A9">制作物</a></li>
+      <li><a href="https://scrapbox.io/yude/%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9">デバイス</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="公開鍵">公開鍵</h2>
+<ul>
+  <li><a href="https://github.com/yude.gpg">PGP</a></li>
+  <li><a href="https://github.com/yude.keys">SSH</a></li>
+</ul>
+
+<script async="">
+    let spotify_req = new XMLHttpRequest();
+    spotify_req.open('GET', 'https://vercel-spotify-api.vercel.app/api/Spotify')
+    spotify_req.responseType = 'json';
+    spotify_req.send();
+    
+    spotify_req.onload = function() {
+        const spotify_res = spotify_req.response;
+        if (spotify_res['isPlaying']) {
+            spotify_title.innerHTML = spotify_res['title'];
+            spotify_artist.innerHTML = spotify_res['artist'];
+        }
+    }
+</script>
+
+<script async="">
+    let discord_req = new XMLHttpRequest();
+    discord_req.open('GET', 'https://discord.com/api/guilds/723409709306216498/widget.json')
+    discord_req.responseType = 'json';
+    discord_req.send();
+    
+    discord_req.onload = function() {
+        const discord_res = discord_req.response;
+        if (discord_res.members) {
+            if (discord_res.members[0].game) {
+                game_title.innerHTML = discord_res.members[0].game.name;
+            }
+        }
+    }
+</script>
+
+
+        </div>
+        <hr>
+        <div>
+            <a href="https://sites.google.com/site/happybusy/"><img style="margin-left: auto; margin-right:auto"
+                    src="/assets/images/busy_banner.png"></a>
+        </div>
+        <div class="mt-2">
+            <img src="https://count.getloli.com/get/@yude?theme=asoul"
+                alt="表示カウンター (count.getloli.com)"
+                loading="lazy" />
+        </div>
+        <div class="mt-2">
+            <p>
+                リビジョン: 1dd1678e6f4af35125790785ddf19fc9dbae43cb (<a href="https://github.com/yudejp/yude.jp">リポジトリ</a>)<br>
+                <a href="https://jekyllrb-ja.github.io/">Jekyll</a>
+                によってビルドされ、Cloudflare
+                Pages 上でホストされています。<br>
+                &copy; 2022 yude &lt;i[at]yude.jp&gt;. <a
+                    href="https://github.com/yudejp/yude.jp/blob/main/README.md">詳細</a><br>
+            </p>
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+        integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    
+
+    
+
+    
+    <script>
+        const userPrefers = getComputedStyle(document.documentElement).getPropertyValue('content');
+
+        if (theme === "dark") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else if (theme === "light") {
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+        } else if (userPrefers === "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            window.localStorage.setItem('theme', 'dark');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            window.localStorage.setItem('theme', 'light');
+            document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+        }
+
+        function modeSwitcher() {
+            let currentMode = document.documentElement.getAttribute('data-theme');
+            if (currentMode === "dark") {
+                document.documentElement.setAttribute('data-theme', 'light');
+                window.localStorage.setItem('theme', 'light');
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                window.localStorage.setItem('theme', 'dark');
+                document.getElementById("theme-toggle").innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        }
+    </script>
+    
+
+
+
+
+</body>
+
+</html>
