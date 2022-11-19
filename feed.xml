@@ -5,8 +5,8 @@
     <description>yude.jp のトップページです。</description>
     <link>https://www.yude.jp//</link>
     <atom:link href="https://www.yude.jp//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 19 Nov 2022 03:50:55 +0000</pubDate>
-    <lastBuildDate>Sat, 19 Nov 2022 03:50:55 +0000</lastBuildDate>
+    <pubDate>Sat, 19 Nov 2022 06:48:23 +0000</pubDate>
+    <lastBuildDate>Sat, 19 Nov 2022 06:48:23 +0000</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
@@ -213,7 +213,7 @@
   &lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Internal Server Error&lt;/code&gt; が発生する。
     &lt;ul&gt;
-      &lt;li&gt;多くはファイルの権限が間違っていることが原因です。以下のコマンドで権限を修正できます。
+      &lt;li&gt;多くはファイルの権限が間違っていることが原因です。以下のコマンドで権限を修正できます。&lt;br /&gt;
   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker compose exec -u root web chown -R mastodon:mastodon ./&lt;/code&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
