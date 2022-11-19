@@ -135,5 +135,5 @@ $ docker compose up -d
         * `docker compose logs cloudflared`
 
 * `Internal Server Error` が発生する。
-    * 多くはファイルの権限が間違っていることが原因です。以下のコマンドで権限を修正できます。
+    * 多くはファイルの権限が間違っていることが原因です。以下のコマンドで権限を修正できます。\
         `docker compose exec -u root web chown -R mastodon:mastodon ./`
