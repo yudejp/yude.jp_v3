@@ -27,7 +27,7 @@ permalink: /profile/
 
 <hr>
 
-* 生年月日: 2001 年 11 月 19 日 (21 歳)
+* 生年月日: 2001 年 11 月 19 日 ({::nomarkdown}<div id="age" style="display: inline"></div>{:/nomarkdown} 歳)
 * 出身地: 日本, 鳥取県 鳥取市
 * 所在地: 日本, 広島県 広島市
 
@@ -106,4 +106,12 @@ permalink: /profile/
             }
         }
     }
+</script>
+
+<script async>
+    const now=new Date();
+    const birth=new Date("2001/11/19");
+  document.getElementById('age').innerHTML=(now.getFullYear() - birth.getFullYear()  +
+    ( new Date( now.getFullYear() , birth.getMonth() , birth.getDate() ).getTime()
+        > now.getTime() ? -1 : 0 ));
 </script>
