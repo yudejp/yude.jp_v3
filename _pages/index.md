@@ -24,17 +24,17 @@ permalink: /
 ---
 
 #### 最新の記事
+{%- assign date_format = site.minima.date_format | default: "%Y/%-m/%-d" -%}
 {% for post in site.posts limit:1 %}
-  * [{{ post.title }}]({{ post.url }})
+  * [{{ post.title }}]({{ post.url }}) ({{ post.date | date: date_format }})
 {% endfor %}
 
-#### 見ましょう
-* [オリジナルTVアニメーション「リコリス・リコイル」公式サイト](https://lycoris-recoil.com/)
-* [TVアニメ「継母の連れ子が元カノだった」公式サイト](https://tsurekano-anime.com/)
-* [「ラブライブ！スーパースター!!」公式サイト](https://www.lovelive-anime.jp/yuigaoka/)
-* [TVアニメ「カッコウの許嫁」公式サイト](https://cuckoos-anime.com/)
-* [TVアニメ「それでも歩は寄せてくる」公式サイト](https://soreayu.com/)
+<div>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/04UddhIt9F0G9Ae8P5UQ29?utm_source=generator&theme=0" style="max-width: 800px" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
 
-#### ロシアによるウクライナへの侵攻に反対します
-* [Appeal to Ruby community from Kharkiv Rubyist](https://zverok.space/blog/2022-03-03-WAR.html)
-* [War in Ukraine: official website, MFA of Ukraine](https://war.ukraine.ua/)
+<div>
+<script type="application/javascript" src="https://embed.nicovideo.jp/watch/sm2057168/script?w=640&h=360"></script><noscript><a href="https://www.nicovideo.jp/watch/sm2057168">M.C.ドナルドはダンスに夢中なのか？最終鬼畜道化師ドナルド・Ｍ</a></noscript>
+</div>
+
+[アラー](https://www.mcdonalds.co.jp/)
