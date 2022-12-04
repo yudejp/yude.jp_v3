@@ -62,7 +62,7 @@ permalink: /profile/
     <li><i class="fa-brands fa-discord"></i> Discord: <a href="https://discord.com/users/116124230243975173" rel="me">yude#3205</a></li>
     <li><i class="fa-brands fa-telegram"></i> Telegram: <a href="https://t.me/yudejp" rel="me">t.me/yudejp</a></li>
     <li><i class="fa-brands fa-github"></i> GitHub: <a href="https://github.com/yude" rel="me">yude</a></li>
-    <li><i class="fa-brands fa-mastodon"></i> Mastodon: <a href="https://mstdn.yude.jp/@yude" rel="me">@yude@mstdn.yude.jp</a></li>
+    <li><i class="fa-brands fa-mastodon"></i> ActivityPub (Misskey): <a href="https://mi.yude.moe/@yude" rel="me">@yude@mi.yude.moe</a></li>
     <li><i class="fa-brands fa-keybase"></i> Keybase: <a href="https://keybase.io/yude" rel="me">yude</a></li>
 </ul>
 
