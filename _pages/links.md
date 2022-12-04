@@ -23,7 +23,7 @@ permalink: /links/
 [![pepepperの雑記帳](/assets/images/mutual-links/pepepper.png)](https://www.pepepper.net/)
 
 * Arakawa Laboratory (Sora Arakawa さん)\
-[![Arakawa Laboratory](/assets/images/mutual-links/arkwnet.png)](https://arkw.net/)
+<a href="https://arkw.net/"><img src="/assets/images/mutual-links/arkwnet.png" width="230" alt="Arakawa Laboratory" /></a>
 
 * nullc.at (NullCat / Hinano さん)\
 [![nullc.at](/assets/images/mutual-links/nullcat.png)](https://nullc.at)
