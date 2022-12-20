@@ -7,7 +7,7 @@ title: 🏠 ホーム
 permalink: /
 ---
 
-<div class="alert alert-success" role="alert">
+<div class="alert alert-info" role="alert">
   <h4 class="alert-heading"><i class="fa-solid fa-circle-info"></i> Misskey インスタンス開設のおしらせ&nbsp;&nbsp;──&nbsp;&nbsp;<code>mi.yude.moe</code></h4>
   <p style="margin: -5px; margin-left: 5px">誰でも参加可能な Misskey インスタンス、「オオアオ・・・」ができました！<br>
   <a href="https://mi.yude.moe">こちら</a> から参加できます。</p>
