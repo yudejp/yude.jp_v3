@@ -8,9 +8,12 @@ permalink: /
 ---
 
 <div class="alert alert-success" role="alert">
-  <h5 class="alert-heading"><i class="fa-solid fa-circle-info"></i> Misskey インスタンス開設のおしらせ&nbsp;&nbsp;──&nbsp;&nbsp;<code>mi.yude.moe</code></h5>
-  <p style="margin: -5px">誰でも参加可能な Misskey インスタンス、「オオアオ・・・」ができました！<br>
+  <h4 class="alert-heading"><i class="fa-solid fa-circle-info"></i> Misskey インスタンス開設のおしらせ&nbsp;&nbsp;──&nbsp;&nbsp;<code>mi.yude.moe</code></h4>
+  <p style="margin: -5px; margin-left: 5px">誰でも参加可能な Misskey インスタンス、「オオアオ・・・」ができました！<br>
   <a href="https://mi.yude.moe">こちら</a> から参加できます。</p>
+  <hr>
+  <h5 class="alert-heading">Misskey とは？</h5>
+  <p style="margin: -5px; margin-left: 5px">Misskey は、分散 SNS を作るソフトウェアの1つで、Mastodon や PeerTube とプロトコルに互換性があります (<a href="https://www.w3.org/TR/activitypub/">ActivityPub</a>)。もっと詳しく: <a href="https://join.misskey.page/ja-JP/">Misskeyをはじめよう</a></p>
 </div>
 
 <div class="container" id="particles-js" style="position: relative; height: 5rem; z-index: 100">
