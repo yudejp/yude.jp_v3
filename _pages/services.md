@@ -7,6 +7,9 @@ permalink: /services/
 # サービス一覧
 以下に yude.jp で稼働中の公開サービスを示します。
 
+## Misskey インスタンス
+* [mi.yude.moe](https://mi.yude.moe)
+
 ## AutoMuteUs
 Among Us の自動ミュート Discord ボット
 * API: [galactus.yude.jp](https://galactus.yude.jp)
