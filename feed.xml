@@ -5,9 +5,161 @@
     <description>yude.jp のトップページです。</description>
     <link>https://www.yude.jp//</link>
     <atom:link href="https://www.yude.jp//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 25 Dec 2022 08:48:14 +0000</pubDate>
-    <lastBuildDate>Sun, 25 Dec 2022 08:48:14 +0000</lastBuildDate>
+    <pubDate>Sun, 25 Dec 2022 13:58:51 +0000</pubDate>
+    <lastBuildDate>Sun, 25 Dec 2022 13:58:51 +0000</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
+    
+      <item>
+        <title>2022 总结 &amp; 2023 展望</title>
+        <description>&lt;p&gt;2022 年が終わります。なので、この年をまとめる記事をここに置いてみます。まずは、今年行ったことを羅列してみます。
+なぐり書きすぎて・・・&lt;/p&gt;
+&lt;h1 id=&quot;成し&quot;&gt;成し&lt;/h1&gt;
+
+&lt;h2 id=&quot;資格&quot;&gt;資格&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;「基本情報技術者」資格を取得&lt;br /&gt;
+箔が付いた感じがするんじゃないでしょうかｗ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;大学&quot;&gt;大学&lt;/h2&gt;
+&lt;h3 id=&quot;大学祭-実行委員会&quot;&gt;大学祭 実行委員会&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;広島市立大学 大学祭 の出店者向け Discord サーバーで使われる書類・チャンネルの管理用ボット「かんりちゃん」をリリース。&lt;br /&gt;
+&lt;a href=&quot;https://github.com/ichidaisai/old-kanri-chan&quot;&gt;ichidaisai/old-kanri-chan: 広島市立大学 大学祭 Discord サーバー 管理用ボット&lt;/a&gt;&lt;br /&gt;
+Discord API の Python 3.x 向けラッパー &lt;a href=&quot;https://github.com/Rapptz/discord.py&quot;&gt;Rapptz/discord.py&lt;/a&gt; の深い部分の機能を初めて使った回でした。これでは、比較的ギーク向けではないサービスとして開発する必要があり、できるだけ Discord ボットにありがちなコマンドの実行を避け、インタラクションを活用する方針で作成しました。極めて限られた期間 (約 3 週間) にしては上出来なプロダクトだと自分では思っていますが、コードの再利用性が低い点、typehint を使っていないことなどによるコードの視認性が低いこと、コメントが不十分すぎることを後悔しています。これらの視点において正直なところソースコードを Public にするか迷いましたが、OSS であることは重要だと思い公開設定にしています。開発前は引き継ぎも考え渋々 Python を利用したところはありましたが、Discord ボットとしては極めてマイナーな機能を実装するにあたって PyPI に存在する豊富なモジュールに助けられたところがあり、最終的には正しい選択だったと思います。&lt;/li&gt;
+  &lt;li&gt;大学祭の当日のスタッフとして労働。&lt;br /&gt;
+まあ、あんまやらんことではないかねえ ^_^&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;マスコミ研究会&quot;&gt;マスコミ研究会&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/masukendp/archives&quot;&gt;masukendp/archives: 広島市立大学 マスコミ研究会 による頒布物のアーカイブ&lt;/a&gt;&lt;br /&gt;
+マスコミ研究会が過去 20 年に渡って頒布してきた「Dispatch Place」ですが、これらのデータの継続性は重要であると考え、可能な限りの回を GitHub Pages 上にアーカイブしました。これについても引き継ぎと技術的な点のバランスを考える必要があり、かなり渋かったです。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;講義&quot;&gt;講義&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;情報工学実験Ⅰ&lt;br /&gt;
+なんか優秀だったらしい、そのうち広島市立大学の Web サイト上に顔面共有されるらしいね。それもまた愉快かも。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;プロジェクト演習&quot;&gt;プロジェクト演習&lt;/h3&gt;
+&lt;p&gt;間接的に TypeScript を本腰入れてやらんといけんよねというきっかけになり、参加してよかったと思います。まだプロジェクト自体途中なので、足を引っ張らないようにやっていかんとね・・・&lt;/p&gt;
+
+&lt;h2 id=&quot;インターン&quot;&gt;インターン&lt;/h2&gt;
+&lt;p&gt;いい感じにキラキラ系と JTC 系に行けて、それぞれの雰囲気を知ることができて有意義でした。冬季インターンもやっていかないと、狂う。というか職をさっさと得て落ち着きたいんだよな漏れは。狂う狂う狂う狂う狂う狂う狂う狂う狂う狂う狂う狂う狂う狂う狂う狂う&lt;/p&gt;
+
+&lt;h2 id=&quot;oss-活動&quot;&gt;OSS 活動&lt;/h2&gt;
+&lt;p&gt;本質的にクソなものと普通に使えるものを両方雑に作った感じですかねえ❓；実装を通して中途半端な理解を矯正していくというのが多かったと思います。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/yude/youbine&quot;&gt;yude/youbine: 郵便屋さん&lt;/a&gt;&lt;br /&gt;
+当初 Node.js + Express で書こうと思っていましたが、シングルバイナリでないことが渋いというのと、実装しようとしていることの割にエコシステムが過剰なんじゃないかということで Fiber という Go の Express の実装みたいなのを使って書いてみました。JWT 認証がどのようであるかを実装を通して理解したり、本質的に漏れは &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POST&lt;/code&gt; リクエストがなんやねんということの理解が浅いことに気づけてよかったんじゃないかと思います。てか Go の Embed という標準モジュールがエモすぎて嬉しかった。でも Go は Union 型無くて渋い（漏れは今の所、幸運なことにプログラミング初心者なので使う機会がないが、無いより有る方がいいよな）。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/yude/adoc-report&quot;&gt;yude/adoc-report: 📓 アタシのレポート執筆環境&lt;/a&gt;&lt;br /&gt;
+LaTeX は面倒だけど Word は使いたくないというワガママを極め、今年は Asciidoc + pandoc という環境に落ち着きました。漏れは本質的にインデントですべてが決まるというのがアレっぽく、その点で Asciidoc は記号の数とかでネストが決まったりしていいんじゃないかと思います。書式の種類も多いし。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/plazum/find-keke&quot;&gt;plazum/find-keke: 寻找唐可可&lt;/a&gt;&lt;br /&gt;
+オタクのプロジェクトの翻訳直しただけ。大陸の人間と謎の交流ができてまあオモロでした。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/yude/novel2renpy&quot;&gt;yude/novel2renpy: ノベルゲームの原稿を Ren’Py のソースコードに変換します。&lt;/a&gt;&lt;br /&gt;
+普通にノベルゲーム研究会の開発で必要になった。TypeScript のいい感じの練習になってよかったと思う。正直 TypeScript の型システムを活用できている感じはしないが…&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/yude/EPGSWatcher&quot;&gt;yude/EPGSWatcher: EPGStation と Mirakurun (mirakc) 間の接続性を監視&lt;/a&gt;&lt;br /&gt;
+シンプルに実装が終わりすぎて使うのやめたほうがいいと思う。でもこれぐらいしか方法ないと思うんだよね❓&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/yude/rtx1200_exporter&quot;&gt;yude/rtx1200_exporter: Prometheus exporter for YAMAHA RTX1200 router w/ yude.jp servers NAT traversal informations&lt;/a&gt;&lt;br /&gt;
+YAMAHA RTX1200 の情報をいい感じに Prometheus に投げられるようになった。Lua とか書いたことないしまじで発狂してたな。Prometheus と Grafana のいい入門になったと思います。というか Minecraft やってた勢なら Lua 書けるやろみたいな空気あるよな。漏れは ComputerCraft やってないからわからんねん。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/yude/np2bio&quot;&gt;yude/np2bio: Spotify の Now Playing を Twitter の bio に設定するボット&lt;/a&gt;&lt;br /&gt;
+だいぶ動かしてたけど全然イーロンに怒られなくてそうなんだになった。いや怒られそうなものを本垢で動かすなみたいなハナシはありますね。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/yude/stomach-breaker&quot;&gt;yude/stomach-breaker: 腹破壊&lt;/a&gt;&lt;br /&gt;
+だいぶ遊ばれててよかった。でもこれ以上どうも発展させられないので、放置。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/yude/ahnmika-white&quot;&gt;yude/ahnmika-white: 白って200色あんねん&lt;/a&gt;&lt;br /&gt;
+某 Discord サーバーの方たちにいい感じに遊びを提供できてうれしかった。マジでこれはなんなんだ。一番最初の C での実装でどうやって control + C を検出するかということにめちゃくちゃ悩んでいた記憶がある。こういう方法があんねん。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/yude/pldb&quot;&gt;yude/pldb&lt;/a&gt;&lt;br /&gt;
+Spigot プラグインの開発に入門した。思ったよりそんなに・・・という感じだったし、2015 年ぐらいのマイクラキッズ時代にやっておけばよかったと思った。やっとけよマジで。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/yuderobot/ai&quot;&gt;yuderobot/ai: 🐤 The brain of ai.&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://twitter.com/yuderobot&quot;&gt;@yuderobot&lt;/a&gt; の頭脳を全部入れ替えた。コードベースは &lt;a href=&quot;https://github.com/iamtakagi/ai&quot;&gt;iamtakagi/ai: 🐈 Artificial Intelligence which generates sentences @iam_takagi’s tweets with Markov chains.&lt;/a&gt; を使用している。定期的にツイートのアーカイブを取得するという苦行が消えてよかったと思う。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;インターネット&quot;&gt;インターネット&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Twitter が渋すぎてなんとも言えん感じに・・・。SNS 運用ってむずいしな。もうみんな PHS とか使えばいいよ、&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;公開-misskey-インスタンスを運用開始-miyudemoe&quot;&gt;公開 Misskey インスタンスを運用開始: &lt;a href=&quot;https://mi.yude.moe&quot;&gt;mi.yude.moe&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;漏れの周りの人間が Fediverse 上で落ち着いてアイデンティティーを設置できる場所があると嬉しいんちゃうという点と、ActivityPub を推進すべきという思想を持っている人間として公開インスタンスぐらいは持っとくとええんかなということで建てた。Misskey なのは一般的な日本人にとっては Mastodon や Pleroma より親和性のあるソフトウェアだと思ったから。あと Mastodon は Ruby on Rails なのが気に入らない (そんな…; 一応、テスト用 &amp;amp; 個人用で Mastodon インスタンスも稼働させている)。&lt;/li&gt;
+  &lt;li&gt;絶対に落としたくないので、運用1ヶ月ぐらい経ってからオンプレ要素を全削除した。落ちてもオレは悪くない。悪いが…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;自宅サーバーの更改&quot;&gt;自宅サーバーの更改&lt;/h3&gt;
+&lt;p&gt;流石に 2014 年から稼働させ続けてきたマシンをこれ以上 24 時間稼働させるのは漏れの精神が持たないので、正直スペック的にはアップグレードの必要ないけど買い替えた。君には、休み無しで働いてもらうよん&lt;/p&gt;
+
+&lt;h3 id=&quot;vrchat-のアバターを購入し改変&quot;&gt;VRChat のアバターを購入し、改変&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://booth.pm/ja/items/2559783&quot;&gt;『ラスク』-Rusk-【Quest/PC対応 オリジナル3Dモデル】 - あまとうさぎ - BOOTH&lt;/a&gt; を赤髪にしたり帽子かぶせたり。&lt;/p&gt;
+
+&lt;h2 id=&quot;経済活動&quot;&gt;経済活動&lt;/h2&gt;
+&lt;p&gt;今年も漢の買い物しすぎた。いつになったら落ち着ける？；価格が高い順に雑に紹介。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.sony.jp/ichigan/products/ZV-E10/&quot;&gt;SONY ZV-E10&lt;/a&gt;&lt;br /&gt;
+特にこだわりはないのでレンズキットを買った。なんで YouTuber でもないのに VLOGCAM ブランドを選んだかというと、動画を撮るのが好きなのに普通のミラーレス一眼を選んでまともに動画取れないと渋いから。あとデザインが好き。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.lenovo.com/jp/ja/p/laptops/thinkpad/thinkpad-e-series/thinkpad-e14-gen-3-(14%E2%80%9D-amd)/22tpe14e4a3&quot;&gt;Lenovo ThinkPad E14 Gen 3 (AMD)&lt;/a&gt;&lt;br /&gt;
+ほぼ Linux 用マシン。去年 MacBook Air (M1, 2020) を買ったときに Windows マシンを売り払ったわけだけど、正直 Mac だけだと”&quot;”深い”&quot;”ことができず困ったので買った。これで Windows / macOS / Ubuntu / FreeBSD を持ち運べるようになり最強になったんじゃないかと思う。バッテリー駆動時間以外は今の所文句なく、その唯一の文句も普段 Apple Silicon のバッテリー持ちに慣れてるからだと思うんで、割にいい買い物だった。最初 Ubuntu じゃなくて Arch Linux 入れてたけど、疲れちゃったんだよな。体力がある人は使えばいいと思います。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://support.apple.com/kb/SP847?locale=ja_JP&quot;&gt;Apple iPhone 13 mini&lt;/a&gt;&lt;br /&gt;
+Apple iPhone SE (第2世代) 使ってたけど、Apple Watch を買ったことをきっかけに iPhone をまあメインにしましょうやということで渋くなり買い替えた。Softbank の学割かなんかで安くなってよかったと思う。一応レンタル的 (毎月月賦払って、一定期間までに返すとそれ以上請求なし) な契約だけど、どうせ端末返還蹴られると思うんでこのまま最後まで使っていこうと思う。（そもそも本体価格割り引かれてるし、買い換える理由もなし・・・）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;ゲーム&quot;&gt;ゲーム&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;プロジェクトセカイ カラフルステージ feat. 初音ミク
+    &lt;ul&gt;
+      &lt;li&gt;フルコンボ MASTER 楽曲 160 曲達成 (皆伝 13 粒)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ポケットモンスター バイオレット
+    &lt;ul&gt;
+      &lt;li&gt;3大ルート クリア&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;2023-年の展望&quot;&gt;2023 年の展望&lt;/h1&gt;
+&lt;p&gt;まとめたということは 2023 年の展望も語りをやっていくとよさそうなので、これも羅列してみます。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Rust をちゃんと書けるようにする。&lt;/li&gt;
+  &lt;li&gt;Linux カーネルと和解する。
+    &lt;ul&gt;
+      &lt;li&gt;個人的に Linux の新しいバージョンのカーネルが動いてほしい SBC があり、自分で完全に理解してビルドをやっていく必要がある。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;大学を卒業できるよう、ちゃんとやっていく。&lt;/li&gt;
+  &lt;li&gt;3D プリンターを使えるようになる。
+    &lt;ul&gt;
+      &lt;li&gt;Autodesk Fusion 360 と和解する。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;応用情報技術者になる。
+    &lt;ul&gt;
+      &lt;li&gt;正直、疲れるのでやりたくはない。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;電子工作をやっていく。
+    &lt;ul&gt;
+      &lt;li&gt;SBC と組み合わせるパターンでないと、漏れは続かないと思うのでその方向でやっていく。&lt;/li&gt;
+      &lt;li&gt;やさしいソフトウェアと組み合わせられないとあまり嬉しくはない。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;職を得るか、もしくはM進して進路を確定させる。&lt;/li&gt;
+  &lt;li&gt;Misskey インスタンスを続けてやっていくのであれば、それを安定稼働させられるよう努力し、知見を蓄積する。&lt;/li&gt;
+  &lt;li&gt;Kubernetes の意義を理解し、扱えるようになる。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以上です。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 25 Dec 2022 00:00:00 +0000</pubDate>
+        <link>https://www.yude.jp//blog/2022-12-wrapping</link>
+        <guid isPermaLink="true">https://www.yude.jp//blog/2022-12-wrapping</guid>
+        
+        <category>その他</category>
+        
+        
+      </item>
     
       <item>
         <title>Mastodon インスタンスを高速に作成する</title>
