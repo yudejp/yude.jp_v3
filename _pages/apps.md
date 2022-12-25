@@ -11,3 +11,6 @@ permalink: /apps/
 
 * [純恋歌](https://junrenka-randomizer.vercel.app/)\
 純恋歌を破壊
+
+* [novel2renpy](https://novel2renpy.vercel.app/)\
+ノベルゲームの原稿を Ren'Py のソースコードに変換
