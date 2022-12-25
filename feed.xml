@@ -5,8 +5,8 @@
     <description>yude.jp のトップページです。</description>
     <link>https://www.yude.jp//</link>
     <atom:link href="https://www.yude.jp//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 25 Dec 2022 13:58:51 +0000</pubDate>
-    <lastBuildDate>Sun, 25 Dec 2022 13:58:51 +0000</lastBuildDate>
+    <pubDate>Sun, 25 Dec 2022 20:38:40 +0000</pubDate>
+    <lastBuildDate>Sun, 25 Dec 2022 20:38:40 +0000</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
@@ -99,7 +99,9 @@ Spigot プラグインの開発に入門した。思ったよりそんなに・�
   &lt;li&gt;&lt;a href=&quot;https://www.sony.jp/ichigan/products/ZV-E10/&quot;&gt;SONY ZV-E10&lt;/a&gt;&lt;br /&gt;
 特にこだわりはないのでレンズキットを買った。なんで YouTuber でもないのに VLOGCAM ブランドを選んだかというと、動画を撮るのが好きなのに普通のミラーレス一眼を選んでまともに動画取れないと渋いから。あとデザインが好き。&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.lenovo.com/jp/ja/p/laptops/thinkpad/thinkpad-e-series/thinkpad-e14-gen-3-(14%E2%80%9D-amd)/22tpe14e4a3&quot;&gt;Lenovo ThinkPad E14 Gen 3 (AMD)&lt;/a&gt;&lt;br /&gt;
-ほぼ Linux 用マシン。去年 MacBook Air (M1, 2020) を買ったときに Windows マシンを売り払ったわけだけど、正直 Mac だけだと”&quot;”深い”&quot;”ことができず困ったので買った。これで Windows / macOS / Ubuntu / FreeBSD を持ち運べるようになり最強になったんじゃないかと思う。バッテリー駆動時間以外は今の所文句なく、その唯一の文句も普段 Apple Silicon のバッテリー持ちに慣れてるからだと思うんで、割にいい買い物だった。最初 Ubuntu じゃなくて Arch Linux 入れてたけど、疲れちゃったんだよな。体力がある人は使えばいいと思います。&lt;/li&gt;
+ほぼ Linux 用マシン。去年 MacBook Air (M1, 2020) を買ったときに Windows マシンを売り払ったわけだけど、正直 Mac だけだと”&quot;”深い”&quot;”ことができず困ったので買った。これで Windows / macOS / Ubuntu / FreeBSD を持ち運べるようになり最強になったんじゃないかと思う。バッテリー駆動時間以外は今の所文句なく、その唯一の文句も普段 Apple Silicon のバッテリー持ちに慣れてるからだと思うんで、割にいい買い物だった。最初 Ubuntu じゃなくて Arch Linux 入れてたけど、疲れちゃったんだよな。体力がある人は使えばいいと思います。Palit 製 GPU は ASK 税を回避できていいらしい点を学びました。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.nvidia.com/ja-jp/geforce/graphics-cards/30-series/rtx-3060-3060ti/&quot;&gt;NVIDIA GeForce RTX 3060&lt;/a&gt;&lt;br /&gt;
+もともと GTX 1060 6GB を使っていて、あまりゲームもしないしこれ以上の性能が必要になることもないだろうと思っていましたが、VRChat をやり始めたり、様々なエーアイ遊びをしていたら普通に性能足りなくなりました。ので買いました。&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://support.apple.com/kb/SP847?locale=ja_JP&quot;&gt;Apple iPhone 13 mini&lt;/a&gt;&lt;br /&gt;
 Apple iPhone SE (第2世代) 使ってたけど、Apple Watch を買ったことをきっかけに iPhone をまあメインにしましょうやということで渋くなり買い替えた。Softbank の学割かなんかで安くなってよかったと思う。一応レンタル的 (毎月月賦払って、一定期間までに返すとそれ以上請求なし) な契約だけど、どうせ端末返還蹴られると思うんでこのまま最後まで使っていこうと思う。（そもそも本体価格割り引かれてるし、買い換える理由もなし・・・）&lt;/li&gt;
 &lt;/ul&gt;
