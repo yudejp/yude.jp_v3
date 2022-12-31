@@ -34,6 +34,9 @@ permalink: /links/
 * Sasakulab (佐桜彩斗 さん)\
 [Sasakulab](https://sasakulab.github.io/)
 
+* KRIS.FAIL (Kris さん)\
+[![KRIS.FAIL](/assets/images/mutual-links/kris_fail.png)](https://kris.fail/)
+
 ###### yude.jp をリンクしてくださる方へ
 ありがとうございます! 以下のバナーを利用することができます (任意)。\
 [![yude.jp](/assets/images/banner_new.png)](https://yude.jp/images/banner_new.png)
@@ -63,9 +66,6 @@ permalink: /links/
 
 * Aumy (Aumy / おーみー さん)\
 [Aumy](https://fuku.day/)
-
-* KRIS.FAIL (Kris さん)\
-[KRIS.FAIL](https://kris.fail/)
 
 * towa0131のあばうとみー (towa0131 さん)\
 [towa0131のあばうとみー](https://www.towa0131.jp/)
