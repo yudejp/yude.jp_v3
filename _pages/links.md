@@ -32,10 +32,13 @@ permalink: /links/
 [Zopfcode](https://www.zopfco.de/)
 
 * Sasakulab (佐桜彩斗 さん)\
-[Sasakulab](https://sasakulab.github.io/)
+<a href="https://sasakulab.com/"><img src="/assets/images/mutual-links/sasakulab.png" width="230" alt="Sasakulab" /></a>
 
 * KRIS.FAIL (Kris さん)\
 [![KRIS.FAIL](/assets/images/mutual-links/kris_fail.png)](https://kris.fail/)
+
+* KusaReMKN.com (KusaReMKN さん)\
+[KusaReMKN.com](https://kusaremkn.com/)
 
 ###### yude.jp をリンクしてくださる方へ
 ありがとうございます! 以下のバナーを利用することができます (任意)。\
