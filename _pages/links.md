@@ -38,7 +38,7 @@ permalink: /links/
 [![KRIS.FAIL](/assets/images/mutual-links/kris_fail.png)](https://kris.fail/)
 
 * KusaReMKN.com (KusaReMKN さん)\
-[KusaReMKN.com](https://kusaremkn.com/)
+<a href="https://kusaremkn.com/"><img src="/assets/images/mutual-links/kusaremkn.webp" width="230" alt="KusaReMKN.com" /></a>
 
 ###### yude.jp をリンクしてくださる方へ
 ありがとうございます! 以下のバナーを利用することができます (任意)。\
