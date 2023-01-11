@@ -32,6 +32,12 @@ permalink: /
 
 ---
 
+## ぼっち・ざ・ろっく！ を見てください
+* [TVアニメ「ぼっち・ざ・ろっく！」公式サイト](https://bocchi.rocks/)
+* [結束バンド 公式プレイリスト - playlist by Sony Music Japan \| Spotify](https://open.spotify.com/playlist/0khIb9sON6ZEbWvRQI6268?si=52afc864cbec4eb2&nd=1)
+* [ぼっち・ざ・ろっく！ \| アニメ動画見放題 \| dアニメストア](https://animestore.docomo.ne.jp/animestore/ci_pc?workId=25806)
+* [アニメ「ぼっち・ざ・ろっく！」 \| Annict](https://annict.com/works/8128)
+
 #### 最新の記事
 {%- assign date_format = site.minima.date_format | default: "%Y/%-m/%-d" -%}
 {% for post in site.posts limit:1 %}
