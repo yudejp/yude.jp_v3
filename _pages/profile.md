@@ -3,7 +3,8 @@ layout: default
 title: 👤 プロフィール
 permalink: /profile/
 ---
-# yude
+
+<h1 id="name">yude</h1>
 <img src="/assets/images/avatar.jpg" style="max-width: 200px; border-radius: 50%" class="mawaru" />
 
 * アイコン: [Minkasy](https://twitter.com/xmnts) さんより
@@ -120,3 +121,36 @@ permalink: /profile/
     ( new Date( now.getFullYear() , birth.getMonth() , birth.getDate() ).getTime()
         > now.getTime() ? -1 : 0 ));
 </script>
+
+<script async>
+    const isHover = e => e.parentElement.querySelector(':hover') === e;    
+
+    let name = 'yude';
+    let state = false;
+    
+    elm = document.getElementById('name');
+    elm.innerHTML = name;
+    document.getElementById('name').onmouseover = async function() {
+        // alert('a');
+        console.log('a');
+        name += 'e';
+        elm.innerHTML = name;
+        state = true;
+        for (;;) {
+            name += 'e';
+            elm.innerHTML = name;
+            if (!(document.getElementById('name').matches(':hover'))) {
+                break;
+            }
+            await new Promise(s => setTimeout(s, 100))
+        }
+    }
+</script>
+<!-- 
+<script async>
+    window.setInterval(function(){
+        if (document.getElementById('name').matches(':hover')) {
+            console.log('a');
+        }
+    }, 800);
+</script> -->
