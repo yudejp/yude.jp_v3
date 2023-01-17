@@ -47,6 +47,27 @@
         body {
             background-color: #f7fafc;
         }
+        
+        @keyframes mawaru {
+            0% { transform: rotate(0deg) }
+            100% { transform: rotate(360deg) }
+        }
+        
+        @keyframes gatagata {
+            0%   { transform:translate(0, 0); }
+            25%  { transform:translate(0, 2px) rotate(5deg); }
+            50%  { transform:translate(0, 0, 0); }
+            75%  { transform:translate(0, -2px) rotate(-5deg); }
+            100% { transform:translate(0, 0); }
+        }
+        
+        .gatagata:hover {
+            animation: gatagata 0.3s linear infinite;
+        }
+        
+        .mawaru:hover {
+            animation: mawaru 3s linear infinite;
+        }
 
         .title {
             animation: title 2.5s linear;
@@ -54,7 +75,6 @@
         }
 
         @keyframes title {
-
             0%,
             100% {
                 color: rgb(0, 0, 255);
@@ -127,7 +147,7 @@
                         alt="yude.jp logo"
                         width="40"
                         height="40"
-                        class="d-inline-block align-text-top">
+                        class="d-inline-block align-text-top gatagata">
                     <a class="text-decoration-none title fs-3 font-monospace"
                         href="/"
                         style="position: relative; top: 11px; left: 5px"
@@ -345,10 +365,6 @@
         }
     </script>
     
-
-
-
-
 </body>
 
 </html>
