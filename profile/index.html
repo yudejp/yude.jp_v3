@@ -237,7 +237,7 @@
             </ol>
         </nav>
         <div style="min-height: 30rem">
-            <h1 id="yude">yude</h1>
+            <h1 id="name">yude</h1>
 <p><img src="/assets/images/avatar.jpg" style="max-width: 200px; border-radius: 50%" class="mawaru" /></p>
 
 <ul>
@@ -383,6 +383,39 @@
         > now.getTime() ? -1 : 0 ));
 </script>
 
+<script async="">
+    const isHover = e => e.parentElement.querySelector(':hover') === e;    
+
+    let name = 'yude';
+    let state = false;
+    
+    elm = document.getElementById('name');
+    elm.innerHTML = name;
+    document.getElementById('name').onmouseover = async function() {
+        // alert('a');
+        console.log('a');
+        name += 'e';
+        elm.innerHTML = name;
+        state = true;
+        for (;;) {
+            name += 'e';
+            elm.innerHTML = name;
+            if (!(document.getElementById('name').matches(':hover'))) {
+                break;
+            }
+            await new Promise(s => setTimeout(s, 100))
+        }
+    }
+</script>
+
+<!-- 
+<script async>
+    window.setInterval(function(){
+        if (document.getElementById('name').matches(':hover')) {
+            console.log('a');
+        }
+    }, 800);
+</script> -->
 
         </div>
         <hr>
