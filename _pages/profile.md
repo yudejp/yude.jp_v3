@@ -133,7 +133,6 @@ permalink: /profile/
     document.getElementById('name').onmouseover = async function() {
         name += 'e';
         elm.innerHTML = name;
-        state = true;
         for (;;) {
             name += 'e';
             elm.innerHTML = name;
