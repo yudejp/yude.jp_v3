@@ -123,8 +123,6 @@ permalink: /profile/
 </script>
 
 <script async>
-    const isHover = e => e.parentElement.querySelector(':hover') === e;    
-
     let name = 'yude';
     let state = false;
     
@@ -133,7 +131,6 @@ permalink: /profile/
     document.getElementById('name').onmouseover = async function() {
         name += 'e';
         elm.innerHTML = name;
-        state = true;
         for (;;) {
             name += 'e';
             elm.innerHTML = name;
