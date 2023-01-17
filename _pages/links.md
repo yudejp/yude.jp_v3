@@ -40,6 +40,9 @@ permalink: /links/
 * KusaReMKN.com (KusaReMKN さん)\
 <a href="https://kusaremkn.com/"><img src="/assets/images/mutual-links/kusaremkn.webp" width="230" alt="KusaReMKN.com" /></a>
 
+* rz7.dev (azure さん)\
+[rz7.dev](https://rz7.dev)
+
 ###### yude.jp をリンクしてくださる方へ
 ありがとうございます! 以下のバナーを利用することができます (任意)。\
 [![yude.jp](/assets/images/banner_new.png)](https://yude.jp/images/banner_new.png)
