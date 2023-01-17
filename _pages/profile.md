@@ -124,7 +124,6 @@ permalink: /profile/
 
 <script async>
     let name = 'yude';
-    let state = false;
     
     elm = document.getElementById('name');
     elm.innerHTML = name;
