@@ -4,7 +4,7 @@ title: 👤 プロフィール
 permalink: /profile/
 ---
 # yude
-<img src="/assets/images/avatar.jpg" style="max-width: 200px" />
+<img src="/assets/images/avatar.jpg" style="max-width: 200px; border-radius: 50%" class="mawaru" />
 
 * アイコン: [Minkasy](https://twitter.com/xmnts) さんより
 
