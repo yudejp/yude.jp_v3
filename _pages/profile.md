@@ -131,8 +131,6 @@ permalink: /profile/
     elm = document.getElementById('name');
     elm.innerHTML = name;
     document.getElementById('name').onmouseover = async function() {
-        // alert('a');
-        console.log('a');
         name += 'e';
         elm.innerHTML = name;
         state = true;
@@ -146,11 +144,3 @@ permalink: /profile/
         }
     }
 </script>
-<!-- 
-<script async>
-    window.setInterval(function(){
-        if (document.getElementById('name').matches(':hover')) {
-            console.log('a');
-        }
-    }, 800);
-</script> -->
