@@ -6,7 +6,7 @@ baseurl: "/"
 url: "https://www.yude.jp"
 twitter_username: yude_jp
 github_username: yude
-include: [_pages]
+include: [_pages, ".well-known"]
 
 plugins:
   - jekyll-feed
