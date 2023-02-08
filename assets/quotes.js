@@ -664,5 +664,139 @@ let quotes = [
         "artist": "HoneyWorks",
         "title": "ファンサ"
     },
-    
+    {
+        "text": "青春って要はさ「パスポート」だ",
+        "artist": "DIALOGUE+",
+        "title": "1000万回ハグなんだ"
+    },
+    {
+        "text": "遥か彼方 僕らは出会ってしまった",
+        "artist": "結束バンド",
+        "title": "星座になれたら"
+    },
+    {
+        "text": "泡のように踊れ・・・スカッシュ☆",
+        "artist": "温泉むすめ SPRiNGS",
+        "title": "青春サイダー"
+    },
+    {
+        "text": "出来れば世界を僕は塗り変えたい",
+        "artist": "ASIAN KUNG-FU GENERATION",
+        "title": "転がる岩、君に朝が降る"
+    },
+    {
+        "text": "殴り書きみたいな音 出せない状態で叫んだよ",
+        "artist": "結束バンド",
+        "title": "ギターと孤独と蒼い惑星"
+    },
+    {
+        "text": "You don't have to worry, worry,",
+        "artist": "松任谷由実",
+        "title": "守ってあげたい"
+    },
+    {
+        "text": "諦めて委ねれば僕も巻かれる",
+        "artist": "やなぎなぎ",
+        "title": "テトラゴン"
+    },
+    {
+        "text": "諦めて委ねれば僕も巻かれる",
+        "artist": "やなぎなぎ",
+        "title": "テトラゴン"
+    },
+    {
+        "text": "はっとしている隙に自分自身がわからなくなった",
+        "artist": "KANA-BOON",
+        "title": "クローン"
+    },
+    {
+        "text": "What if I say I'm not just another one of your plays",
+        "artist": "Infected Mushroom",
+        "title": "The Pretender"
+    },
+    {
+        "text": "前を向く勇気と 信じ抜くハートをずっと忘れないから",
+        "artist": "水瀬いのり",
+        "title": "harmony ribbon"
+    },
+    {
+        "text": "胸もはんこもぺったんこだめう〜☆",
+        "artist": "日向美ビタースイーツ♪",
+        "title": "めうめうぺったんたん!!"
+    },
+    {
+        "text": "いつかきっと出会う ぼくらをのせて",
+        "artist": "井上あずみ",
+        "title": "君をのせて"
+    },
+    {
+        "text": "TLの流れが遅いとき「もっと私を楽しませてくれ…」って気分でシュポシュポ更新しとる",
+        "artist": "pepepper",
+        "title": "2021年7月20日のツイート"
+    },
+    {
+        "text": "TLの流れが遅いとき「もっと私を楽しませてくれ…」って気分でシュポシュポ更新しとる",
+        "artist": "pepepper",
+        "title": "2021年7月20日のツイート"
+    },
+    {
+        "text": "教育方針 ｇｇｒｋｓ",
+        "artist": "西月 拓",
+        "title": "化南郡立化学物質不使用小学校 校歌"
+    },
+    {
+        "text": "最高のパフォーマンスと安定性、セキュリティを提供するため Firefox を最新の状態に保ちます。",
+        "artist": "Mozilla Firefox",
+        "title": "about:preferences"
+    },
+    {
+        "text": "強さや弱さでは語れないぜ",
+        "artist": "菅田 将暉",
+        "title": "ロングホープ・フィリア"
+    },
+    {
+        "text": "希望は燃ゆる 不死の鳥",
+        "artist": "藤原登喜夫",
+        "title": "鳥取県立鳥取東高等学校 校歌"
+    },
+    {
+        "text": "希望は燃ゆる 不死の鳥",
+        "artist": "藤原登喜夫",
+        "title": "鳥取県立鳥取東高等学校 校歌"
+    },
+    {
+        "text": "長時間操作が行われなかったため、自動的にログアウトされました。",
+        "artist": "UNIVERSAL PASSPORT RX",
+        "title": "Error Page"
+    },
+    {
+        "text": "何もすることがありません。",
+        "artist": "pacman",
+        "title": "pacman -Syu"
+    },
+    {
+        "text": "C-C-C-Cmon Ca Va?",
+        "artist": "ビッケブランカ",
+        "title": "Ca Va?"
+    },
+    {
+        "text": "沈みかけたオレンジのせいにした",
+        "artist": "nano.RIPE",
+        "title": "影踏み"
+    },
+    {
+        "text": "笑われたりしないことが 君の生きるゴールなの？",
+        "artist": "RADWIMPS",
+        "title": "万歳千唱"
+    },
+    {
+        "text": "みんなでどこまでも行けるね",
+        "artist": "平野綾、茅原実里、後藤邑子",
+        "title": "ハレ晴レユカイ"
+    },
+    {
+        "text": "届く声に導かれて 世界は色づいていく",
+        "artist": "米倉千尋",
+        "title": "そして愛になる"
+    },
 ]
