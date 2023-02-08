@@ -23,7 +23,7 @@ permalink: /
       <p id="text" class="blockquote-text"></p>
     </blockquote>
     <figcaption class="blockquote-footer">
-      <span id="artist"></span> / <cite id="title"></cite> <a href="javascript:void(0)" onClick="updateText(); return false;" class="fs-4 text-decoration-none">🔄</a>
+      <span id="artist"></span> / <span id="title"></cite> <a href="javascript:void(0)" onClick="updateText(); return false;" class="fs-4 text-decoration-none">🔄</a>
     </figcaption>
     
   </figure>
